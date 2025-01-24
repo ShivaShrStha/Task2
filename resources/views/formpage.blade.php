@@ -80,7 +80,7 @@
                     <i class="fas fa-database"></i>
                     <h4>Data Collection</h4>
                     <p>Collect data offline or online using mobile devices, browsers, or Android apps.</p>
-                    <a> href="{{ url('/formpage') }}" class="btn btn-primary mt-2">Create Form</a>
+                    
                 </div>
             </div>
 
