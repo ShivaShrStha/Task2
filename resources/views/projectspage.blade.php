@@ -13,94 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nepali-datepicker/css/nepali.datepicker.v4.0.min.css">
     <!-- Add necessary CSS for date pickers -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f8f9fa;
-        }
-
-        .container {
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 20px;
-            max-width: 600px;
-            margin: auto;
-            background-color: #fff;
-        }
-
-        .add-button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-        .form-section {
-            margin-top: 20px;
-        }
-
-        .question-types {
-            display: none;
-            margin-top: 20px;
-        }
-
-        .question-types button {
-            display: inline-block;
-            margin: 5px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: #f8f8f8;
-            cursor: pointer;
-        }
-
-        .question-types button:hover {
-            background-color: #e0e0e0;
-        }
-
-        .form-section input {
-            width: calc(100% - 120px);
-            padding: 10px;
-            margin-right: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .form-section .add-question-button {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .dynamic-section {
-            margin-top: 20px;
-        }
-
-        .calendar-container {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-
-        .calendar {
-            width: 48%;
-        }
-
-        .calendar input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-    </style>
+    @vite('resources/css/app.css')
 </head>
 
 <body>
@@ -122,8 +35,8 @@
                 <button onclick="showPhotoUploader(this)"><i class="fas fa-camera"></i> Photo</button>
                 <button onclick="showRatingSelector(this)"><i class="fas fa-star"></i> Rating</button>
                 <button onclick="showRankingSelector(this)"><i class="fas fa-list-ol"></i> Ranking</button>
-                <button><i class="fas fa-microphone"></i>Audio</button>
-                <button><i class="fas fa-video"></i>Video</button>
+                <button><i class="fas fa-microphone"></i> Audio</button>
+                <button><i class="fas fa-video"></i> Video</button>
             </div>
 
             <div class="date-pickers" style="display: none; margin-top: 20px;">
@@ -218,29 +131,22 @@
             </div>
 
             <div class="rating-selector" style="display: none; margin-top: 20px;">
-                <h4>Select Ratings:</h4>
-                <div>
-                    <input type="checkbox" id="star5" name="rating" value="5">
+                <h4>Select Rating:</h4>
+                <div class="star-rating">
+                    <input type="radio" id="star5" name="rating" value="5">
                     <label for="star5"><i class="fas fa-star"></i></label>
-                </div>
-                <div>
-                    <input type="checkbox" id="star4" name="rating" value="4">
+                    <input type="radio" id="star4" name="rating" value="4">
                     <label for="star4"><i class="fas fa-star"></i></label>
-                </div>
-                <div>
-                    <input type="checkbox" id="star3" name="rating" value="3">
+                    <input type="radio" id="star3" name="rating" value="3">
                     <label for="star3"><i class="fas fa-star"></i></label>
-                </div>
-                <div>
-                    <input type="checkbox" id="star2" name="rating" value="2">
+                    <input type="radio" id="star2" name="rating" value="2">
                     <label for="star2"><i class="fas fa-star"></i></label>
-                </div>
-                <div>
-                    <input type="checkbox" id="star1" name="rating" value="1">
+                    <input type="radio" id="star1" name="rating" value="1">
                     <label for="star1"><i class="fas fa-star"></i></label>
                 </div>
                 <button class="btn btn-primary mt-3" onclick="saveRatingSelection(this)">Save</button>
             </div>
+
 
             <div class="saved-rating" style="display: none; margin-top: 20px;">
                 <h4>Selected Ratings:</h4>
