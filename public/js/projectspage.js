@@ -5,9 +5,20 @@ function addFormSection() {
     clone.style.display = 'block';
     clone.id = '';
     container.appendChild(clone);
+    clone.querySelector('.add-question-button').style.display = 'block';
+    clone.querySelector('.remove-options-button').style.display = 'none';
+}
+
+function removeAllOptions(button) {
+    const formSection = button.parentElement;
+    const questionTypes = formSection.querySelector('.question-types');
+    questionTypes.style.display = 'none';
+    formSection.querySelector('.add-question-button').style.display = 'block';
+    formSection.querySelector('.remove-options-button').style.display = 'none';
 }
 
 function showQuestionTypes(button) {
+    removeAllOptions(button);
     const formSection = button.parentElement;
     const questionTypes = formSection.querySelector('.question-types');
     const input = formSection.querySelector('input').value;
@@ -21,6 +32,7 @@ function showQuestionTypes(button) {
 }
 
 function showDatePickers(button) {
+    hideUsedOption(button, 'showDatePickers');
     const formSection = button.parentElement.parentElement;
     const datePickers = formSection.querySelector('.date-pickers');
     const englishCalendar = formSection.querySelector('#english-calendar');
@@ -83,6 +95,7 @@ function showDatePickers(button) {
 }
 
 function showNumberSelector(button) {
+    hideUsedOption(button, 'showNumberSelector');
     const formSection = button.parentElement.parentElement;
     const numberSelector = formSection.querySelector('.number-selector');
     numberSelector.style.display = 'block';
@@ -104,9 +117,15 @@ function saveNumberSelection(button) {
     savedNumberSection.style.display = 'block';
     formSection.querySelector('.number-selector').style.display = 'none';
     hideUsedOption(button, 'number');
+    showAllOptions();
+    button.closest('.form-section').querySelector('.question-types').style.display = 'none';
+    button.closest('.form-section').querySelector('.add-question-button').style.display = 'none';
+    showSubmitButton(); // Add this line
+    showSubmitButtonIfNeeded(); // Add this line
 }
 
 function showPhotoUploader(button) {
+    hideUsedOption(button, 'showPhotoUploader');
     const formSection = button.parentElement.parentElement;
     const photoUploader = formSection.querySelector('.photo-uploader');
     photoUploader.style.display = 'block';
@@ -125,6 +144,11 @@ function savePhoto(button) {
             savedPhotoSection.style.display = 'block';
             formSection.querySelector('.photo-uploader').style.display = 'none';
             hideUsedOption(button, 'photo');
+            showAllOptions();
+            button.closest('.form-section').querySelector('.question-types').style.display = 'none';
+            button.closest('.form-section').querySelector('.add-question-button').style.display = 'none';
+            showSubmitButton(); // Add this line
+            showSubmitButtonIfNeeded(); // Add this line
         };
         reader.readAsDataURL(photoInput.files[0]);
     } else {
@@ -133,6 +157,7 @@ function savePhoto(button) {
 }
 
 function showSingleChoice(button) {
+    hideUsedOption(button, 'showSingleChoice');
     const formSection = button.parentElement.parentElement;
     const singleChoice = formSection.querySelector('.single-choice');
     singleChoice.style.display = 'block';
@@ -153,9 +178,15 @@ function saveSingleChoice(button) {
     savedSingleChoiceSection.style.display = 'block';
     formSection.querySelector('.single-choice').style.display = 'none';
     hideUsedOption(button, 'single-choice');
+    showAllOptions();
+    button.closest('.form-section').querySelector('.question-types').style.display = 'none';
+    button.closest('.form-section').querySelector('.add-question-button').style.display = 'none';
+    showSubmitButton(); // Add this line
+    showSubmitButtonIfNeeded(); // Add this line
 }
 
 function showRatingSelector(button) {
+    hideUsedOption(button, 'showRatingSelector');
     const formSection = button.parentElement.parentElement;
     const ratingSelector = formSection.querySelector('.rating-selector');
     ratingSelector.style.display = 'block';
@@ -177,9 +208,15 @@ function saveRatingSelection(button) {
     savedRatingSection.style.display = 'block';
     formSection.querySelector('.rating-selector').style.display = 'none';
     hideUsedOption(button, 'rating');
+    showAllOptions();
+    button.closest('.form-section').querySelector('.question-types').style.display = 'none';
+    button.closest('.form-section').querySelector('.add-question-button').style.display = 'none';
+    showSubmitButton(); // Add this line
+    showSubmitButtonIfNeeded(); // Add this line
 }
 
 function showTextResponse(button) {
+    hideUsedOption(button, 'showTextResponse');
     const formSection = button.parentElement.parentElement;
     const textResponse = formSection.querySelector('.text-response');
     textResponse.style.display = 'block';
@@ -200,9 +237,15 @@ function saveTextResponse(button) {
     savedTextResponseSection.style.display = 'block';
     formSection.querySelector('.text-response').style.display = 'none';
     hideUsedOption(button, 'text');
+    showAllOptions();
+    button.closest('.form-section').querySelector('.question-types').style.display = 'none';
+    button.closest('.form-section').querySelector('.add-question-button').style.display = 'none';
+    showSubmitButton(); // Add this line
+    showSubmitButtonIfNeeded(); // Add this line
 }
 
 function showMultipleChoice(button) {
+    hideUsedOption(button, 'showMultipleChoice');
     const formSection = button.parentElement.parentElement;
     const multipleChoice = formSection.querySelector('.multiple-choice');
     multipleChoice.style.display = 'block';
@@ -242,9 +285,15 @@ function saveMultipleChoice(button) {
     savedMultipleChoiceSection.style.display = 'block';
     formSection.querySelector('.multiple-choice').style.display = 'none';
     hideUsedOption(button, 'multiple-choice');
+    showAllOptions();
+    button.closest('.form-section').querySelector('.question-types').style.display = 'none';
+    button.closest('.form-section').querySelector('.add-question-button').style.display = 'none';
+    showSubmitButton(); // Add this line
+    showSubmitButtonIfNeeded(); // Add this line
 }
 
 function showRankingSelector(button) {
+    hideUsedOption(button, 'showRankingSelector');
     const formSection = button.parentElement.parentElement;
     const rankingSelector = formSection.querySelector('.ranking-selector');
     rankingSelector.style.display = 'block';
@@ -265,6 +314,11 @@ function saveRankingSelection(button) {
     savedRankingSection.style.display = 'block';
     formSection.querySelector('.ranking-selector').style.display = 'none';
     hideUsedOption(button, 'ranking');
+    showAllOptions();
+    button.closest('.form-section').querySelector('.question-types').style.display = 'none';
+    button.closest('.form-section').querySelector('.add-question-button').style.display = 'none';
+    showSubmitButton(); // Add this line
+    showSubmitButtonIfNeeded(); // Add this line
 }
 
 function submitForm() {
@@ -309,15 +363,47 @@ function submitForm() {
 }
 
 function hideUsedOption(button, optionType) {
-    const usedOptionsInput = document.getElementById('used-options');
-    let usedOptions = usedOptionsInput.value ? usedOptionsInput.value.split(',') : [];
-    usedOptions.push(optionType);
-    usedOptionsInput.value = usedOptions.join(',');
+    const formSection = button.closest('.form-section');
+    const questionTypes = formSection.querySelector('.question-types');
+    const allOptions = questionTypes.querySelectorAll('button');
+    allOptions.forEach(option => {
+        option.style.display = 'none';
+    });
+    questionTypes.style.display = 'none';
+    formSection.querySelector('.add-question-button').style.display = 'none';
+    formSection.querySelector('.remove-options-button').style.display = 'block';
+}
 
+function showAllOptions() {
     const allOptions = document.querySelectorAll(`.question-types button`);
     allOptions.forEach(option => {
-        if (option.innerHTML.toLowerCase().includes(optionType)) {
-            option.style.display = 'none';
+        option.style.display = 'inline-block';
+    });
+}
+
+function showSubmitButton() {
+    document.getElementById('submit-button').style.display = 'block';
+}
+
+function showSubmitButtonIfNeeded() {
+    const formSections = document.querySelectorAll('.form-section');
+    let showButton = false;
+
+    formSections.forEach(section => {
+        if (section.querySelector('.saved-number').style.display === 'block' ||
+            section.querySelector('.saved-photo').style.display === 'block' ||
+            section.querySelector('.saved-single-choice').style.display === 'block' ||
+            section.querySelector('.saved-rating').style.display === 'block' ||
+            section.querySelector('.saved-text-response').style.display === 'block' ||
+            section.querySelector('.saved-multiple-choice').style.display === 'block' ||
+            section.querySelector('.saved-ranking').style.display === 'block') {
+            showButton = true;
         }
     });
+
+    if (showButton) {
+        document.getElementById('submit-button').style.display = 'block';
+    } else {
+        document.getElementById('submit-button').style.display = 'none';
+    }
 }

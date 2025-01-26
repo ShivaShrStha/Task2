@@ -24,6 +24,7 @@
         <div class="form-section" id="form-section-template" style="display: none;">
             <input type="text" placeholder="Enter your question here">
             <button class="add-question-button" onclick="showQuestionTypes(this)">Add Question</button>
+            <button class="remove-options-button" onclick="removeAllOptions(this)" style="display: none;">Remove Options</button>
 
             <div class="question-types">
                 <h4>Select Question Type:</h4>
@@ -180,7 +181,7 @@
 
     <input type="hidden" id="used-options" value="">
 
-    <button class="btn btn-success mt-3" onclick="submitForm()">Submit</button>
+    <button class="btn btn-success mt-3" id="submit-button" onclick="submitForm()" style="display: none;">Submit</button>
 
     <div class="summary-section" style="display: none; margin-top: 20px;">
         <h4>Summary of Selections:</h4>
