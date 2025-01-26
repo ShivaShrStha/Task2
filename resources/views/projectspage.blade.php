@@ -100,13 +100,13 @@
 
             <div class="question-types">
                 <h4>Select Question Type:</h4>
-                <button onclick="alert('Select One functionality coming soon!')"><i class="fas fa-dot-circle"></i> Select One</button>
+                <button onclick="showSingleChoice(this)"><i class="fas fa-dot-circle"></i> Select One</button>
                 <button onclick="alert('Select Many functionality coming soon!')"><i class="fas fa-check-square"></i> Select Many</button>
-                <button onclick="alert('Text functionality coming soon!')"><i class="fas fa-font"></i> Text</button>
-                <button onclick="alert('Number functionality coming soon!')"><i class="fas fa-sort-numeric-up"></i> Number</button>
+                <button onclick="showTextResponse(this)"><i class="fas fa-font"></i> Text</button>
+                <button onclick="showNumberSelector(this)"><i class="fas fa-sort-numeric-up"></i> Number</button>
                 <button onclick="showDatePickers(this)"><i class="fas fa-calendar-alt"></i> Date & Time</button>
-                <button onclick="alert('Photo functionality coming soon!')"><i class="fas fa-camera"></i> Photo</button>
-                <button onclick="alert('Rating functionality coming soon!')"><i class="fas fa-star"></i> Rating</button>
+                <button onclick="showPhotoUploader(this)"><i class="fas fa-camera"></i> Photo</button>
+                <button onclick="showRatingSelector(this)"><i class="fas fa-star"></i> Rating</button>
                 <button onclick="alert('Ranking functionality coming soon!')"><i class="fas fa-list-ol"></i> Ranking</button>
                 <button onclick="alert('Audio functionality coming soon!')"><i class="fas fa-microphone"></i> Audio</button>
             </div>
@@ -129,7 +129,99 @@
                     <input type="text" class="form-control time-picker" readonly>
                 </div>
             </div>
+
+            <div class="number-selector" style="display: none; margin-top: 20px;">
+                <h4>Enter a Number:</h4>
+                <input type="number" id="number-input" class="form-control" placeholder="Enter a whole number">
+                <button class="btn btn-primary mt-3" onclick="saveNumberSelection(this)">Save</button>
+            </div>
+
+            <div class="saved-number" style="display: none; margin-top: 20px;">
+                <h4>Selected Number:</h4>
+                <p id="selected-number-display"></p>
+            </div>
+
+            <div class="photo-uploader" style="display: none; margin-top: 20px;">
+                <h4>Upload a Photo:</h4>
+                <input type="file" id="photo-input" class="form-control">
+                <button class="btn btn-primary mt-3" onclick="savePhoto(this)">Save</button>
+            </div>
+
+            <div class="saved-photo" style="display: none; margin-top: 20px;">
+                <h4>Uploaded Photo:</h4>
+                <img id="photo-display" src="" alt="Uploaded Photo" style="max-width: 100%;">
+            </div>
+
+            <div class="single-choice" style="display: none; margin-top: 20px;">
+                <h4>Multiple Choice Question (Select One):</h4>
+                <div>
+                    <input type="radio" id="option1" name="single-choice" value="Option 1">
+                    <label for="option1">Option 1</label>
+                </div>
+                <div>
+                    <input type="radio" id="option2" name="single-choice" value="Option 2">
+                    <label for="option2">Option 2</label>
+                </div>
+                <div>
+                    <input type="radio" id="option3" name="single-choice" value="Option 3">
+                    <label for="option3">Option 3</label>
+                </div>
+                <button class="btn btn-primary mt-3" onclick="saveSingleChoice(this)">Save</button>
+            </div>
+
+            <div class="saved-single-choice" style="display: none; margin-top: 20px;">
+                <h4>Selected Option:</h4>
+                <p id="selected-single-choice-display"></p>
+            </div>
+
+            <div class="rating-selector" style="display: none; margin-top: 20px;">
+                <h4>Select Ratings:</h4>
+                <div>
+                    <input type="checkbox" id="star5" name="rating" value="5">
+                    <label for="star5"><i class="fas fa-star"></i></label>
+                </div>
+                <div>
+                    <input type="checkbox" id="star4" name="rating" value="4">
+                    <label for="star4"><i class="fas fa-star"></i></label>
+                </div>
+                <div>
+                    <input type="checkbox" id="star3" name="rating" value="3">
+                    <label for="star3"><i class="fas fa-star"></i></label>
+                </div>
+                <div>
+                    <input type="checkbox" id="star2" name="rating" value="2">
+                    <label for="star2"><i class="fas fa-star"></i></label>
+                </div>
+                <div>
+                    <input type="checkbox" id="star1" name="rating" value="1">
+                    <label for="star1"><i class="fas fa-star"></i></label>
+                </div>
+                <button class="btn btn-primary mt-3" onclick="saveRatingSelection(this)">Save</button>
+            </div>
+
+            <div class="saved-rating" style="display: none; margin-top: 20px;">
+                <h4>Selected Ratings:</h4>
+                <p id="selected-rating-display"></p>
+            </div>
+
+            <div class="text-response" style="display: none; margin-top: 20px;">
+                <h4>Enter Your Response:</h4>
+                <textarea id="text-input" class="form-control" rows="3" placeholder="Enter your response here"></textarea>
+                <button class="btn btn-primary mt-3" onclick="saveTextResponse(this)">Save</button>
+            </div>
+
+            <div class="saved-text-response" style="display: none; margin-top: 20px;">
+                <h4>Text Response:</h4>
+                <p id="text-response-display"></p>
+            </div>
         </div>
+    </div>
+
+    <button class="btn btn-success mt-3" onclick="submitForm()">Submit</button>
+
+    <div class="summary-section" style="display: none; margin-top: 20px;">
+        <h4>Summary of Selections:</h4>
+        <div id="summary-content"></div>
     </div>
 
     <!-- Add jQuery -->
@@ -142,82 +234,7 @@
     <script src="https://cdn.jsdelivr.net/npm/nepali-datepicker/js/nepali.datepicker.v4.0.min.js"></script>
     <!-- Add Nepali Date Functions JS -->
     <script src="https://cdn.jsdelivr.net/npm/nepali-date-functions/dist/nepali-date-functions.min.js"></script>
-    <script>
-        function addFormSection() {
-            const container = document.getElementById('form-container');
-            const template = document.getElementById('form-section-template');
-            const clone = template.cloneNode(true);
-            clone.style.display = 'block';
-            clone.id = '';
-            container.appendChild(clone);
-        }
-
-        function showQuestionTypes(button) {
-            const formSection = button.parentElement;
-            const questionTypes = formSection.querySelector('.question-types');
-            const input = formSection.querySelector('input').value;
-
-            if (input.trim() === '') {
-                alert('Please enter a question first.');
-                return;
-            }
-
-            questionTypes.style.display = 'block';
-        }
-
-        function showDatePickers(button) {
-            const formSection = button.parentElement.parentElement;
-            const datePickers = formSection.querySelector('.date-pickers');
-            const englishCalendar = formSection.querySelector('#english-calendar');
-            const nepaliCalendar = formSection.querySelector('#nepali-calendar');
-            const timePickerInput = formSection.querySelector('.time-picker');
-            const nepaliDateDisplay = formSection.querySelector('#nepali-date-display'); // Add this line
-
-            datePickers.style.display = 'block';
-
-            // Get today's AD date
-            const today = new Date();
-            const todayISO = today.toISOString().slice(0, 10);
-
-            // Set today's date in the English calendar
-            $(englishCalendar).val(todayISO);
-
-            // Initialize English Date Picker
-            $(englishCalendar).datepicker({
-                dateFormat: "yy-mm-dd",
-                defaultDate: today,
-                onSelect: function(dateText) {
-                    // Send the selected date to the server for conversion
-                    $.ajax({
-                        url: '/convert-date',
-                        method: 'POST',
-                        data: {
-                            engDate: dateText,
-                            _token: '{{ csrf_token() }}'
-                        },
-                        success: function(response) {
-                            $(nepaliCalendar).val(response.nepaliDate);
-                            nepaliDateDisplay.textContent = response.nepaliDate; // Add this line
-                        }
-                    });
-                },
-            }).datepicker("setDate", today);
-
-            // Initialize Nepali Date Picker
-            $(nepaliCalendar).nepaliDatePicker({
-                onChange: function() {
-                    const nepaliDateText = $(this).val();
-                    const englishDate = LaravelNepaliDate.from(nepaliDateText).toEnglishDate(); // Convert BS to AD
-                    $(englishCalendar).val(englishDate);
-                    nepaliDateDisplay.textContent = nepaliDateText; // Add this line
-                },
-            });
-
-            // Set current time
-            const hours = today.getHours().toString().padStart(2, "0");
-            const minutes = today.getMinutes().toString().padStart(2, "0");
-            timePickerInput.value = `${hours}:${minutes}`;
-        }
-    </script>
+    <!-- Link to external JavaScript file -->
+    <script src="{{ asset('js/projectspage.js') }}"></script>
 </body>
 </html>

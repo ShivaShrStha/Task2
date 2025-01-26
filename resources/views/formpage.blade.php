@@ -63,10 +63,8 @@
     </div>
 
     <!-- Main Content -->
-    <div class="container mt-5">
-       
-        
-
+    <div class="container mt-5">       
+    
             <div class="col-md-4">
                 <div class="feature">
                     <i class="fas fa-database"></i>
@@ -76,9 +74,6 @@
                 </div>
                 
             </div>
-            
-            
-           
         </div>
     </div>
 </body>
