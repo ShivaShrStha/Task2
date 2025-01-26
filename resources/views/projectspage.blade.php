@@ -176,18 +176,21 @@
 
             <div class="multiple-choice" style="display: none; margin-top: 20px;">
                 <h4>Multiple Choice Question; multiple answers can be selected:</h4>
-                <div>
-                    <input type="checkbox" id="multiOption1" name="multiple-choice" value="Option 1">
-                    <label for="multiOption1">Option 1</label>
+                <div class="multiple-choice-options">
+                    <div>
+                        <input type="checkbox" id="multiOption1" name="multiple-choice" value="Option 1">
+                        <input type="text" value="Option 1" class="form-control d-inline-block w-auto" oninput="updateOptionValue(this)">
+                    </div>
+                    <div>
+                        <input type="checkbox" id="multiOption2" name="multiple-choice" value="Option 2">
+                        <input type="text" value="Option 2" class="form-control d-inline-block w-auto" oninput="updateOptionValue(this)">
+                    </div>
+                    <div>
+                        <input type="checkbox" id="multiOption3" name="multiple-choice" value="Option 3">
+                        <input type="text" value="Option 3" class="form-control d-inline-block w-auto" oninput="updateOptionValue(this)">
+                    </div>
                 </div>
-                <div>
-                    <input type="checkbox" id="multiOption2" name="multiple-choice" value="Option 2">
-                    <label for="multiOption2">Option 2</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="multiOption3" name="multiple-choice" value="Option 3">
-                    <label for="multiOption3">Option 3</label>
-                </div>
+                <button class="btn btn-secondary mt-3" onclick="addMultipleChoiceOption(this)">+</button>
                 <button class="btn btn-primary mt-3" onclick="saveMultipleChoice(this)">Save</button>
             </div>
 

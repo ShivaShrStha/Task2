@@ -208,6 +208,24 @@ function showMultipleChoice(button) {
     multipleChoice.style.display = 'block';
 }
 
+function addMultipleChoiceOption(button) {
+    const formSection = button.parentElement;
+    const multipleChoiceOptions = formSection.querySelector('.multiple-choice-options');
+    const optionCount = multipleChoiceOptions.children.length + 1;
+
+    const newOption = document.createElement('div');
+    newOption.innerHTML = `
+        <input type="checkbox" id="multiOption${optionCount}" name="multiple-choice" value="Option ${optionCount}">
+        <input type="text" value="Option ${optionCount}" class="form-control d-inline-block w-auto" oninput="updateOptionValue(this)">
+    `;
+    multipleChoiceOptions.appendChild(newOption);
+}
+
+function updateOptionValue(input) {
+    const checkbox = input.previousElementSibling;
+    checkbox.value = input.value;
+}
+
 function saveMultipleChoice(button) {
     const formSection = button.parentElement.parentElement;
     const selectedOptions = formSection.querySelectorAll('input[name="multiple-choice"]:checked');
