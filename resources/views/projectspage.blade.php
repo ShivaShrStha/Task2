@@ -101,13 +101,13 @@
             <div class="question-types">
                 <h4>Select Question Type:</h4>
                 <button onclick="showSingleChoice(this)"><i class="fas fa-dot-circle"></i> Select One</button>
-                <button onclick="alert('Select Many functionality coming soon!')"><i class="fas fa-check-square"></i> Select Many</button>
+                <button onclick="showMultipleChoice(this)"><i class="fas fa-check-square"></i> Select Many</button>
                 <button onclick="showTextResponse(this)"><i class="fas fa-font"></i> Text</button>
                 <button onclick="showNumberSelector(this)"><i class="fas fa-sort-numeric-up"></i> Number</button>
                 <button onclick="showDatePickers(this)"><i class="fas fa-calendar-alt"></i> Date & Time</button>
                 <button onclick="showPhotoUploader(this)"><i class="fas fa-camera"></i> Photo</button>
                 <button onclick="showRatingSelector(this)"><i class="fas fa-star"></i> Rating</button>
-                <button onclick="alert('Ranking functionality coming soon!')"><i class="fas fa-list-ol"></i> Ranking</button>
+                <button onclick="showRankingSelector(this)"><i class="fas fa-list-ol"></i> Ranking</button>
                 <button onclick="alert('Audio functionality coming soon!')"><i class="fas fa-microphone"></i> Audio</button>
             </div>
 
@@ -174,6 +174,28 @@
                 <p id="selected-single-choice-display"></p>
             </div>
 
+            <div class="multiple-choice" style="display: none; margin-top: 20px;">
+                <h4>Multiple Choice Question; multiple answers can be selected:</h4>
+                <div>
+                    <input type="checkbox" id="multiOption1" name="multiple-choice" value="Option 1">
+                    <label for="multiOption1">Option 1</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="multiOption2" name="multiple-choice" value="Option 2">
+                    <label for="multiOption2">Option 2</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="multiOption3" name="multiple-choice" value="Option 3">
+                    <label for="multiOption3">Option 3</label>
+                </div>
+                <button class="btn btn-primary mt-3" onclick="saveMultipleChoice(this)">Save</button>
+            </div>
+
+            <div class="saved-multiple-choice" style="display: none; margin-top: 20px;">
+                <h4>Selected Multiple Choices:</h4>
+                <p id="selected-multiple-choice-display"></p>
+            </div>
+
             <div class="rating-selector" style="display: none; margin-top: 20px;">
                 <h4>Select Ratings:</h4>
                 <div>
@@ -214,8 +236,21 @@
                 <h4>Text Response:</h4>
                 <p id="text-response-display"></p>
             </div>
+
+            <div class="ranking-selector" style="display: none; margin-top: 20px;">
+                <h4>Enter Ranking (Number only):</h4>
+                <input type="number" id="ranking-input" class="form-control" placeholder="Enter a rank">
+                <button class="btn btn-primary mt-3" onclick="saveRankingSelection(this)">Save</button>
+            </div>
+
+            <div class="saved-ranking" style="display: none; margin-top: 20px;">
+                <h4>Ranking:</h4>
+                <p id="selected-ranking-display"></p>
+            </div>
         </div>
     </div>
+
+    <input type="hidden" id="used-options" value="">
 
     <button class="btn btn-success mt-3" onclick="submitForm()">Submit</button>
 

@@ -103,6 +103,7 @@ function saveNumberSelection(button) {
     selectedNumberDisplay.textContent = selectedNumber;
     savedNumberSection.style.display = 'block';
     formSection.querySelector('.number-selector').style.display = 'none';
+    hideUsedOption(button, 'number');
 }
 
 function showPhotoUploader(button) {
@@ -123,6 +124,7 @@ function savePhoto(button) {
             photoDisplay.src = e.target.result;
             savedPhotoSection.style.display = 'block';
             formSection.querySelector('.photo-uploader').style.display = 'none';
+            hideUsedOption(button, 'photo');
         };
         reader.readAsDataURL(photoInput.files[0]);
     } else {
@@ -150,6 +152,7 @@ function saveSingleChoice(button) {
     selectedSingleChoiceDisplay.textContent = selectedOption.value;
     savedSingleChoiceSection.style.display = 'block';
     formSection.querySelector('.single-choice').style.display = 'none';
+    hideUsedOption(button, 'single-choice');
 }
 
 function showRatingSelector(button) {
@@ -173,6 +176,7 @@ function saveRatingSelection(button) {
     selectedRatingDisplay.textContent = ratings;
     savedRatingSection.style.display = 'block';
     formSection.querySelector('.rating-selector').style.display = 'none';
+    hideUsedOption(button, 'rating');
 }
 
 function showTextResponse(button) {
@@ -195,6 +199,54 @@ function saveTextResponse(button) {
     textResponseDisplay.textContent = textInput.value;
     savedTextResponseSection.style.display = 'block';
     formSection.querySelector('.text-response').style.display = 'none';
+    hideUsedOption(button, 'text');
+}
+
+function showMultipleChoice(button) {
+    const formSection = button.parentElement.parentElement;
+    const multipleChoice = formSection.querySelector('.multiple-choice');
+    multipleChoice.style.display = 'block';
+}
+
+function saveMultipleChoice(button) {
+    const formSection = button.parentElement.parentElement;
+    const selectedOptions = formSection.querySelectorAll('input[name="multiple-choice"]:checked');
+    const selectedMultipleChoiceDisplay = formSection.querySelector('#selected-multiple-choice-display');
+    const savedMultipleChoiceSection = formSection.querySelector('.saved-multiple-choice');
+
+    if (selectedOptions.length === 0) {
+        alert('Please select at least one option.');
+        return;
+    }
+
+    const options = Array.from(selectedOptions).map(option => option.value).join(', ');
+    selectedMultipleChoiceDisplay.textContent = options;
+    savedMultipleChoiceSection.style.display = 'block';
+    formSection.querySelector('.multiple-choice').style.display = 'none';
+    hideUsedOption(button, 'multiple-choice');
+}
+
+function showRankingSelector(button) {
+    const formSection = button.parentElement.parentElement;
+    const rankingSelector = formSection.querySelector('.ranking-selector');
+    rankingSelector.style.display = 'block';
+}
+
+function saveRankingSelection(button) {
+    const formSection = button.parentElement.parentElement;
+    const rankingInput = formSection.querySelector('#ranking-input');
+    const selectedRankingDisplay = formSection.querySelector('#selected-ranking-display');
+    const savedRankingSection = formSection.querySelector('.saved-ranking');
+
+    if (rankingInput.value.trim() === '' || isNaN(rankingInput.value)) {
+        alert('Please enter a valid rank.');
+        return;
+    }
+
+    selectedRankingDisplay.textContent = rankingInput.value;
+    savedRankingSection.style.display = 'block';
+    formSection.querySelector('.ranking-selector').style.display = 'none';
+    hideUsedOption(button, 'ranking');
 }
 
 function submitForm() {
@@ -202,7 +254,7 @@ function submitForm() {
     const summaryContent = document.getElementById('summary-content');
     summaryContent.innerHTML = '';
 
-    let tableHTML = '<table class="table table-bordered"><thead><tr><th>Question</th><th>Selected Number</th><th>English Date</th><th>Nepali Date</th><th>Time</th><th>Uploaded Photo</th><th>Selected Option</th><th>Selected Ratings</th><th>Text Response</th></tr></thead><tbody>';
+    let tableHTML = '<table class="table table-bordered"><thead><tr><th>Question</th><th>Selected Number</th><th>English Date</th><th>Nepali Date</th><th>Time</th><th>Uploaded Photo</th><th>Selected Option</th><th>Selected Ratings</th><th>Text Response</th><th>Selected Multiple Choices</th><th>Ranking</th></tr></thead><tbody>';
 
     formSections.forEach(section => {
         const question = section.querySelector('input[type="text"]').value;
@@ -214,6 +266,8 @@ function submitForm() {
         const selectedSingleChoice = section.querySelector('#selected-single-choice-display').textContent;
         const selectedRating = section.querySelector('#selected-rating-display').textContent;
         const textResponse = section.querySelector('#text-response-display').textContent;
+        const selectedMultipleChoices = section.querySelector('#selected-multiple-choice-display').textContent;
+        const ranking = section.querySelector('#selected-ranking-display').textContent;
 
         tableHTML += `<tr>
             <td>${question || ''}</td>
@@ -225,6 +279,8 @@ function submitForm() {
             <td>${selectedSingleChoice || ''}</td>
             <td>${selectedRating || ''}</td>
             <td>${textResponse || ''}</td>
+            <td>${selectedMultipleChoices || ''}</td>
+            <td>${ranking || ''}</td>
         </tr>`;
     });
 
@@ -232,4 +288,18 @@ function submitForm() {
     summaryContent.innerHTML = tableHTML;
 
     document.querySelector('.summary-section').style.display = 'block';
+}
+
+function hideUsedOption(button, optionType) {
+    const usedOptionsInput = document.getElementById('used-options');
+    let usedOptions = usedOptionsInput.value ? usedOptionsInput.value.split(',') : [];
+    usedOptions.push(optionType);
+    usedOptionsInput.value = usedOptions.join(',');
+
+    const allOptions = document.querySelectorAll(`.question-types button`);
+    allOptions.forEach(option => {
+        if (option.innerHTML.toLowerCase().includes(optionType)) {
+            option.style.display = 'none';
+        }
+    });
 }
