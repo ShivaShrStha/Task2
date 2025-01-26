@@ -64,25 +64,8 @@
 
     <!-- Main Content -->
     <div class="container mt-5">
-        <h2 class="text-center mb-4">Features of KoBoToolbox</h2>
-        <div class="row g-4">
-            <!-- Feature 1 -->
-            <div class="col-md-4">
-                <div class="feature">
-                    <i class="fas fa-pencil-alt"></i>
-                    <h4>Form Design</h4>
-                    <p>Easily create forms with advanced tools like drag-and-drop and question libraries.</p>
-                </div>
-            </div>
-            
-            <div class="col-md-4">
-                <div class="feature">
-                    <i class="fas fa-database"></i>
-                    <h4>Data Collection</h4>
-                    <p>Collect data offline or online using mobile devices, browsers, or Android apps.</p>
-                    
-                </div>
-            </div>
+       
+        
 
             <div class="col-md-4">
                 <div class="feature">
@@ -94,19 +77,9 @@
                 
             </div>
             
-            <div class="col-md-4">
-                <div class="feature">
-                    <i class="fas fa-chart-bar"></i>
-                    <h4>Analysis Tools</h4>
-                    <p>Analyze collected data with built-in tools or export to Excel, SPSS, or Power BI.</p>
-                </div>
-            </div>
+            
+           
         </div>
     </div>
-
-    <!-- Footer -->
-    <!-- <footer class="text-center py-4 mt-5 bg-light">
-        <p>&copy; 2025 KoBoToolbox. All rights reserved.</p>
-    </footer> -->
 </body>
 </html>
