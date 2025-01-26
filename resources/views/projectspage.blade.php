@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,6 +19,7 @@
             margin: 20px;
             background-color: #f8f9fa;
         }
+
         .container {
             border: 1px solid #ddd;
             border-radius: 5px;
@@ -26,6 +28,7 @@
             margin: auto;
             background-color: #fff;
         }
+
         .add-button {
             background-color: #007bff;
             color: white;
@@ -36,13 +39,16 @@
             font-size: 24px;
             cursor: pointer;
         }
+
         .form-section {
             margin-top: 20px;
         }
+
         .question-types {
             display: none;
             margin-top: 20px;
         }
+
         .question-types button {
             display: inline-block;
             margin: 5px;
@@ -52,9 +58,11 @@
             background-color: #f8f8f8;
             cursor: pointer;
         }
+
         .question-types button:hover {
             background-color: #e0e0e0;
         }
+
         .form-section input {
             width: calc(100% - 120px);
             padding: 10px;
@@ -62,6 +70,7 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
+
         .form-section .add-question-button {
             background-color: #28a745;
             color: white;
@@ -70,17 +79,21 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
         .dynamic-section {
             margin-top: 20px;
         }
+
         .calendar-container {
             display: flex;
             justify-content: space-between;
             margin-top: 20px;
         }
+
         .calendar {
             width: 48%;
         }
+
         .calendar input {
             width: 100%;
             padding: 10px;
@@ -89,6 +102,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container" id="form-container">
         <h2>Interactive Form</h2>
@@ -100,15 +114,25 @@
 
             <div class="question-types">
                 <h4>Select Question Type:</h4>
-                <button onclick="alert('Select One functionality coming soon!')"><i class="fas fa-dot-circle"></i> Select One</button>
-                <button onclick="alert('Select Many functionality coming soon!')"><i class="fas fa-check-square"></i> Select Many</button>
+                <button onclick="alert('Select One functionality coming soon!')"><i class="fas fa-dot-circle"></i>
+                    Select One</button>
+                <button onclick="alert('Select Many functionality coming soon!')"><i class="fas fa-check-square"></i>
+                    Select Many</button>
                 <button onclick="alert('Text functionality coming soon!')"><i class="fas fa-font"></i> Text</button>
-                <button onclick="alert('Number functionality coming soon!')"><i class="fas fa-sort-numeric-up"></i> Number</button>
+                <button onclick="alert('Number functionality coming soon!')"><i class="fas fa-sort-numeric-up"></i>
+                    Number</button>
+                <button onclick="showDatePickers(this)"><i class="fas fa-calendar-alt"></i> Date</button>
                 <button onclick="showDatePickers(this)"><i class="fas fa-calendar-alt"></i> Date & Time</button>
+                <button onclick="alert('Time functionality coming soon!')"><i class="fas fa-clock"></i> Time</button>
                 <button onclick="alert('Photo functionality coming soon!')"><i class="fas fa-camera"></i> Photo</button>
+                <button onclick="alert('Video functionality coming soon!')"><i class="fas fa-video"></i> Video</button>
                 <button onclick="alert('Rating functionality coming soon!')"><i class="fas fa-star"></i> Rating</button>
-                <button onclick="alert('Ranking functionality coming soon!')"><i class="fas fa-list-ol"></i> Ranking</button>
-                <button onclick="alert('Audio functionality coming soon!')"><i class="fas fa-microphone"></i> Audio</button>
+                <button onclick="alert('Ranking functionality coming soon!')"><i class="fas fa-list-ol"></i>
+                    Ranking</button>
+                <button onclick="alert('Audio functionality coming soon!')"><i class="fas fa-microphone"></i>
+                    Audio</button>
+                <button onclick="alert('Note functionality coming soon!')"><i class="fas fa-bars"></i>
+                    Note</button>
             </div>
 
             <div class="date-pickers" style="display: none; margin-top: 20px;">
@@ -186,7 +210,7 @@
             $(englishCalendar).datepicker({
                 dateFormat: "yy-mm-dd",
                 defaultDate: today,
-                onSelect: function(dateText) {
+                onSelect: function (dateText) {
                     // Send the selected date to the server for conversion
                     $.ajax({
                         url: '/convert-date',
@@ -195,7 +219,7 @@
                             engDate: dateText,
                             _token: '{{ csrf_token() }}'
                         },
-                        success: function(response) {
+                        success: function (response) {
                             $(nepaliCalendar).val(response.nepaliDate);
                             nepaliDateDisplay.textContent = response.nepaliDate; // Add this line
                         }
@@ -205,7 +229,7 @@
 
             // Initialize Nepali Date Picker
             $(nepaliCalendar).nepaliDatePicker({
-                onChange: function() {
+                onChange: function () {
                     const nepaliDateText = $(this).val();
                     const englishDate = LaravelNepaliDate.from(nepaliDateText).toEnglishDate(); // Convert BS to AD
                     $(englishCalendar).val(englishDate);
@@ -220,4 +244,5 @@
         }
     </script>
 </body>
+
 </html>
