@@ -4,69 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Form</title>
+    <title>Form</title>
     <!-- Add Bootstrap for styling -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <!-- Add Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Add Nepali Date Picker CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nepali-datepicker/css/nepali.datepicker.v4.0.min.css">
-    <!-- Add necessary CSS for date pickers -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     @vite('resources/css/app.css')
 </head>
 
 <body>
     <div class="container" id="form-container">
-        <h2>Interactive Form</h2>
+        <h2>Form</h2>
         <button class="add-button" onclick="addFormSection()">+</button>
 
         <div class="form-section" id="form-section-template" style="display: none;">
             <input type="text" placeholder="Enter your question here">
             <button class="add-question-button" onclick="showQuestionTypes(this)">Add Question</button>
-            <button class="remove-options-button" onclick="removeAllOptions(this)" style="display: none;">Remove Options</button>
+            <button class="remove-options-button" onclick="removeAllOptions(this)">Remove Options</button>
 
             <div class="question-types">
                 <h4>Select Question Type:</h4>
                 <button onclick="showSingleChoice(this)"><i class="fas fa-dot-circle"></i> Select One</button>
-    <button onclick="showMultipleChoice(this)"><i class="fas fa-check-square"></i> Select Many</button>
-      <button onclick="showTextResponse(this)"><i class="fas fa-font"></i> Text</button>
-      <button onclick="showNumberSelector(this)"><i class="fas fa-sort-numeric-up"></i> Number</button>
-      <button onclick="showDatePickers(this)"><i class="fas fa-calendar-alt"></i> Date & Time</button>
-      <button onclick="showPhotoUploader(this)"><i class="fas fa-camera"></i> Photo</button>
-      <button onclick="showRatingSelector(this)"><i class="fas fa-star"></i> Rating</button>
-      <button onclick="showRankingSelector(this)"><i class="fas fa-list-ol"></i> Ranking</button>
-      <button onclick="showAudioRecorder(this)"><i class="fas fa-microphone"></i> Audio</button>
-      <button onclick="showVideoUploader(this)"><i class="fas fa-video"></i> Video</button>
-      <button onclick="showDecimalInput(this)"><i class="fas fa-percentage"></i> Decimal</button>
-      <button onclick="showPointSelector(this)"><i class="fas fa-map-marker-alt"></i> Point</button>
-      <button onclick="showLineInput(this)"><i class="fas fa-pen"></i> Line</button>
-      <button onclick="showAreaSelector(this)"><i class="fas fa-draw-polygon"></i> Area</button>
-      <button onclick="showBarcodeScanner(this)"><i class="fas fa-barcode"></i> Barcode</button>
-      <button onclick="showMatrixInput(this)"><i class="fas fa-th"></i> Question Matrix</button>
-      <button onclick="showAcknowledgment(this)"><i class="fas fa-handshake"></i> Acknowledge</button>
-      <button onclick="showSignaturePad(this)"><i class="fas fa-signature"></i> Signature</button>
-      <button onclick="showTableInput(this)"><i class="fas fa-table"></i> Table</button>
-      <button onclick="showFileUploader(this)"><i class="fas fa-file-upload"></i> File Upload</button>
-      <button onclick="showAudioUploader(this)"><i class="fas fa-microphone"></i> Audio</button>
+                <button onclick="showMultipleChoice(this)"><i class="fas fa-check-square"></i> Select Many</button>
+                <button onclick="showTextResponse(this)"><i class="fas fa-font"></i> Text</button>
+                <button onclick="showNumberSelector(this)"><i class="fas fa-sort-numeric-up"></i> Number</button>
+                <button onclick="showDatePickers(this)"><i class="fas fa-calendar-alt"></i> Date</button>
+                <button onclick="showPhotoUploader(this)"><i class="fas fa-camera"></i> Photo</button>
+                <button onclick="showRatingSelector(this)"><i class="fas fa-star"></i> Rating</button>
+                <button onclick="showRankingSelector(this)"><i class="fas fa-list-ol"></i> Ranking</button>
+                <button onclick="showAudioRecorder(this)"><i class="fas fa-microphone"></i> Audio</button>
+                <button onclick="showVideoUploader(this)"><i class="fas fa-video"></i> Video</button>
+                <button onclick="showDecimalInput(this)"><i class="fas fa-percentage"></i> Decimal</button>
+                <button onclick="showPointSelector(this)"><i class="fas fa-map-marker-alt"></i> Point</button>
+                <button onclick="showLineInput(this)"><i class="fas fa-pen"></i> Line</button>
+                <button onclick="showAreaSelector(this)"><i class="fas fa-draw-polygon"></i> Area</button>
+                <button onclick="showBarcodeScanner(this)"><i class="fas fa-barcode"></i> Barcode</button>
+                <button onclick="showMatrixInput(this)"><i class="fas fa-th"></i> Question Matrix</button>
+                <button onclick="showAcknowledgment(this)"><i class="fas fa-handshake"></i> Acknowledge</button>
+                <button onclick="showSignaturePad(this)"><i class="fas fa-signature"></i> Signature</button>
+                <button onclick="showTableInput(this)"><i class="fas fa-table"></i> Table</button>
+                <button onclick="showFileUploader(this)"><i class="fas fa-file-upload"></i> File Upload</button>
             </div>
 
             <div class="date-pickers" style="display: none; margin-top: 20px;">
                 <h4>Select Date:</h4>
                 <div class="calendar-container">
                     <div class="calendar">
-                        <h5>English Date</h5>
-                        <input type="text" id="english-calendar">
+                        <input type="date" id="english-calendar">
                     </div>
-                    <div class="calendar">
-                        <h5>Nepali Date</h5>
-                        <input type="text" id="nepali-calendar">
-                        <div id="nepali-date-display"></div> <!-- Add this line -->
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Time</label>
-                    <input type="text" class="form-control time-picker" readonly>
                 </div>
             </div>
 
@@ -89,7 +75,7 @@
 
             <div class="saved-photo" style="display: none; margin-top: 20px;">
                 <h4>Uploaded Photo:</h4>
-                <img id="photo-display" src="" alt="Uploaded Photo" style="max-width: 100%;">
+                <img id="photo-display" src="" alt="" style="max-width: 100%;">
             </div>
 
             <div class="single-choice" style="display: none; margin-top: 20px;">
@@ -203,7 +189,8 @@
 
     <input type="hidden" id="used-options" value="">
 
-    <button class="btn btn-success mt-3" id="submit-button" onclick="submitForm()" style="display: none;">Submit</button>
+    <button class="btn btn-success mt-3" id="submit-button" onclick="submitForm()"
+        style="display: none;">Submit</button>
 
     <div class="summary-section" style="display: none; margin-top: 20px;">
         <h4>Summary of Selections:</h4>
@@ -216,10 +203,6 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <!-- Add Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Add Nepali Date Picker JS -->
-    <script src="https://cdn.jsdelivr.net/npm/nepali-datepicker/js/nepali.datepicker.v4.0.min.js"></script>
-    <!-- Add Nepali Date Functions JS -->
-    <script src="https://cdn.jsdelivr.net/npm/nepali-date-functions/dist/nepali-date-functions.min.js"></script>
     <script src="{{ asset('js/projectspage.js') }}"></script>
 
 </body>
