@@ -44,6 +44,7 @@ function showDatePickers(button) {
         .toISOString()
         .split("T")[0];
     saveDatePickers(button);
+    saveQuestionType(button, "Date");
 }
 
 function showNumberSelector(button) {
@@ -202,7 +203,7 @@ function showTextResponse(button) {
     const formSection = button.parentElement.parentElement;
     const textResponse = formSection.querySelector(".text-response");
     textResponse.style.display = "block";
-    saveTextResponse(button); // Automatically save and close
+    saveTextResponse(button);
 }
 
 function saveTextResponse(button) {
