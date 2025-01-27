@@ -189,13 +189,13 @@
 
     <input type="hidden" id="used-options" value="">
 
-    <button class="btn btn-success mt-3" id="submit-button" onclick="submitForm()"
+    {{-- <button class="btn btn-success mt-3" id="submit-button" onclick="submitForm()"
         style="display: none;">Submit</button>
 
     <div class="summary-section" style="display: none; margin-top: 20px;">
         <h4>Summary of Selections:</h4>
         <div id="summary-content"></div>
-    </div>
+    </div> --}}
 
     <!-- Add jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
