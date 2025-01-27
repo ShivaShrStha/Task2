@@ -64,7 +64,6 @@ function saveNumberSelection(button) {
     const savedNumberSection = formSection.querySelector(".saved-number");
 
     if (selectedNumber.trim() === "" || isNaN(selectedNumber)) {
-        //
         return;
     }
 
@@ -115,8 +114,6 @@ function savePhoto(button) {
             showSubmitButtonIfNeeded();
         };
         reader.readAsDataURL(photoInput.files[0]);
-    } else {
-        //
     }
 }
 
@@ -141,7 +138,6 @@ function saveSingleChoice(button) {
     );
 
     if (!selectedOption) {
-        //
         return;
     }
 
@@ -367,8 +363,6 @@ function saveAudio(button) {
             showSubmitButtonIfNeeded();
         };
         reader.readAsDataURL(audioInput.files[0]);
-    } else {
-        //
     }
 }
 
@@ -423,7 +417,6 @@ function showSubmitButtonIfNeeded() {
     }
 }
 
-// Add a new function to save date pickers
 function saveDatePickers(button) {
     const formSection = button.parentElement.parentElement;
     const englishDate = formSection.querySelector("#english-calendar").value;
