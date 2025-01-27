@@ -29,15 +29,26 @@
             <div class="question-types">
                 <h4>Select Question Type:</h4>
                 <button onclick="showSingleChoice(this)"><i class="fas fa-dot-circle"></i> Select One</button>
-                <button onclick="showMultipleChoice(this)"><i class="fas fa-check-square"></i> Select Many</button>
-                <button onclick="showTextResponse(this)"><i class="fas fa-font"></i> Text</button>
-                <button onclick="showNumberSelector(this)"><i class="fas fa-sort-numeric-up"></i> Number</button>
-                <button onclick="showDatePickers(this)"><i class="fas fa-calendar-alt"></i> Date & Time</button>
-                <button onclick="showPhotoUploader(this)"><i class="fas fa-camera"></i> Photo</button>
-                <button onclick="showRatingSelector(this)"><i class="fas fa-star"></i> Rating</button>
-                <button onclick="showRankingSelector(this)"><i class="fas fa-list-ol"></i> Ranking</button>
-                <button><i class="fas fa-microphone"></i> Audio</button>
-                <button><i class="fas fa-video"></i> Video</button>
+    <button onclick="showMultipleChoice(this)"><i class="fas fa-check-square"></i> Select Many</button>
+      <button onclick="showTextResponse(this)"><i class="fas fa-font"></i> Text</button>
+      <button onclick="showNumberSelector(this)"><i class="fas fa-sort-numeric-up"></i> Number</button>
+      <button onclick="showDatePickers(this)"><i class="fas fa-calendar-alt"></i> Date & Time</button>
+      <button onclick="showPhotoUploader(this)"><i class="fas fa-camera"></i> Photo</button>
+      <button onclick="showRatingSelector(this)"><i class="fas fa-star"></i> Rating</button>
+      <button onclick="showRankingSelector(this)"><i class="fas fa-list-ol"></i> Ranking</button>
+      <button onclick="showAudioRecorder(this)"><i class="fas fa-microphone"></i> Audio</button>
+      <button onclick="showVideoUploader(this)"><i class="fas fa-video"></i> Video</button>
+      <button onclick="showDecimalInput(this)"><i class="fas fa-percentage"></i> Decimal</button>
+      <button onclick="showPointSelector(this)"><i class="fas fa-map-marker-alt"></i> Point</button>
+      <button onclick="showLineInput(this)"><i class="fas fa-pen"></i> Line</button>
+      <button onclick="showAreaSelector(this)"><i class="fas fa-draw-polygon"></i> Area</button>
+      <button onclick="showBarcodeScanner(this)"><i class="fas fa-barcode"></i> Barcode</button>
+      <button onclick="showMatrixInput(this)"><i class="fas fa-th"></i> Question Matrix</button>
+      <button onclick="showAcknowledgment(this)"><i class="fas fa-handshake"></i> Acknowledge</button>
+      <button onclick="showSignaturePad(this)"><i class="fas fa-signature"></i> Signature</button>
+      <button onclick="showTableInput(this)"><i class="fas fa-table"></i> Table</button>
+      <button onclick="showFileUploader(this)"><i class="fas fa-file-upload"></i> File Upload</button>
+      <button onclick="showAudioUploader(this)"><i class="fas fa-microphone"></i> Audio</button>
             </div>
 
             <div class="date-pickers" style="display: none; margin-top: 20px;">
@@ -175,6 +186,17 @@
             <div class="saved-ranking" style="display: none; margin-top: 20px;">
                 <h4>Ranking:</h4>
                 <p id="selected-ranking-display"></p>
+            </div>
+
+            <div class="audio-uploader" style="display: none; margin-top: 20px;">
+                <h4>Upload an Audio File:</h4>
+                <input type="file" id="audio-input" class="form-control" accept="audio/*">
+                <button class="btn btn-primary mt-3" onclick="saveAudio(this)">Save</button>
+            </div>
+
+            <div class="saved-audio" style="display: none; margin-top: 20px;">
+                <h4>Uploaded Audio:</h4>
+                <audio id="audio-display" controls></audio>
             </div>
         </div>
     </div>

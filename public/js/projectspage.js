@@ -321,6 +321,38 @@ function saveRankingSelection(button) {
     showSubmitButtonIfNeeded(); // Add this line
 }
 
+function showAudioUploader(button) {
+    hideUsedOption(button, 'showAudioUploader');
+    const formSection = button.parentElement.parentElement;
+    const audioUploader = formSection.querySelector('.audio-uploader');
+    audioUploader.style.display = 'block';
+}
+
+function saveAudio(button) {
+    const formSection = button.parentElement.parentElement;
+    const audioInput = formSection.querySelector('#audio-input');
+    const audioDisplay = formSection.querySelector('#audio-display');
+    const savedAudioSection = formSection.querySelector('.saved-audio');
+
+    if (audioInput.files && audioInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            audioDisplay.src = e.target.result;
+            savedAudioSection.style.display = 'block';
+            formSection.querySelector('.audio-uploader').style.display = 'none';
+            hideUsedOption(button, 'audio');
+            showAllOptions();
+            button.closest('.form-section').querySelector('.question-types').style.display = 'none';
+            button.closest('.form-section').querySelector('.add-question-button').style.display = 'none';
+            showSubmitButton();
+            showSubmitButtonIfNeeded();
+        };
+        reader.readAsDataURL(audioInput.files[0]);
+    } else {
+        alert('Please select an audio file.');
+    }
+}
+
 function submitForm() {
     const formSections = document.querySelectorAll('.form-section');
     const summaryContent = document.getElementById('summary-content');
