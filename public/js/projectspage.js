@@ -386,37 +386,37 @@ function showAllOptions() {
     });
 }
 
-function showSubmitButton() {
-    document.getElementById("submit-button").style.display = "block";
-}
+// function showSubmitButton() {
+//     document.getElementById("submit-button").style.display = "block";
+// }
 
-function showSubmitButtonIfNeeded() {
-    const formSections = document.querySelectorAll(".form-section");
-    let showButton = false;
+// function showSubmitButtonIfNeeded() {
+//     const formSections = document.querySelectorAll(".form-section");
+//     let showButton = false;
 
-    formSections.forEach((section) => {
-        if (
-            section.querySelector(".saved-number").style.display === "block" ||
-            section.querySelector(".saved-photo").style.display === "block" ||
-            section.querySelector(".saved-single-choice").style.display ===
-                "block" ||
-            section.querySelector(".saved-rating").style.display === "block" ||
-            section.querySelector(".saved-text-response").style.display ===
-                "block" ||
-            section.querySelector(".saved-multiple-choice").style.display ===
-                "block" ||
-            section.querySelector(".saved-ranking").style.display === "block"
-        ) {
-            showButton = true;
-        }
-    });
+//     formSections.forEach((section) => {
+//         if (
+//             section.querySelector(".saved-number").style.display === "block" ||
+//             section.querySelector(".saved-photo").style.display === "block" ||
+//             section.querySelector(".saved-single-choice").style.display ===
+//                 "block" ||
+//             section.querySelector(".saved-rating").style.display === "block" ||
+//             section.querySelector(".saved-text-response").style.display ===
+//                 "block" ||
+//             section.querySelector(".saved-multiple-choice").style.display ===
+//                 "block" ||
+//             section.querySelector(".saved-ranking").style.display === "block"
+//         ) {
+//             showButton = true;
+//         }
+//     });
 
-    if (showButton) {
-        document.getElementById("submit-button").style.display = "block";
-    } else {
-        document.getElementById("submit-button").style.display = "none";
-    }
-}
+//     if (showButton) {
+//         document.getElementById("submit-button").style.display = "block";
+//     } else {
+//         document.getElementById("submit-button").style.display = "none";
+//     }
+// }
 
 function saveDatePickers(button) {
     const formSection = button.parentElement.parentElement;
