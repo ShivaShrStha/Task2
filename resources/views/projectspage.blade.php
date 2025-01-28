@@ -63,8 +63,13 @@
                 <select name="district" id="district" class="district-dropdown">
                     <option value="">Select a district</option>
                 </select>
+                <button class="btn btn-primary mt-3" onclick="saveDistrict(this)">Save</button>
             </div>
 
+            <div class="saved-district" style="display: none; margin-top: 20px;">
+                <h4>Selected District:</h4>
+                <p id="selected-district-display"></p>
+            </div>
 
             <div class="number-selector" style="display: none; margin-top: 20px;">
                 <h4>Enter a Number:</h4>
@@ -121,11 +126,6 @@
                     <div>
                         <input type="checkbox" id="multiOption2" name="multiple-choice" value="Option 2">
                         <input type="text" value="Option 2" class="form-control d-inline-block w-auto"
-                            oninput="updateOptionValue(this)">
-                    </div>
-                    <div>
-                        <input type="checkbox" id="multiOption3" name="multiple-choice" value="Option 3">
-                        <input type="text" value="Option 3" class="form-control d-inline-block w-auto"
                             oninput="updateOptionValue(this)">
                     </div>
                 </div>

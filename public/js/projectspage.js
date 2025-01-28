@@ -83,6 +83,35 @@ function showDistrict(button) {
             districtDropdown.innerHTML =
                 "<option>Error loading districts</option>";
         });
+    saveDistrict(button);
+}
+function saveDistrict(button) {
+    const formSection = button.parentElement.parentElement;
+    const districtDropdown = formSection.querySelector("#district");
+    const selectedDistrict = districtDropdown.value;
+    const selectedDistrictDisplay = formSection.querySelector(
+        "#selected-district-display"
+    );
+    const savedDistrictSection = formSection.querySelector(".saved-district");
+
+    if (selectedDistrict.trim() === "") {
+        return;
+    }
+
+    selectedDistrictDisplay.textContent = selectedDistrict;
+    (savedDistrictSection.style.display = "block"), "margin-top: 10px";
+    formSection.querySelector(".district").style.display = "none";
+    hideUsedOption(button, "district");
+    showAllOptions();
+    button
+        .closest(".form-section")
+        .querySelector(".question-types").style.display = "none";
+    button
+        .closest(".form-section")
+        .querySelector(".add-question-button").style.display = "none";
+    showSubmitButton();
+    showSubmitButtonIfNeeded();
+    saveDistrict(button);
 }
 
 function showNumberSelector(button) {
