@@ -48,8 +48,9 @@ function showDatePickers(button) {
 }
 
 function showDistrict(button) {
+    const formSection = button.closest(".form-section");
     const districtDropdown = document.querySelector("#district");
-    districtDropdown.innerHTML = "<option>Loading...</option>"; // Placeholder during fetch
+    districtDropdown.innerHTML = "<option>Loading...</option>";
 
     fetch("/get-districts")
         .then((response) => {

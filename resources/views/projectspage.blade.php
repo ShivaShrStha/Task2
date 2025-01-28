@@ -60,7 +60,7 @@
             {{-- for district --}}
             <div class="district" style="display: none">
                 <h4>Select District:</h4>
-                <select name="district" id="district">
+                <select name="district" id="district" class="district-dropdown">
                     <option value="">Select a district</option>
                 </select>
             </div>
