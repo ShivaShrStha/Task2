@@ -30,6 +30,7 @@
                 <button onclick="showTextResponse(this)"><i class="fas fa-font"></i> Text</button>
                 <button onclick="showNumberSelector(this)"><i class="fas fa-sort-numeric-up"></i> Number</button>
                 <button onclick="showDatePickers(this)"><i class="fas fa-calendar-alt"></i> Date</button>
+                <button onclick="showDistrict(this)"><i class="fas fa-location-dot"></i> District</button>
                 <button onclick="showPhotoUploader(this)"><i class="fas fa-camera"></i> Photo</button>
                 <button onclick="showRatingSelector(this)"><i class="fas fa-star"></i> Rating</button>
                 <button onclick="showRankingSelector(this)"><i class="fas fa-list-ol"></i> Ranking</button>
@@ -55,6 +56,15 @@
                     </div>
                 </div>
             </div>
+
+            {{-- for district --}}
+            <div class="district" style="display: none">
+                <h4>Select District:</h4>
+                <select name="district" id="district">
+                    <option value="">Select a district</option>
+                </select>
+            </div>
+
 
             <div class="number-selector" style="display: none; margin-top: 20px;">
                 <h4>Enter a Number:</h4>
@@ -203,7 +213,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <!-- Add Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('js/projectspage.js') }}"></script>
+    <script src="{{ asset('js/projectspage.js') }}" defer></script>
 
 </body>
 

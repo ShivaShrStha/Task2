@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DateConversionController;
+use App\Http\Controllers\DistrictController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -15,4 +16,5 @@ Route::get('/projectspage', function () {
     return view('projectspage');
 });
 
-Route::post('/convert-date', [DateConversionController::class, 'convertDate']);
+
+Route::get('/get-districts', [DistrictController::class, 'getDistricts']);

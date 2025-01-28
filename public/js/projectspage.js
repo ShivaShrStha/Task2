@@ -47,6 +47,43 @@ function showDatePickers(button) {
     saveQuestionType(button, "Date");
 }
 
+function showDistrict(button) {
+    const districtDropdown = document.querySelector("#district");
+    districtDropdown.innerHTML = "<option>Loading...</option>"; // Placeholder during fetch
+
+    fetch("/get-districts")
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then((districts) => {
+            districtDropdown.innerHTML = "";
+
+            const defaultOption = document.createElement("option");
+            defaultOption.textContent = "Select a district";
+            defaultOption.value = "";
+            districtDropdown.appendChild(defaultOption);
+
+            districts.forEach((district) => {
+                const option = document.createElement("option");
+                option.value = district;
+                option.textContent = district;
+                districtDropdown.appendChild(option);
+            });
+
+            const formSection = button.parentElement.parentElement;
+            const districtSelector = formSection.querySelector(".district");
+            districtSelector.style.display = "block";
+        })
+        .catch((error) => {
+            console.error("Error loading districts:", error);
+            districtDropdown.innerHTML =
+                "<option>Error loading districts</option>";
+        });
+}
+
 function showNumberSelector(button) {
     hideUsedOption(button, "showNumberSelector");
     const formSection = button.parentElement.parentElement;
