@@ -60,7 +60,7 @@
             {{-- for district --}}
             <div class="district" style="display: none; margin-top: 20px;">
                 <h4>Select District:</h4>
-                <select name="district" id="district" class="district-dropdown">
+                <select name="district" class="district-dropdown">
                     <option value="">Select a district</option>
                 </select>
                 <button class="btn btn-primary mt-3" onclick="saveDistrict(this)">Save</button>
@@ -68,7 +68,7 @@
 
             <div class="saved-district" style="display: none; margin-top: 20px;">
                 <h4>Selected District:</h4>
-                <p id="selected-district-display"></p>
+                <p class="selected-district-display"></p>
             </div>
 
             <div class="number-selector" style="display: none; margin-top: 20px;">

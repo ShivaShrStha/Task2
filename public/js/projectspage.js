@@ -49,7 +49,9 @@ function showDatePickers(button) {
 
 function showDistrict(button) {
     const formSection = button.closest(".form-section");
-    const districtDropdown = document.querySelector("#district");
+    const districtDropdown = formSection.querySelector(".district-dropdown");
+
+    // Clear the dropdown and show a loading message
     districtDropdown.innerHTML = "<option>Loading...</option>";
 
     fetch("/get-districts")
@@ -74,7 +76,6 @@ function showDistrict(button) {
                 districtDropdown.appendChild(option);
             });
 
-            const formSection = button.parentElement.parentElement;
             const districtSelector = formSection.querySelector(".district");
             districtSelector.style.display = "block";
         })
@@ -83,14 +84,14 @@ function showDistrict(button) {
             districtDropdown.innerHTML =
                 "<option>Error loading districts</option>";
         });
-    saveDistrict(button);
 }
+
 function saveDistrict(button) {
-    const formSection = button.parentElement.parentElement;
-    const districtDropdown = formSection.querySelector("#district");
+    const formSection = button.closest(".form-section");
+    const districtDropdown = formSection.querySelector(".district-dropdown");
     const selectedDistrict = districtDropdown.value;
     const selectedDistrictDisplay = formSection.querySelector(
-        "#selected-district-display"
+        ".selected-district-display"
     );
     const savedDistrictSection = formSection.querySelector(".saved-district");
 
@@ -99,7 +100,7 @@ function saveDistrict(button) {
     }
 
     selectedDistrictDisplay.textContent = selectedDistrict;
-    (savedDistrictSection.style.display = "block"), "margin-top: 10px";
+    savedDistrictSection.style.display = "block";
     formSection.querySelector(".district").style.display = "none";
     hideUsedOption(button, "district");
     showAllOptions();
@@ -111,7 +112,6 @@ function saveDistrict(button) {
         .querySelector(".add-question-button").style.display = "none";
     showSubmitButton();
     showSubmitButtonIfNeeded();
-    saveDistrict(button);
 }
 
 function showNumberSelector(button) {
@@ -328,7 +328,7 @@ function addMultipleChoiceOption(button) {
     const newOption = document.createElement("div");
     newOption.innerHTML = `
         <input type="checkbox" id="multiOption${optionCount}" name="multiple-choice" value="Option ${optionCount}">
-        <input type="text" value="Option ${optionCount}" class="form-control d-inline-block w-auto" oninput="updateOptionValue(this)">
+        <input type="text" placeholder="Option ${optionCount}" class="form-control d-inline-block w-auto" oninput="updateOptionValue(this)">
     `;
     multipleChoiceOptions.appendChild(newOption);
 }
