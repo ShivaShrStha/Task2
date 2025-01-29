@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DateConversionController;
 use App\Http\Controllers\DistrictController;
 
 Route::get('/', function () {
