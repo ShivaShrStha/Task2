@@ -58,7 +58,7 @@
             </div>
 
             {{-- for district --}}
-            <div class="district" style="display: none">
+            <div class="district" style="display: none; margin-top: 20px;">
                 <h4>Select District:</h4>
                 <select name="district" id="district" class="district-dropdown">
                     <option value="">Select a district</option>
@@ -96,16 +96,19 @@
             <div class="single-choice" style="display: none; margin-top: 20px;">
                 <h4>Multiple Choice Question (Select One):</h4>
                 <div>
-                    <input type="radio" id="option1" name="single-choice" value="Option 1">
-                    <label for="option1">Option 1</label>
+                    <input type="radio" id="multiOption1" name="single-choice" value="Option 1">
+                    <input type="text" placeholder="Option 1" class="form-control d-inline-block w-auto"
+                        oninput="updateOptionValue(this)">
                 </div>
                 <div>
-                    <input type="radio" id="option2" name="single-choice" value="Option 2">
-                    <label for="option2">Option 2</label>
+                    <input type="radio" id="multiOption2" name="single-choice" value="Option 2">
+                    <input type="text" placeholder="Option 2" class="form-control d-inline-block w-auto"
+                        oninput="updateOptionValue(this)">
                 </div>
                 <div>
-                    <input type="radio" id="option3" name="single-choice" value="Option 3">
-                    <label for="option3">Option 3</label>
+                    <input type="radio" id="multiOption3" name="single-choice" value="Option 3">
+                    <input type="text" placeholder="Option 3" class="form-control d-inline-block w-auto"
+                        oninput="updateOptionValue(this)">
                 </div>
                 <button class="btn btn-primary mt-3" onclick="saveSingleChoice(this)">Save</button>
             </div>
@@ -120,12 +123,12 @@
                 <div class="multiple-choice-options">
                     <div>
                         <input type="checkbox" id="multiOption1" name="multiple-choice" value="Option 1">
-                        <input type="text" value="Option 1" class="form-control d-inline-block w-auto"
+                        <input type="text" placeholder="Option 1" class="form-control d-inline-block w-auto"
                             oninput="updateOptionValue(this)">
                     </div>
                     <div>
                         <input type="checkbox" id="multiOption2" name="multiple-choice" value="Option 2">
-                        <input type="text" value="Option 2" class="form-control d-inline-block w-auto"
+                        <input type="text" placeholder="Option 2" class="form-control d-inline-block w-auto"
                             oninput="updateOptionValue(this)">
                     </div>
                 </div>

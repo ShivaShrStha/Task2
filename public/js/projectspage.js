@@ -184,13 +184,11 @@ function savePhoto(button) {
         reader.readAsDataURL(photoInput.files[0]);
     }
 }
-
 function showSingleChoice(button) {
     hideUsedOption(button, "showSingleChoice");
     const formSection = button.parentElement.parentElement;
     const singleChoice = formSection.querySelector(".single-choice");
     singleChoice.style.display = "block";
-    saveSingleChoice(button);
 }
 
 function saveSingleChoice(button) {
@@ -206,12 +204,16 @@ function saveSingleChoice(button) {
     );
 
     if (!selectedOption) {
+        alert("Please select an option before saving.");
         return;
     }
 
-    selectedSingleChoiceDisplay.textContent = selectedOption.value;
+    // Get the text input associated with the selected radio button
+    const optionText = selectedOption.nextElementSibling.value;
+    selectedSingleChoiceDisplay.textContent = optionText;
     savedSingleChoiceSection.style.display = "block";
     formSection.querySelector(".single-choice").style.display = "none";
+
     hideUsedOption(button, "single-choice");
     showAllOptions();
     button
@@ -222,6 +224,11 @@ function saveSingleChoice(button) {
         .querySelector(".add-question-button").style.display = "none";
     showSubmitButton();
     showSubmitButtonIfNeeded();
+}
+
+function updateOptionValue(input) {
+    const radioButton = input.previousElementSibling;
+    radioButton.value = input.value;
 }
 
 function showRatingSelector(button) {
