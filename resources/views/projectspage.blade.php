@@ -11,6 +11,35 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     @vite('resources/css/app.css')
+    <style>
+        .form-section {
+            position: relative;
+            /* Ensures child elements (delete button) are positioned relative to it */
+            padding: 20px;
+            /* Adds spacing to prevent overlap */
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .delete-button {
+            position: absolute;
+            top: 5px;
+            /* Adjust for better alignment */
+            right: 5px;
+            /* Keep it aligned to the top-right */
+            background: none;
+            border: none;
+            color: red;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .delete-button:hover {
+            color: darkred;
+        }
+    </style>
 </head>
 
 <body>
@@ -19,6 +48,7 @@
         <button class="add-button" onclick="addFormSection()">+</button>
 
         <div class="form-section" id="form-section-template" style="display: none;">
+            <button class="delete-button" onclick="deleteFormSection(this)">×</button>
             <input type="text" placeholder="Enter your question here">
             <button class="add-question-button" onclick="showQuestionTypes(this)">Add Question</button>
             <button class="remove-options-button" onclick="removeAllOptions(this)">Remove Options</button>
@@ -217,6 +247,12 @@
     <!-- Add Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('js/projectspage.js') }}" defer></script>
+    <script>
+        function deleteFormSection(button) {
+            const formSection = button.closest(".form-section");
+            formSection.remove();
+        }
+    </script>
 
 </body>
 
