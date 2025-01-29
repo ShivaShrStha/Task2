@@ -14,9 +14,7 @@
     <style>
         .form-section {
             position: relative;
-            /* Ensures child elements (delete button) are positioned relative to it */
             padding: 20px;
-            /* Adds spacing to prevent overlap */
             border: 1px solid #ccc;
             margin-bottom: 10px;
             border-radius: 5px;
@@ -25,9 +23,7 @@
         .delete-button {
             position: absolute;
             top: 5px;
-            /* Adjust for better alignment */
             right: 5px;
-            /* Keep it aligned to the top-right */
             background: none;
             border: none;
             color: red;
