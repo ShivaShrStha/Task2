@@ -40,7 +40,7 @@
 
 <body>
     <div class="container" id="form-container">
-        <h2>Form</h2>
+        <h2 style="margin-left: 230px">Form</h2>
         <button class="add-button" onclick="addFormSection()">+</button>
 
         <div class="form-section" id="form-section-template" style="display: none;">
