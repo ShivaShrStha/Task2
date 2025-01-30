@@ -9,14 +9,6 @@ function addFormSection() {
     clone.querySelector(".remove-options-button").style.display = "none";
 }
 
-function removeAllOptions(button) {
-    const formSection = button.parentElement;
-    const questionTypes = formSection.querySelector(".question-types");
-    questionTypes.style.display = "none";
-    formSection.querySelector(".add-question-button").style.display = "block";
-    formSection.querySelector(".remove-options-button").style.display = "none";
-}
-
 function showQuestionTypes(button) {
     removeAllOptions(button);
     const formSection = button.parentElement;
@@ -51,7 +43,6 @@ function showDistrict(button) {
     const formSection = button.closest(".form-section");
     const districtDropdown = formSection.querySelector(".district-dropdown");
 
-    // Clear the dropdown and show a loading message
     districtDropdown.innerHTML = "<option>Loading...</option>";
 
     fetch("/get-districts")
@@ -208,7 +199,6 @@ function saveSingleChoice(button) {
         return;
     }
 
-    // Get the text input associated with the selected radio button
     const optionText = selectedOption.nextElementSibling.value;
     selectedSingleChoiceDisplay.textContent = optionText;
     savedSingleChoiceSection.style.display = "block";

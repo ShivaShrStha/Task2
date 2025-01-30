@@ -48,7 +48,6 @@
                     class="w-full p-2 border border-gray-300 rounded-md mb-4">
                 <button class="bg-blue-500 text-white px-4 py-2 rounded-md mb-4" onclick="showQuestionTypes(this)">Add
                     Question</button>
-                <button class="remove-options-button" onclick="removeAllOptions(this)">Remove Options</button>
 
                 <div class="question-types grid grid-cols-4 gap-4 mb-4">
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
