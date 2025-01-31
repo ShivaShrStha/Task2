@@ -57,35 +57,41 @@
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="showTextResponse(this)"><i class="fas fa-font"></i> Text</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showNumberSelector(this)"><i class="fas fa-sort-numeric-up"></i> Number</button>
-                    <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showDatePickers(this)"><i class="fas fa-calendar-alt"></i> Date</button>
-                    <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showDistrict(this)"><i class="fas fa-location-dot"></i> District</button>
-                    <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showPhotoUploader(this)"><i class="fas fa-camera"></i> Photo</button>
-                    <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showRatingSelector(this)"><i class="fas fa-star"></i> Rating</button>
-                    <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showRankingSelector(this)"><i class="fas fa-list-ol"></i> Ranking</button>
-                    <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showAudioRecorder(this)"><i class="fas fa-microphone"></i> Audio</button>
-                    <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showVideoUploader(this)"><i class="fas fa-video"></i> Video</button>
+                        onclick="showNumberSelector(this)"><i class="fas-solid fa-7 "></i> Number</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="showDecimalInput(this)"><i class="fas fa-percentage"></i> Decimal</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
+                        onclick="showDatePickers(this)"><i class="fas fa-calendar-alt"></i> Date</button>
+                    <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
+                        onclick="showTimeInput(this)"><i class="fas fa-clock"></i> Time</button>
+                    <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
+                        onclick="showDistrict(this)"><i class="fas fa-location-dot"></i> District</button>
+                    <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="showPointSelector(this)"><i class="fas fa-map-marker-alt"></i> Point</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showLineInput(this)"><i class="fas fa-pen"></i> Line</button>
+                        onclick="showPhotoUploader(this)"><i class="fas fa-camera"></i> Photo</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showAreaSelector(this)"><i class="fas fa-draw-polygon"></i> Area</button>
+                        onclick="showAudioRecorder(this)"><i class="fas fa-volume-high"></i> Audio</button>
+                    <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
+                        onclick="showVideoUploader(this)"><i class="fas fa-video"></i> Video</button>
+                    <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
+                        onclick="showLineInput(this)"><i class="fas fa-arrow-trend-up"></i> Line</button>
+                    <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
+                        onclick="showNoteInput(this)"><i class="fa-solid fa-bars"></i> Note</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="showBarcodeScanner(this)"><i class="fas fa-barcode"></i> Barcode</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
+                        onclick="showAcknowledgment(this)"><i class="fas fa-square-check"></i> Acknowledge</button>
+                    <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
+                        onclick="showAreaSelector(this)"><i class="fas fa-square"></i> Area</button>
+                    <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
+                        onclick="showRatingSelector(this)"><i class="fas fa-star"></i> Rating</button>
+                    <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="showMatrixInput(this)"><i class="fas fa-th"></i> Question Matrix</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showAcknowledgment(this)"><i class="fas fa-handshake"></i> Acknowledge</button>
+                        onclick="showRankingSelector(this)"><i class="fas fa-list-ol"></i> Ranking</button>
+                    <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
+                        onclick="showCalculator(this)"><i class="fas fa-calculator"></i> Calculate</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="showSignaturePad(this)"><i class="fas fa-signature"></i> Signature</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
