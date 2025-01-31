@@ -133,26 +133,68 @@ function updateOptionValue(input) {
     checkbox.value = input.value;
 }
 
-function showDatePickers(button) {
-    hideUsedOption(button, "showDatePickers");
+function showTextResponse(button) {
+    hideUsedOption(button, "showTextResponse");
 }
 function showNumberSelector(button) {
     hideUsedOption(button, "showNumberSelector");
 }
+function showDecimalInput(button) {
+    hideUsedOption(button, "showDecimalInput");
+}
+function showDatePickers(button) {
+    hideUsedOption(button, "showDatePickers");
+}
+function showTimeSelector(button) {
+    hideUsedOption(button, "showTimeSelector");
+}
+function showPointSelector(button) {
+    hideUsedOption(button, "showPointSelector");
+}
 function showPhotoUploader(button) {
     hideUsedOption(button, "showPhotoUploader");
+}
+function showAudio(button) {
+    hideUsedOption(button, "showAudio");
+}
+function showVideoUploader(button) {
+    hideUsedOption(button, "showVideoUploader");
+}
+function showLineInput(button) {
+    hideUsedOption(button, "showLineInput");
+}
+function showNoteInput(button) {
+    hideUsedOption(button, "showNoteInput");
+}
+function showBarcodeScanner(button) {
+    hideUsedOption(button, "showBarcodeScanner");
+}
+function showAcknowledgement(button) {
+    hideUsedOption(button, "showAcknowledgement");
+}
+function showAreaSelector(button) {
+    hideUsedOption(button, "showAreaSelector");
 }
 function showRatingSelector(button) {
     hideUsedOption(button, "showRatingSelector");
 }
-function showTextResponse(button) {
-    hideUsedOption(button, "showTextResponse");
+function showMatrixInput(button) {
+    hideUsedOption(button, "showMatrixInput");
 }
 function showRankingSelector(button) {
     hideUsedOption(button, "showRankingSelector");
 }
-function showAudioUploader(button) {
-    hideUsedOption(button, "showAudioUploader");
+function showCalculator(button) {
+    hideUsedOption(button, "showCalculator");
+}
+function showSignature(button) {
+    hideUsedOption(button, "showSignature");
+}
+function showTableInput(button) {
+    hideUsedOption(button, "showTableInput");
+}
+function showFileUploader(button) {
+    hideUsedOption(button, "showFileUploader");
 }
 
 function hideUsedOption(button, optionType) {

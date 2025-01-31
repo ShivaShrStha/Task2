@@ -78,7 +78,7 @@
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="showPhotoUploader(this)"><i class="fas fa-camera"></i> Photo</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showAudioRecorder(this)"><i class="fas fa-volume-high"></i> Audio</button>
+                        onclick="showAudio(this)"><i class="fas fa-volume-high"></i> Audio</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="showVideoUploader(this)"><i class="fas fa-video"></i> Video</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
@@ -100,7 +100,7 @@
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="showCalculator(this)"><i class="fas fa-calculator"></i> Calculate</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showSignaturePad(this)"><i class="fas fa-signature"></i> Signature</button>
+                        onclick="showSignature(this)"><i class="fas fa-signature"></i> Signature</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="showTableInput(this)"><i class="fas fa-table"></i> Table</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
