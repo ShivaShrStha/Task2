@@ -6,40 +6,24 @@ function addFormSection() {
     clone.id = "";
     container.appendChild(clone);
     clone.querySelector(".add-question-button").style.display = "block";
-    clone.querySelector(".remove-options-button").style.display = "none";
 }
 
 function showQuestionTypes(button) {
-    removeAllOptions(button);
-    const formSection = button.parentElement;
+    const formSection = button.closest(".form-section");
     const questionTypes = formSection.querySelector(".question-types");
-    const input = formSection.querySelector("input").value;
+    const input = formSection.querySelector("input[type='text']");
 
-    if (input.trim() === "") {
+    if (!input || input.value.trim() === "") {
         alert("Please enter a question first.");
         return;
     }
 
-    questionTypes.style.display = "block";
-}
-
-function showDatePickers(button) {
-    hideUsedOption(button, "showDatePickers");
-    const formSection = button.parentElement.parentElement;
-    const datePickers = formSection.querySelector(".date-pickers");
-    datePickers.style.display = "block";
-    const today = new Date();
-    formSection.querySelector("#english-calendar").value = today
-        .toISOString()
-        .split("T")[0];
-    formSection.querySelector("#nepali-calendar").value = today
-        .toISOString()
-        .split("T")[0];
-    saveDatePickers(button);
-    saveQuestionType(button, "Date");
+    questionTypes.style.display = "grid";
 }
 
 function showDistrict(button) {
+    hideUsedOption(button, "showDistrict"); //to close the questionTypes
+
     const formSection = button.closest(".form-section");
     const districtDropdown = formSection.querySelector(".district-dropdown");
 
@@ -77,248 +61,69 @@ function showDistrict(button) {
         });
 }
 
-function saveDistrict(button) {
-    const formSection = button.closest(".form-section");
-    const districtDropdown = formSection.querySelector(".district-dropdown");
-    const selectedDistrict = districtDropdown.value;
-    const selectedDistrictDisplay = formSection.querySelector(
-        ".selected-district-display"
-    );
-    const savedDistrictSection = formSection.querySelector(".saved-district");
-
-    if (selectedDistrict.trim() === "") {
-        return;
-    }
-
-    selectedDistrictDisplay.textContent = selectedDistrict;
-    savedDistrictSection.style.display = "block";
-    formSection.querySelector(".district").style.display = "none";
-    hideUsedOption(button, "district");
-    showAllOptions();
-    button
-        .closest(".form-section")
-        .querySelector(".question-types").style.display = "none";
-    button
-        .closest(".form-section")
-        .querySelector(".add-question-button").style.display = "none";
-    showSubmitButton();
-    showSubmitButtonIfNeeded();
-}
-
-function showNumberSelector(button) {
-    hideUsedOption(button, "showNumberSelector");
-    const formSection = button.parentElement.parentElement;
-    const numberSelector = formSection.querySelector(".number-selector");
-    numberSelector.style.display = "block";
-    saveNumberSelection(button);
-}
-
-function saveNumberSelection(button) {
-    const formSection = button.parentElement.parentElement;
-    const numberInput = formSection.querySelector("#number-input");
-    const selectedNumber = numberInput.value;
-    const selectedNumberDisplay = formSection.querySelector(
-        "#selected-number-display"
-    );
-    const savedNumberSection = formSection.querySelector(".saved-number");
-
-    if (selectedNumber.trim() === "" || isNaN(selectedNumber)) {
-        return;
-    }
-
-    selectedNumberDisplay.textContent = selectedNumber;
-    savedNumberSection.style.display = "block";
-    formSection.querySelector(".number-selector").style.display = "none";
-    hideUsedOption(button, "number");
-    showAllOptions();
-    button
-        .closest(".form-section")
-        .querySelector(".question-types").style.display = "none";
-    button
-        .closest(".form-section")
-        .querySelector(".add-question-button").style.display = "none";
-    showSubmitButton();
-    showSubmitButtonIfNeeded();
-}
-
-function showPhotoUploader(button) {
-    hideUsedOption(button, "showPhotoUploader");
-    const formSection = button.parentElement.parentElement;
-    const photoUploader = formSection.querySelector(".photo-uploader");
-    photoUploader.style.display = "block";
-    savePhoto(button);
-}
-
-function savePhoto(button) {
-    const formSection = button.parentElement.parentElement;
-    const photoInput = formSection.querySelector("#photo-input");
-    const photoDisplay = formSection.querySelector("#photo-display");
-    const savedPhotoSection = formSection.querySelector(".saved-photo");
-
-    if (photoInput.files && photoInput.files[0]) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            photoDisplay.src = e.target.result;
-            savedPhotoSection.style.display = "block";
-            formSection.querySelector(".photo-uploader").style.display = "none";
-            hideUsedOption(button, "photo");
-            showAllOptions();
-            button
-                .closest(".form-section")
-                .querySelector(".question-types").style.display = "none";
-            button
-                .closest(".form-section")
-                .querySelector(".add-question-button").style.display = "none";
-            showSubmitButton();
-            showSubmitButtonIfNeeded();
-        };
-        reader.readAsDataURL(photoInput.files[0]);
-    }
-}
 function showSingleChoice(button) {
     hideUsedOption(button, "showSingleChoice");
     const formSection = button.parentElement.parentElement;
     const singleChoice = formSection.querySelector(".single-choice");
+
+    const optionInputs = singleChoice.querySelectorAll("input[type='text']");
+    optionInputs.forEach((input) => {
+        input.readOnly = false;
+    });
+
     singleChoice.style.display = "block";
 }
 
-function saveSingleChoice(button) {
-    const formSection = button.parentElement.parentElement;
-    const selectedOption = formSection.querySelector(
-        'input[name="single-choice"]:checked'
-    );
-    const selectedSingleChoiceDisplay = formSection.querySelector(
-        "#selected-single-choice-display"
-    );
-    const savedSingleChoiceSection = formSection.querySelector(
-        ".saved-single-choice"
+function addSingleChoiceOption(button) {
+    const formSection = button.closest(".form-section");
+    const singleChoiceOptions = formSection.querySelector(
+        ".single-choice-options"
     );
 
-    if (!selectedOption) {
-        alert("Please select an option before saving.");
+    if (!singleChoiceOptions) {
+        console.error("Element '.single-choice-options' not found");
         return;
     }
 
-    const optionText = selectedOption.nextElementSibling.value;
-    selectedSingleChoiceDisplay.textContent = optionText;
-    savedSingleChoiceSection.style.display = "block";
-    formSection.querySelector(".single-choice").style.display = "none";
+    const optionCount = singleChoiceOptions.children.length + 1;
 
-    hideUsedOption(button, "single-choice");
-    showAllOptions();
-    button
-        .closest(".form-section")
-        .querySelector(".question-types").style.display = "none";
-    button
-        .closest(".form-section")
-        .querySelector(".add-question-button").style.display = "none";
-    showSubmitButton();
-    showSubmitButtonIfNeeded();
-}
+    const newOption = document.createElement("div");
+    newOption.classList.add("flex", "items-center");
+    newOption.innerHTML = `
+        <input type="radio" name="single-choice" class="mr-2">
+        <input type="text" placeholder="Option ${optionCount}"
+            class="w-full p-2 border border-gray-300 rounded-md"
+            oninput="updateOptionVal(this)">
+    `;
 
-function updateOptionValue(input) {
-    const radioButton = input.previousElementSibling;
-    radioButton.value = input.value;
-}
-
-function showRatingSelector(button) {
-    hideUsedOption(button, "showRatingSelector");
-    const formSection = button.parentElement.parentElement;
-    const ratingSelector = formSection.querySelector(".rating-selector");
-    ratingSelector.style.display = "block";
-    saveRatingSelection(button);
-}
-
-function saveRatingSelection(button) {
-    const formSection = button.parentElement.parentElement;
-    const selectedRatings = formSection.querySelectorAll(
-        'input[name="rating"]:checked'
-    );
-    const selectedRatingDisplay = formSection.querySelector(
-        "#selected-rating-display"
-    );
-    const savedRatingSection = formSection.querySelector(".saved-rating");
-
-    if (selectedRatings.length === 0) {
-        //
-        return;
-    }
-
-    const ratings = Array.from(selectedRatings)
-        .map((rating) => rating.value)
-        .join(", ");
-    selectedRatingDisplay.textContent = ratings;
-    savedRatingSection.style.display = "block";
-    formSection.querySelector(".rating-selector").style.display = "none";
-    hideUsedOption(button, "rating");
-    showAllOptions();
-    button
-        .closest(".form-section")
-        .querySelector(".question-types").style.display = "none";
-    button
-        .closest(".form-section")
-        .querySelector(".add-question-button").style.display = "none";
-    showSubmitButton();
-    showSubmitButtonIfNeeded();
-}
-
-function showTextResponse(button) {
-    hideUsedOption(button, "showTextResponse");
-    const formSection = button.parentElement.parentElement;
-    const textResponse = formSection.querySelector(".text-response");
-    textResponse.style.display = "block";
-    saveTextResponse(button);
-}
-
-function saveTextResponse(button) {
-    const formSection = button.parentElement.parentElement;
-    const textInput = formSection.querySelector("#text-input");
-    const textResponseDisplay = formSection.querySelector(
-        "#text-response-display"
-    );
-    const savedTextResponseSection = formSection.querySelector(
-        ".saved-text-response"
-    );
-
-    if (textInput.value.trim() === "") {
-        //
-        return;
-    }
-
-    textResponseDisplay.textContent = textInput.value;
-    savedTextResponseSection.style.display = "block";
-    formSection.querySelector(".text-response").style.display = "none";
-    hideUsedOption(button, "text");
-    showAllOptions();
-    button
-        .closest(".form-section")
-        .querySelector(".question-types").style.display = "none";
-    button
-        .closest(".form-section")
-        .querySelector(".add-question-button").style.display = "none";
-    showSubmitButton();
-    showSubmitButtonIfNeeded();
+    singleChoiceOptions.appendChild(newOption);
 }
 
 function showMultipleChoice(button) {
     hideUsedOption(button, "showMultipleChoice");
-    const formSection = button.parentElement.parentElement;
+    const formSection = button.closest(".form-section");
     const multipleChoice = formSection.querySelector(".multiple-choice");
+
+    const optionInputs = multipleChoice.querySelectorAll("input[type='text']");
+    optionInputs.forEach((input) => {
+        input.readOnly = false;
+    });
+
     multipleChoice.style.display = "block";
-    saveMultipleChoice(button);
 }
 
 function addMultipleChoiceOption(button) {
-    const formSection = button.parentElement;
+    const formSection = button.closest(".form-section");
     const multipleChoiceOptions = formSection.querySelector(
         ".multiple-choice-options"
     );
     const optionCount = multipleChoiceOptions.children.length + 1;
 
     const newOption = document.createElement("div");
+    newOption.classList.add("flex", "items-center", "mt-2");
     newOption.innerHTML = `
-        <input type="checkbox" id="multiOption${optionCount}" name="multiple-choice" value="Option ${optionCount}">
-        <input type="text" placeholder="Option ${optionCount}" class="form-control d-inline-block w-auto" oninput="updateOptionValue(this)">
+    <input type="checkbox" class="mr-2">
+    <input type="text" placeholder="Option ${optionCount}" class="w-full p-2 border border-gray-300 rounded-md" oninput="updateOptionValue(this)">
     `;
     multipleChoiceOptions.appendChild(newOption);
 }
@@ -328,107 +133,26 @@ function updateOptionValue(input) {
     checkbox.value = input.value;
 }
 
-function saveMultipleChoice(button) {
-    const formSection = button.parentElement.parentElement;
-    const selectedOptions = formSection.querySelectorAll(
-        'input[name="multiple-choice"]:checked'
-    );
-    const selectedMultipleChoiceDisplay = formSection.querySelector(
-        "#selected-multiple-choice-display"
-    );
-    const savedMultipleChoiceSection = formSection.querySelector(
-        ".saved-multiple-choice"
-    );
-
-    if (selectedOptions.length === 0) {
-        return;
-    }
-
-    const options = Array.from(selectedOptions)
-        .map((option) => option.value)
-        .join(", ");
-    selectedMultipleChoiceDisplay.textContent = options;
-    savedMultipleChoiceSection.style.display = "block";
-    formSection.querySelector(".multiple-choice").style.display = "none";
-    hideUsedOption(button, "multiple-choice");
-    showAllOptions();
-    button
-        .closest(".form-section")
-        .querySelector(".question-types").style.display = "none";
-    button
-        .closest(".form-section")
-        .querySelector(".add-question-button").style.display = "none";
-    showSubmitButton();
-    showSubmitButtonIfNeeded();
+function showDatePickers(button) {
+    hideUsedOption(button, "showDatePickers");
 }
-
+function showNumberSelector(button) {
+    hideUsedOption(button, "showNumberSelector");
+}
+function showPhotoUploader(button) {
+    hideUsedOption(button, "showPhotoUploader");
+}
+function showRatingSelector(button) {
+    hideUsedOption(button, "showRatingSelector");
+}
+function showTextResponse(button) {
+    hideUsedOption(button, "showTextResponse");
+}
 function showRankingSelector(button) {
     hideUsedOption(button, "showRankingSelector");
-    const formSection = button.parentElement.parentElement;
-    const rankingSelector = formSection.querySelector(".ranking-selector");
-    rankingSelector.style.display = "block";
-    saveRankingSelection(button);
 }
-
-function saveRankingSelection(button) {
-    const formSection = button.parentElement.parentElement;
-    const rankingInput = formSection.querySelector("#ranking-input");
-    const selectedRankingDisplay = formSection.querySelector(
-        "#selected-ranking-display"
-    );
-    const savedRankingSection = formSection.querySelector(".saved-ranking");
-
-    if (rankingInput.value.trim() === "" || isNaN(rankingInput.value)) {
-        return;
-    }
-
-    selectedRankingDisplay.textContent = rankingInput.value;
-    savedRankingSection.style.display = "block";
-    formSection.querySelector(".ranking-selector").style.display = "none";
-    hideUsedOption(button, "ranking");
-    showAllOptions();
-    button
-        .closest(".form-section")
-        .querySelector(".question-types").style.display = "none";
-    button
-        .closest(".form-section")
-        .querySelector(".add-question-button").style.display = "none";
-    showSubmitButton();
-    showSubmitButtonIfNeeded();
-}
-
 function showAudioUploader(button) {
     hideUsedOption(button, "showAudioUploader");
-    const formSection = button.parentElement.parentElement;
-    const audioUploader = formSection.querySelector(".audio-uploader");
-    audioUploader.style.display = "block";
-}
-
-function saveAudio(button) {
-    const formSection = button.parentElement.parentElement;
-    const audioInput = formSection.querySelector("#audio-input");
-    const audioDisplay = formSection.querySelector("#audio-display");
-    const savedAudioSection = formSection.querySelector(".saved-audio");
-
-    if (audioInput.files && audioInput.files[0]) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            audioDisplay.src = e.target.result;
-            savedAudioSection.style.display = "block";
-            formSection.querySelector(".audio-uploader").style.display = "none";
-            hideUsedOption(button, "audio");
-            showAllOptions();
-            button
-                .closest(".form-section")
-                .querySelector(".question-types").style.display = "none";
-            button
-                .closest(".form-section")
-                .querySelector(".add-question-button").style.display = "none";
-            showSubmitButton();
-            showSubmitButtonIfNeeded();
-        };
-        reader.readAsDataURL(audioInput.files[0]);
-    }
 }
 
 function hideUsedOption(button, optionType) {
@@ -440,7 +164,6 @@ function hideUsedOption(button, optionType) {
     });
     questionTypes.style.display = "none";
     formSection.querySelector(".add-question-button").style.display = "none";
-    formSection.querySelector(".remove-options-button").style.display = "block";
 }
 
 function showAllOptions() {
@@ -448,61 +171,4 @@ function showAllOptions() {
     allOptions.forEach((option) => {
         option.style.display = "inline-block";
     });
-}
-
-// function showSubmitButton() {
-//     document.getElementById("submit-button").style.display = "block";
-// }
-
-// function showSubmitButtonIfNeeded() {
-//     const formSections = document.querySelectorAll(".form-section");
-//     let showButton = false;
-
-//     formSections.forEach((section) => {
-//         if (
-//             section.querySelector(".saved-number").style.display === "block" ||
-//             section.querySelector(".saved-photo").style.display === "block" ||
-//             section.querySelector(".saved-single-choice").style.display ===
-//                 "block" ||
-//             section.querySelector(".saved-rating").style.display === "block" ||
-//             section.querySelector(".saved-text-response").style.display ===
-//                 "block" ||
-//             section.querySelector(".saved-multiple-choice").style.display ===
-//                 "block" ||
-//             section.querySelector(".saved-ranking").style.display === "block"
-//         ) {
-//             showButton = true;
-//         }
-//     });
-
-//     if (showButton) {
-//         document.getElementById("submit-button").style.display = "block";
-//     } else {
-//         document.getElementById("submit-button").style.display = "none";
-//     }
-// }
-
-function saveDatePickers(button) {
-    const formSection = button.parentElement.parentElement;
-    const englishDate = formSection.querySelector("#english-calendar").value;
-    const nepaliDate = formSection.querySelector("#nepali-calendar").value;
-    const time = formSection.querySelector(".time-picker").value;
-    const savedDateSection = formSection.querySelector(".saved-date");
-
-    if (!englishDate || !nepaliDate || !time) {
-        alert("Please select a date and time.");
-        return;
-    }
-
-    formSection.querySelector(".date-pickers").style.display = "none";
-    hideUsedOption(button, "date");
-    showAllOptions();
-    button
-        .closest(".form-section")
-        .querySelector(".question-types").style.display = "none";
-    button
-        .closest(".form-section")
-        .querySelector(".add-question-button").style.display = "none";
-    showSubmitButton();
-    showSubmitButtonIfNeeded();
 }
