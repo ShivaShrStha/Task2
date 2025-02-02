@@ -87,22 +87,61 @@ function addSingleChoiceOption(button) {
         return;
     }
 
-    const optionCount = singleChoiceOptions.children.length + 1;
+    // const optionCount = singleChoiceOptions.children.length + 1;
 
-    const newOption = document.createElement("div");
-    newOption.classList.add("flex", "items-center");
-    newOption.innerHTML = `
-        <input type="radio" name="single-choice" class="mr-2">
-        <input type="text" placeholder="Option ${optionCount}"
-            class="w-full p-2 border border-gray-300 rounded-md"
-            oninput="updateOptionVal(this)">
-    `;
+    // const newOption = document.createElement("div");
+    // newOption.classList.add("flex", "items-center");
+    // newOption.innerHTML = `
+    //     <input type="radio" name="single-choice" class="mr-2">
+    //     <input type="text" placeholder="Option ${optionCount}"
+    //         class="w-full p-2 border border-gray-300 rounded-md"
+    //         oninput="updateOptionVal(this)">
+    // `;
 
-    singleChoiceOptions.appendChild(newOption);
+    // singleChoiceOptions.appendChild(newOption);
 }
 function updateOptionVal(input) {
     const radio = input.previousElementSibling;
     radio.value = input.value;
+}
+
+function populateOptions(select) {
+    const selectedValue = select.value;
+    const formSection = select.closest(".form-section");
+    const singleChoiceOptions = formSection.querySelector(
+        ".single-choice-options"
+    );
+
+    // Clear existing options
+    singleChoiceOptions.innerHTML = "";
+
+    let options = [];
+    switch (selectedValue) {
+        case "gender":
+            options = ["Male", "Female", "Other"];
+            break;
+        case "relation":
+            options = ["Parent", "Sibling", "Spouse", "Friend"];
+            break;
+        case "marital":
+            options = ["Single", "Married", "Divorced", "Widowed"];
+            break;
+        default:
+            options = ["Option 1", "Option 2"];
+            break;
+    }
+
+    options.forEach((option, index) => {
+        const newOption = document.createElement("div");
+        newOption.classList.add("flex", "items-center");
+        newOption.innerHTML = `
+            <input type="radio" name="single-choice" class="mr-2">
+            <input type="text" placeholder="Option ${index + 1}"
+                class="w-full p-2 border border-gray-300 rounded-md"
+                oninput="updateOptionVal(this)" value="${option}">
+        `;
+        singleChoiceOptions.appendChild(newOption);
+    });
 }
 
 function showMultipleChoice(button) {
