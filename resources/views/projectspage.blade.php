@@ -45,7 +45,7 @@
 <body class="bg-gray-100">
     <div class="max-w-3xl mx-auto p-4 mt-10 border border-green-200 ">
         <h2 class="text-2xl font-bold text-center mb-6">Form</h2>
-        <button class="bg-blue-500 text-white px-4 py-2 rounded-md mb-6" onclick="addFormSection()">+ Add</button>
+
 
         <div id="form-container">
             <div class="form-section bg-white p-6 rounded-lg shadow-md mb-6 hidden" id="form-section-template"
@@ -157,7 +157,7 @@
             </div>
 
         </div>
-
+        <button class="bg-blue-500 text-white px-4 py-2 rounded-md mb-6" onclick="addFormSection()">+ Add</button>
         <script src="{{ asset('js/projectspage.js') }}" defer></script>
         <script>
             function deleteFormSection(button) {
