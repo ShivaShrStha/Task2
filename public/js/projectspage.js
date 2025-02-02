@@ -62,7 +62,7 @@ function showDistrict(button) {
 }
 
 function showSingleChoice(button) {
-    hideUsedOption(button, "showSingleChoice");
+    // hideUsedOption(button, "showSingleChoice");
     const formSection = button.parentElement.parentElement;
     const singleChoice = formSection.querySelector(".single-choice");
 
@@ -97,6 +97,10 @@ function addSingleChoiceOption(button) {
     `;
 
     singleChoiceOptions.appendChild(newOption);
+}
+function updateOptionVal(input) {
+    const radio = input.previousElementSibling;
+    radio.value = input.value;
 }
 
 function showMultipleChoice(button) {
