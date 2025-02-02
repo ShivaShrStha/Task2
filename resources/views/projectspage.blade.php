@@ -112,7 +112,8 @@
                     class="w-full p-2 border border-gray-300 rounded-md mb-2"> --}}
                 <!-- Single Choice Section -->
                 <div class="single-choice mt-4" style="display: none;">
-                    <select name="single-choice-options" id="single-choice-options" onchange="populateOptions(this)">
+                    <select name="single-choice-options" class="border border-black" id="single-choice-options"
+                        onchange="populateOptions(this)">
                         <option value="select">Select</option>
                         <option value="gender">Gender</option>
                         <option value="relation">Relation</option>

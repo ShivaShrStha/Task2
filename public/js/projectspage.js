@@ -87,18 +87,18 @@ function addSingleChoiceOption(button) {
         return;
     }
 
-    // const optionCount = singleChoiceOptions.children.length + 1;
+    const optionCount = singleChoiceOptions.children.length + 1;
 
-    // const newOption = document.createElement("div");
-    // newOption.classList.add("flex", "items-center");
-    // newOption.innerHTML = `
-    //     <input type="radio" name="single-choice" class="mr-2">
-    //     <input type="text" placeholder="Option ${optionCount}"
-    //         class="w-full p-2 border border-gray-300 rounded-md"
-    //         oninput="updateOptionVal(this)">
-    // `;
+    const newOption = document.createElement("div");
+    newOption.classList.add("flex", "items-center");
+    newOption.innerHTML = `
+        <input type="radio" name="single-choice" class="mr-2">
+        <input type="text" placeholder="Option ${optionCount}"
+            class="w-full p-2 border border-gray-300 rounded-md"
+            oninput="updateOptionVal(this)">
+    `;
 
-    // singleChoiceOptions.appendChild(newOption);
+    singleChoiceOptions.appendChild(newOption);
 }
 function updateOptionVal(input) {
     const radio = input.previousElementSibling;
