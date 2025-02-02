@@ -65,6 +65,7 @@ function showSingleChoice(button) {
     // hideUsedOption(button, "showSingleChoice");
     const formSection = button.parentElement.parentElement;
     const singleChoice = formSection.querySelector(".single-choice");
+    const questionTypes = formSection.querySelector(".question-types");
 
     const optionInputs = singleChoice.querySelectorAll("input[type='text']");
     optionInputs.forEach((input) => {
@@ -72,6 +73,7 @@ function showSingleChoice(button) {
     });
 
     singleChoice.style.display = "block";
+    questionTypes.style.display = "none";
 }
 
 function addSingleChoiceOption(button) {
@@ -104,9 +106,10 @@ function updateOptionVal(input) {
 }
 
 function showMultipleChoice(button) {
-    hideUsedOption(button, "showMultipleChoice");
+    // hideUsedOption(button, "showMultipleChoice");
     const formSection = button.closest(".form-section");
     const multipleChoice = formSection.querySelector(".multiple-choice");
+    const questionTypes = formSection.querySelector(".question-types");
 
     const optionInputs = multipleChoice.querySelectorAll("input[type='text']");
     optionInputs.forEach((input) => {
@@ -114,6 +117,7 @@ function showMultipleChoice(button) {
     });
 
     multipleChoice.style.display = "block";
+    questionTypes.style.display = "none";
 }
 
 function addMultipleChoiceOption(button) {
@@ -139,66 +143,108 @@ function updateOptionValue(input) {
 
 function showTextResponse(button) {
     hideUsedOption(button, "showTextResponse");
+    const questionTypes = formSection.querySelector(".question-types");
+    questionTypes.style.display = "none";
 }
 function showNumberSelector(button) {
     hideUsedOption(button, "showNumberSelector");
+    const questionTypes = formSection.querySelector(".question-types");
+    questionTypes.style.display = "none";
 }
 function showDecimalInput(button) {
     hideUsedOption(button, "showDecimalInput");
+    const questionTypes = formSection.querySelector(".question-types");
+    questionTypes.style.display = "none";
 }
 function showDatePickers(button) {
     hideUsedOption(button, "showDatePickers");
+    const questionTypes = formSection.querySelector(".question-types");
+    questionTypes.style.display = "none";
 }
 function showTimeSelector(button) {
     hideUsedOption(button, "showTimeSelector");
+    const questionTypes = formSection.querySelector(".question-types");
+    questionTypes.style.display = "none";
 }
 function showPointSelector(button) {
     hideUsedOption(button, "showPointSelector");
+    const questionTypes = formSection.querySelector(".question-types");
+    questionTypes.style.display = "none";
 }
 function showPhotoUploader(button) {
     hideUsedOption(button, "showPhotoUploader");
+    const questionTypes = formSection.querySelector(".question-types");
+    questionTypes.style.display = "none";
 }
 function showAudio(button) {
     hideUsedOption(button, "showAudio");
+    const questionTypes = formSection.querySelector(".question-types");
+    questionTypes.style.display = "none";
 }
 function showVideoUploader(button) {
     hideUsedOption(button, "showVideoUploader");
+    const questionTypes = formSection.querySelector(".question-types");
+    questionTypes.style.display = "none";
 }
 function showLineInput(button) {
     hideUsedOption(button, "showLineInput");
+    const questionTypes = formSection.querySelector(".question-types");
+    questionTypes.style.display = "none";
 }
 function showNoteInput(button) {
     hideUsedOption(button, "showNoteInput");
+    const questionTypes = formSection.querySelector(".question-types");
+    questionTypes.style.display = "none";
 }
 function showBarcodeScanner(button) {
     hideUsedOption(button, "showBarcodeScanner");
+    const questionTypes = formSection.querySelector(".question-types");
+    questionTypes.style.display = "none";
 }
 function showAcknowledgement(button) {
     hideUsedOption(button, "showAcknowledgement");
+    const questionTypes = formSection.querySelector(".question-types");
+    questionTypes.style.display = "none";
 }
 function showAreaSelector(button) {
     hideUsedOption(button, "showAreaSelector");
+    const questionTypes = formSection.querySelector(".question-types");
+    questionTypes.style.display = "none";
 }
 function showRatingSelector(button) {
     hideUsedOption(button, "showRatingSelector");
+    const questionTypes = formSection.querySelector(".question-types");
+    questionTypes.style.display = "none";
 }
 function showMatrixInput(button) {
     hideUsedOption(button, "showMatrixInput");
+    const questionTypes = formSection.querySelector(".question-types");
+    questionTypes.style.display = "none";
 }
 function showRankingSelector(button) {
     hideUsedOption(button, "showRankingSelector");
+    const questionTypes = formSection.querySelector(".question-types");
+    questionTypes.style.display = "none";
 }
 function showCalculator(button) {
     hideUsedOption(button, "showCalculator");
+    const questionTypes = formSection.querySelector(".question-types");
+    questionTypes.style.display = "none";
 }
 function showSignature(button) {
     hideUsedOption(button, "showSignature");
+    const questionTypes = formSection.querySelector(".question-types");
+    questionTypes.style.display = "none";
 }
 function showTableInput(button) {
     hideUsedOption(button, "showTableInput");
+    const questionTypes = formSection.querySelector(".question-types");
+    questionTypes.style.display = "none";
 }
 function showFileUploader(button) {
     hideUsedOption(button, "showFileUploader");
+    const questionTypes = formSection.querySelector(".question-types");
+    questionTypes.style.display = "none";
 }
 
 function hideUsedOption(button, optionType) {
@@ -211,6 +257,19 @@ function hideUsedOption(button, optionType) {
     questionTypes.style.display = "none";
     formSection.querySelector(".add-question-button").style.display = "none";
 }
+// function hideUsedOption(button, action) {
+//     const formSection = button.parentElement.parentElement;
+//     const usedOption = formSection.querySelector(".used-option");
+
+//     if (!usedOption) {
+//         console.error("Element '.used-option' not found");
+//         return;
+//     }
+
+//     // Hide the used option
+//     usedOption.style.display = "none";
+//     // console.log(`Used option hidden for action: ${action}`);
+// }
 
 function showAllOptions() {
     const allOptions = document.querySelectorAll(`.question-types button`);
