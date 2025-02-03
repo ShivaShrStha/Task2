@@ -105,35 +105,22 @@ function updateOptionVal(input) {
     radio.value = input.value;
 }
 
-function fetchOptions(query) {
+function fetchOptions(button) {
+    const questionContainer = button.closest(".single-choice");
+    const searchInput = questionContainer.querySelector("#search-bar");
+    const optionsContainer = questionContainer.querySelector(
+        ".single-choice-options"
+    );
+
+    const query = searchInput.value.trim();
+
     if (query.length < 2) {
-        const singleChoiceOptions = document.querySelector(
-            ".single-choice-options"
-        );
-        singleChoiceOptions.innerHTML = "";
+        optionsContainer.innerHTML =
+            "<p class='text-gray-500'>Enter at least 2 characters</p>";
         return;
     }
 
-    fetch(`/get-options?query=${encodeURIComponent(query)}`)
-        .then((response) => response.json())
-        .then((data) => {
-            const singleChoiceOptions = document.querySelector(
-                ".single-choice-options"
-            );
-            singleChoiceOptions.innerHTML = "";
-
-            data.forEach((option, index) => {
-                const newOption = document.createElement("div");
-                newOption.classList.add("flex", "items-center");
-                newOption.innerHTML = `
-                    <input type="radio" name="single-choice" class="mr-2">
-                    <input type="text" placeholder="Option ${index + 1}"
-                        class="w-full p-2 border border-gray-300 rounded-md"
-                        oninput="updateOptionVal(this)" value="${option}">
-                `;
-                singleChoiceOptions.appendChild(newOption);
-            });
-        })
+    
         .catch((error) => console.error("Error fetching options:", error));
 }
 
