@@ -120,7 +120,27 @@ function fetchOptions(button) {
         return;
     }
 
-    
+    fetch(`/get-options?query=${encodeURIComponent(query)}`)
+        .then((response) => response.json())
+        .then((data) => {
+            optionsContainer.innerHTML = "";
+
+            if (data.length === 0) {
+                optionsContainer.innerHTML = `<p class="text-gray-500">No options found.</p>`;
+                return;
+            }
+
+            data.forEach((option, index) => {
+                const newOption = document.createElement("div");
+                newOption.classList.add("flex", "items-center", "mb-2");
+                newOption.innerHTML = `
+                    <input type="radio" name="single-choice-${questionContainer.dataset.questionId}" id="option${index}" class="mr-2" value="${option}">
+                    <input type="text" placeholder="Option ${index}" class="w-full p-2 border border-gray-300 rounded-md" oninput="updateOptionVal(this)" value="${option}">
+
+                    `;
+                optionsContainer.appendChild(newOption);
+            });
+        })
         .catch((error) => console.error("Error fetching options:", error));
 }
 
