@@ -22,7 +22,7 @@ function showQuestionTypes(button) {
 }
 
 function showDistrict(button) {
-    hideUsedOption(button, "showDistrict"); //to close the questionTypes
+    hideUsedOption(button, "showDistrict");
 
     const formSection = button.closest(".form-section");
     const districtDropdown = formSection.querySelector(".district-dropdown");
@@ -105,44 +105,76 @@ function updateOptionVal(input) {
     radio.value = input.value;
 }
 
-function populateOptions(select) {
-    const selectedValue = select.value;
-    const formSection = select.closest(".form-section");
-    const singleChoiceOptions = formSection.querySelector(
-        ".single-choice-options"
-    );
-
-    // Clear existing options
-    singleChoiceOptions.innerHTML = "";
-
-    let options = [];
-    switch (selectedValue) {
-        case "gender":
-            options = ["Male", "Female", "Other"];
-            break;
-        case "relation":
-            options = ["Parent", "Sibling", "Spouse", "Friend"];
-            break;
-        case "marital":
-            options = ["Single", "Married", "Divorced", "Widowed"];
-            break;
-        default:
-            options = ["Option 1", "Option 2"];
-            break;
+function fetchOptions(query) {
+    if (query.length < 2) {
+        const singleChoiceOptions = document.querySelector(
+            ".single-choice-options"
+        );
+        singleChoiceOptions.innerHTML = "";
+        return;
     }
 
-    options.forEach((option, index) => {
-        const newOption = document.createElement("div");
-        newOption.classList.add("flex", "items-center");
-        newOption.innerHTML = `
-            <input type="radio" name="single-choice" class="mr-2">
-            <input type="text" placeholder="Option ${index + 1}"
-                class="w-full p-2 border border-gray-300 rounded-md"
-                oninput="updateOptionVal(this)" value="${option}">
-        `;
-        singleChoiceOptions.appendChild(newOption);
-    });
+    fetch(`/get-options?query=${encodeURIComponent(query)}`)
+        .then((response) => response.json())
+        .then((data) => {
+            const singleChoiceOptions = document.querySelector(
+                ".single-choice-options"
+            );
+            singleChoiceOptions.innerHTML = "";
+
+            data.forEach((option, index) => {
+                const newOption = document.createElement("div");
+                newOption.classList.add("flex", "items-center");
+                newOption.innerHTML = `
+                    <input type="radio" name="single-choice" class="mr-2">
+                    <input type="text" placeholder="Option ${index + 1}"
+                        class="w-full p-2 border border-gray-300 rounded-md"
+                        oninput="updateOptionVal(this)" value="${option}">
+                `;
+                singleChoiceOptions.appendChild(newOption);
+            });
+        })
+        .catch((error) => console.error("Error fetching options:", error));
 }
+
+// function populateOptions(select) {
+//     const selectedValue = select.value;
+//     const formSection = select.closest(".form-section");
+//     const singleChoiceOptions = formSection.querySelector(
+//         ".single-choice-options"
+//     );
+
+//     // Clear existing options
+//     singleChoiceOptions.innerHTML = "";
+
+//     let options = [];
+//     switch (selectedValue) {
+//         case "gender":
+//             options = ["Male", "Female", "Other"];
+//             break;
+//         case "relation":
+//             options = ["Parent", "Sibling", "Spouse", "Friend"];
+//             break;
+//         case "marital":
+//             options = ["Single", "Married", "Divorced", "Widowed"];
+//             break;
+//         default:
+//             options = ["Option 1", "Option 2"];
+//             break;
+//     }
+
+//     options.forEach((option, index) => {
+//         const newOption = document.createElement("div");
+//         newOption.classList.add("flex", "items-center");
+//         newOption.innerHTML = `
+//             <input type="radio" name="single-choice" class="mr-2">
+//             <input type="text" placeholder="Option ${index + 1}"
+//                 class="w-full p-2 border border-gray-300 rounded-md"
+//                 oninput="updateOptionVal(this)" value="${option}">
+//         `;
+//         singleChoiceOptions.appendChild(newOption);
+//     });
+// }
 
 function showMultipleChoice(button) {
     // hideUsedOption(button, "showMultipleChoice");

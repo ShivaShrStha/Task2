@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DistrictController;
+use App\Http\Controllers\OptionController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,3 +18,6 @@ Route::get('/projectspage', function () {
 
 
 Route::get('/get-districts', [DistrictController::class, 'getDistricts']);
+
+
+Route::get('/get-options', [OptionController::class, 'getOptions']);

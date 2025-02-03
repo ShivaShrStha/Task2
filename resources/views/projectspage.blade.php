@@ -112,14 +112,16 @@
                     class="w-full p-2 border border-gray-300 rounded-md mb-2"> --}}
                 <!-- Single Choice Section -->
                 <div class="single-choice mt-4" style="display: none;">
-                    <select name="single-choice-options" class="border border-black" id="single-choice-options"
+                    {{-- <select name="single-choice-options" class="border border-black" id="single-choice-options"
                         onchange="populateOptions(this)">
                         <option value="select">Select</option>
                         <option value="gender">Gender</option>
                         <option value="relation">Relation</option>
                         <option value="marital">Marital Status</option>
 
-                    </select>
+                    </select> --}}
+                    <input type="text" id="search-bar" placeholder="Search for options..."
+                        class="w-full p-2 border border-gray-300 rounded-md" oninput="fetchOptions(this.value)">
                     <h4 class="text-lg font-semibold mb-2">Select One:</h4>
                     <div class="single-choice-options space-y-2">
                         <div class="flex items-center">
