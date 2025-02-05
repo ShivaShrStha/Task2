@@ -76,30 +76,30 @@ function showSingleChoice(button) {
     questionTypes.style.display = "none";
 }
 
-// function addSingleChoiceOption(button) {
-//     const formSection = button.closest(".form-section");
-//     const singleChoiceOptions = formSection.querySelector(
-//         ".single-choice-options"
-//     );
+function addSingleChoiceOption(button) {
+    const formSection = button.closest(".form-section");
+    const singleChoiceOptions = formSection.querySelector(
+        ".single-choice-options"
+    );
 
-//     if (!singleChoiceOptions) {
-//         console.error("Element '.single-choice-options' not found");
-//         return;
-//     }
+    if (!singleChoiceOptions) {
+        console.error("Element '.single-choice-options' not found");
+        return;
+    }
 
-//     const optionCount = singleChoiceOptions.children.length + 1;
+    const optionCount = singleChoiceOptions.children.length + 1;
 
-//     const newOption = document.createElement("div");
-//     newOption.classList.add("flex", "items-center");
-//     newOption.innerHTML = `
-//         <input type="radio" name="single-choice" class="mr-2">
-//         <input type="text" placeholder="Option ${optionCount}"
-//             class="w-full p-2 border border-gray-300 rounded-md"
-//             oninput="updateOptionVal(this)">
-//     `;
+    const newOption = document.createElement("div");
+    newOption.classList.add("flex", "items-center");
+    newOption.innerHTML = `
+        <input type="radio" name="single-choice" class="mr-2">
+        <input type="text" placeholder="Option ${optionCount}"
+            class="w-full p-2 border border-gray-300 rounded-md"
+            oninput="updateOptionVal(this)">
+    `;
 
-//     singleChoiceOptions.appendChild(newOption);
-// }
+    singleChoiceOptions.appendChild(newOption);
+}
 function updateOptionVal(input) {
     const radio = input.previousElementSibling;
     radio.value = input.value;

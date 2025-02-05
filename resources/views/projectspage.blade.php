@@ -29,10 +29,6 @@
             cursor: pointer;
         }
 
-        .delete-button:hover {
-            color: darkred;
-        }
-
         .question-types {
             display: none;
             grid-template-columns: repeat(4, 1fr);
@@ -121,11 +117,11 @@
                 </select> --}}
                 <div class="single-choice mt-4" style="display: none;">
                     <input type="text" id="search-bar" placeholder="Search for options..."
-                        class="w-half p-2 border border-gray-300 rounded-md">
+                        class="w-80 p-2 border border-gray-300 rounded-md">
                     <button class="bg-blue-500 text-white px-4 py-2 rounded-md mt-3" onclick="fetchOptions(this)">
                         <i class="fas fa-search"></i>
                     </button>
-                    <h4 class=" text-lg font-semibold mb-2">Select One:</h4>
+                    <h4 class=" text-lg font-semibold mb-2 mt-2">Select One:</h4>
                     <div class="single-choice-options space-y-2">
 
                     </div>
