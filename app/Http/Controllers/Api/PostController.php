@@ -11,7 +11,8 @@ class PostController extends Controller
     // Fetch all posts
     public function index()
     {
-        return Post::all();
+        $posts = Post::all(); // Fetch all posts from the database
+        return response()->json($posts);
     }
 
     // Create a new post
