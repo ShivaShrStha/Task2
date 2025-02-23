@@ -240,6 +240,7 @@ function showTimeInput(button) {
 }
 function showPointSelector(button) {
     hideUsedOption(button, "showPointSelector");
+
     formSection.querySelector(".question-types").style.display = "none";
 }
 function showPhotoUploader(button) {

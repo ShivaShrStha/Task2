@@ -54,53 +54,53 @@
 
                 <div class="question-types grid grid-cols-4 gap-4 mb-4">
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showSingleChoice(this)"><i class="fas fa-dot-circle"></i> Select One</button>
+                        onclick="showSingleChoice(this)"><i class="fas fa-dot-circle mr-2"></i> Select One</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showMultipleChoice(this)"><i class="fas fa-check-square"></i> Select Many</button>
+                        onclick="showMultipleChoice(this)"><i class="fas fa-check-square mr-2"></i> Select Many</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showTextResponse(this)"><i class="fas fa-font"></i> Text</button>
+                        onclick="showTextResponse(this)"><i class="fas fa-font mr-2"></i> Text</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showNumberSelector(this)"><i class="fas-solid fa-7 "></i> Number</button>
+                        onclick="showNumberSelector(this)"><i class="fas-solid fa-1 mr-2"></i> Number</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showDecimalInput(this)"><i class="fas fa-percentage"></i> Decimal</button>
+                        onclick="showDecimalInput(this)"><i class="fas fa-percentage mr-2"></i> Decimal</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showDatePickers(this)"><i class="fas fa-calendar-alt"></i> Date</button>
+                        onclick="showDatePickers(this)"><i class="fas fa-calendar-alt mr-2"></i> Date</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showTimeInput(this)"><i class="fas fa-clock"></i> Time</button>
+                        onclick="showTimeInput(this)"><i class="fas fa-clock mr-2"></i> Time</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showDistrict(this)"><i class="fas fa-location-dot"></i> District</button>
+                        onclick="showDistrict(this)"><i class="fas fa-location-dot mr-2"></i> District</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showPointSelector(this)"><i class="fas fa-map-marker-alt"></i> Point</button>
+                        onclick="showPointSelector(this)"><i class="fas fa-map-marker-alt mr-2"></i> Point</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showPhotoUploader(this)"><i class="fas fa-camera"></i> Photo</button>
+                        onclick="showPhotoUploader(this)"><i class="fas fa-camera mr-2"></i> Photo</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showAudio(this)"><i class="fas fa-volume-high"></i> Audio</button>
+                        onclick="showAudio(this)"><i class="fas fa-volume-high mr-2"></i> Audio</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showVideoUploader(this)"><i class="fas fa-video"></i> Video</button>
+                        onclick="showVideoUploader(this)"><i class="fas fa-video mr-2"></i> Video</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showLineInput(this)"><i class="fas fa-arrow-trend-up"></i> Line</button>
+                        onclick="showLineInput(this)"><i class="fas fa-arrow-trend-up mr-2"></i> Line</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showNoteInput(this)"><i class="fa-solid fa-bars"></i> Note</button>
+                        onclick="showNoteInput(this)"><i class="fa-solid fa-bars mr-2"></i> Note</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showBarcodeScanner(this)"><i class="fas fa-barcode"></i> Barcode</button>
+                        onclick="showBarcodeScanner(this)"><i class="fas fa-barcode mr-2"></i> Barcode</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showAcknowledgment(this)"><i class="fas fa-square-check"></i> Acknowledge</button>
+                        onclick="showAcknowledgment(this)"><i class="fas fa-square-check mr-2"></i> Acknowledge</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showAreaSelector(this)"><i class="fas fa-square"></i> Area</button>
+                        onclick="showAreaSelector(this)"><i class="fas fa-square mr-2"></i> Area</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showRatingSelector(this)"><i class="fas fa-star"></i> Rating</button>
+                        onclick="showRatingSelector(this)"><i class="fas fa-star mr-2"></i> Rating</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showMatrixInput(this)"><i class="fas fa-th"></i> Question Matrix</button>
+                        onclick="showMatrixInput(this)"><i class="fas fa-th mr-2"></i> Question Matrix</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showRankingSelector(this)"><i class="fas fa-list-ol"></i> Ranking</button>
+                        onclick="showRankingSelector(this)"><i class="fas fa-list-ol mr-2"></i> Ranking</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showCalculator(this)"><i class="fas fa-calculator"></i> Calculate</button>
+                        onclick="showCalculator(this)"><i class="fas fa-calculator mr-2"></i> Calculate</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showSignature(this)"><i class="fas fa-signature"></i> Signature</button>
+                        onclick="showSignature(this)"><i class="fas fa-signature mr-2"></i> Signature</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showTableInput(this)"><i class="fas fa-table"></i> Table</button>
+                        onclick="showTableInput(this)"><i class="fas fa-table mr-2"></i> Table</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showFileUploader(this)"><i class="fas fa-file-upload"></i> File Upload</button>
+                        onclick="showFileUploader(this)"><i class="fas fa-file-upload mr-2"></i> File Upload</button>
                 </div>
 
                 {{-- <i class="fas fa-search absolute mt-4 ml-3"></i>
