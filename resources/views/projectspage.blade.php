@@ -46,7 +46,7 @@
         <div id="form-container">
             <div class="form-section bg-white p-6 rounded-lg shadow-md mb-6 hidden" id="form-section-template"
                 style="display: none;">
-                <button class="delete-button" onclick="deleteFormSection(this)">×</button>
+                <button class="delete-button" onclick="deleteFormSection(this)">x</button>
                 <input type="text" placeholder="Enter your question here"
                     class="w-full p-2 border border-gray-300 rounded-md mb-4">
                 <button class="bg-blue-500 text-white px-4 py-2 rounded-md mb-4" onclick="showQuestionTypes(this)">Add
@@ -90,7 +90,7 @@
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="showRatingSelector(this)"><i class="fas fa-star mr-2"></i> Rating</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showMatrixInput(this)"><i class="fas fa-th mr-2"></i> Question Matrix</button>
+                        onclick="showMatrixInput(this)"><i class="fas fa-th mr-1"></i> Question Matrix</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="showRankingSelector(this)"><i class="fas fa-list-ol mr-2"></i> Ranking</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
@@ -156,8 +156,14 @@
                     <button class="bg-blue-500 text-white px-4 py-2 rounded-md mt-3"
                         onclick="addMultipleChoiceOption(this)">+ Add Option</button>
                 </div>
-            </div>
 
+
+                <div class="point-selector mt-4" style="display: none;">
+                    <p id="latitude" class="mt-2 text-gray-600"></p>
+                    <p id="longitude" class="mt-2 text-gray-600"></p>
+                </div>
+
+            </div>
         </div>
         <button class="bg-blue-500 text-white px-4 py-2 rounded-md mb-6" onclick="addFormSection()"><i
                 class="fa-solid fa-plus"></i></button>

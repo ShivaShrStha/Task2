@@ -238,11 +238,39 @@ function showTimeInput(button) {
     hideUsedOption(button, "showTimeInput");
     formSection.querySelector(".question-types").style.display = "none";
 }
-function showPointSelector(button) {
-    hideUsedOption(button, "showPointSelector");
 
+function showPointSelector(button) {
+    // hideUsedOption(button, "showPointSelector");
+    const formSection = button.closest(".form-section");
+    const pointSelector = formSection.querySelector(".point-selector");
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            function (position) {
+                let latitude = position.coords.latitude;
+                let longitude = position.coords.longitude;
+
+                // Display Latitude & Longitude in separate elements
+                pointSelector.querySelector(
+                    "#latitude"
+                ).innerText = `Latitude: ${latitude}`;
+                pointSelector.querySelector(
+                    "#longitude"
+                ).innerText = `Longitude: ${longitude}`;
+
+                // console.log("Latitude:", latitude, "Longitude:", longitude);
+            },
+            function (error) {
+                console.error("Error getting location:", error.message);
+                alert("Unable to retrieve location. Please enable GPS.");
+            }
+        );
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
+    pointSelector.style.display = "block";
     formSection.querySelector(".question-types").style.display = "none";
 }
+
 function showPhotoUploader(button) {
     hideUsedOption(button, "showPhotoUploader");
     formSection.querySelector(".question-types").style.display = "none";
