@@ -249,7 +249,6 @@ function showPointSelector(button) {
                 let latitude = position.coords.latitude;
                 let longitude = position.coords.longitude;
 
-                // Display Latitude & Longitude in separate elements
                 pointSelector.querySelector(
                     "#latitude"
                 ).innerText = `Latitude: ${latitude}`;
@@ -291,9 +290,20 @@ function showNoteInput(button) {
     hideUsedOption(button, "showNoteInput");
     formSection.querySelector(".question-types").style.display = "none";
 }
-function showBarcodeScanner(button) {
-    hideUsedOption(button, "showBarcodeScanner");
-    formSection.querySelector(".question-types").style.display = "none";
+function showBarcode(button) {
+    // hideUsedOption(button, "showBarcodeScanner");
+    const formSection = button.closest(".form-section");
+    if (!formSection) return;
+
+    const barcode = formSection.querySelector(".barcode");
+    if (barcode) {
+        barcode.style.display = "block";
+    }
+
+    const questionTypes = formSection.querySelector(".question-types");
+    if (questionTypes) {
+        questionTypes.style.display = "none";
+    }
 }
 function showAcknowledgment(button) {
     hideUsedOption(button, "showAcknowledgement");

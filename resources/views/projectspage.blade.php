@@ -82,7 +82,7 @@
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="showNoteInput(this)"><i class="fa-solid fa-bars mr-2"></i> Note</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showBarcodeScanner(this)"><i class="fas fa-barcode mr-2"></i> Barcode</button>
+                        onclick="showBarcode(this)"><i class="fas fa-barcode mr-2"></i> Barcode</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="showAcknowledgment(this)"><i class="fas fa-square-check mr-2"></i> Acknowledge</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
@@ -157,11 +157,19 @@
                         onclick="addMultipleChoiceOption(this)">+ Add Option</button>
                 </div>
 
-
+                {{-- Current Location--}}
                 <div class="point-selector mt-4" style="display: none;">
                     <p id="latitude" class="mt-2 text-gray-600"></p>
                     <p id="longitude" class="mt-2 text-gray-600"></p>
                 </div>
+
+                {{-- Barcode --}}
+                <div class="barcode" style="display: none;">
+                    <h4 class="text-lg font-semibold mb-2">Barcode:</h4>
+                    <input type="text" placeholder="Barcode Number"
+                        class="w-full p-2 border border-gray-300 rounded-md">
+                </div>
+
 
             </div>
         </div>
