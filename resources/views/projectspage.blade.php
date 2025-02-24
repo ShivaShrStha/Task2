@@ -171,6 +171,21 @@
                 </div>
 
 
+                <div class="datetimepicker widget mt-4" style="display: none;">
+                    <div class="date">
+                        <input class="w-80 p-2 border border-gray-300 rounded-md" type="text" placeholder="yyyy-mm-dd"
+                            id="datepicker">
+                    </div>
+                    <div class="timepicker mt-4">
+                        <input type="text" class="w-80 p-2 border border-gray-300 rounded-md" placeholder="hh:mm"
+                            id="timepicker">
+                    </div>
+                    <button type="button" class="btn-icon-only btn-reset mt-4" aria-label="reset"
+                        onclick="resetDateTimePicker(this)">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                </div>
+
             </div>
         </div>
         <button class="bg-blue-500 text-white px-4 py-2 rounded-md mb-6" onclick="addFormSection()"><i
@@ -179,7 +194,9 @@
         <script>
             function deleteFormSection(button) {
                 const formSection = button.closest(".form-section");
-                formSection.remove();
+                if (confirm("Are you sure you want to delete this section?")) {
+                    formSection.remove();
+                }
             }
         </script>
     </div>
