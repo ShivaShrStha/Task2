@@ -64,9 +64,11 @@
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="showDecimalInput(this)"><i class="fas fa-percentage mr-2"></i> Decimal</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showDatePickers(this)"><i class="fas fa-calendar-alt mr-2"></i> Date</button>
+                        onclick="showDatePicker(this)"><i class="fas fa-calendar-alt mr-2"></i> Date</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showTimeInput(this)"><i class="fas fa-clock mr-2"></i> Time</button>
+                        onclick="showTime(this)"><i class="fas fa-clock mr-2"></i> Time</button>
+                    <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
+                        onclick="showDateTimePicker(this)"><i class="fas fa-calendar-alt mr-2"></i> Date & Time</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="showDistrict(this)"><i class="fas fa-location-dot mr-2"></i> District</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
@@ -170,20 +172,43 @@
                         class="w-full p-2 border border-gray-300 rounded-md">
                 </div>
 
+                {{-- Date Picker --}}
+                <div class="datepicker mt-4" style="display: none;">
+                    <h4 class="text-lg font-semibold mb-2">Date:</h4>
 
-                <div class="datetimepicker widget mt-4" style="display: none;">
-                    <div class="date">
-                        <input class="w-80 p-2 border border-gray-300 rounded-md" type="text" placeholder="yyyy-mm-dd"
-                            id="datepicker">
-                    </div>
-                    <div class="timepicker mt-4">
-                        <input type="text" class="w-80 p-2 border border-gray-300 rounded-md" placeholder="hh:mm"
-                            id="timepicker">
-                    </div>
+                    <input class="w-40 p-2 border border-gray-300 rounded-md" type="date" id="datepicker">
                     <button type="button" class="btn-icon-only btn-reset mt-4" aria-label="reset"
                         onclick="resetDateTimePicker(this)">
                         <i class="fas fa-sync-alt"></i>
                     </button>
+                </div>
+
+                {{-- Time Picker --}}
+                <div class="timepicker
+                    mt-4" style="display: none;">
+                    <h4 class="text-lg font-semibold mb-2">Time:</h4>
+
+                    <input type="time" class="w-40 p-2 border border-gray-300 rounded-md" id="timepicker">
+                    <button type="button" class="btn-icon-only btn-reset mt-4" aria-label="reset"
+                        onclick="resetDateTimePicker(this)">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                </div>
+
+                {{-- Date Time Picker --}}
+                <div class="datetimepicker widget mt-4 inline" style="display: none;">
+                    <h4 class="text-lg font-semibold mb-2">Date & Time:</h4>
+
+                    <div class="date">
+                        <input class="w-40 p-2 border border-gray-300 rounded-md" type="date" placeholder="yyyy-mm-dd"
+                            id="datepicker">
+                        <input type="time" class="w-40 p-2 border border-gray-300 rounded-md" placeholder="hh:mm"
+                            id="timepicker">
+                        <button type="button" class="btn-icon-only btn-reset mt-4" aria-label="reset"
+                            onclick="resetDateTimePicker(this)">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                    </div>
                 </div>
 
             </div>

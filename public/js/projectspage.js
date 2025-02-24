@@ -230,13 +230,35 @@ function showDecimalInput(button) {
     hideUsedOption(button, "showDecimalInput");
     formSection.querySelector(".question-types").style.display = "none";
 }
-function showDatePickers(button) {
-    hideUsedOption(button, "showDatePickers");
+
+function showDatePicker(button) {
+    const formSection = button.closest(".form-section");
+    const datePicker = formSection.querySelector(".datepicker");
+
+    datePicker.style.display = "block";
     formSection.querySelector(".question-types").style.display = "none";
 }
-function showTimeInput(button) {
-    hideUsedOption(button, "showTimeInput");
+
+function showDateTimePicker(button) {
+    const formSection = button.closest(".form-section");
+    const dateTimePicker = formSection.querySelector(".datetimepicker");
+
+    dateTimePicker.style.display = "block";
     formSection.querySelector(".question-types").style.display = "none";
+}
+
+function showTime(button) {
+    const formSection = button.closest(".form-section");
+    const timeInput = formSection.querySelector(".timepicker");
+
+    timeInput.style.display = "block";
+    formSection.querySelector(".question-types").style.display = "none";
+}
+
+function resetDateTimePicker(button) {
+    const dateTimePicker = button.closest(".datetimepicker");
+    dateTimePicker.querySelector("#datepicker").value = "";
+    dateTimePicker.querySelector("#timepicker").value = "";
 }
 
 function showPointSelector(button) {
