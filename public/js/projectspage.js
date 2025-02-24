@@ -238,13 +238,9 @@ function showDatePicker(button) {
     datePicker.style.display = "block";
     formSection.querySelector(".question-types").style.display = "none";
 }
-
-function showDateTimePicker(button) {
-    const formSection = button.closest(".form-section");
-    const dateTimePicker = formSection.querySelector(".datetimepicker");
-
-    dateTimePicker.style.display = "block";
-    formSection.querySelector(".question-types").style.display = "none";
+function resetDatePicker(button) {
+    const datePicker = button.closest(".datepicker");
+    datePicker.querySelector("#datepicker").value = "";
 }
 
 function showTime(button) {
@@ -254,7 +250,18 @@ function showTime(button) {
     timeInput.style.display = "block";
     formSection.querySelector(".question-types").style.display = "none";
 }
+function resetTimePicker(button) {
+    const timePicker = button.closest(".timepicker");
+    timePicker.querySelector("#timepicker").value = "";
+}
 
+function showDateTimePicker(button) {
+    const formSection = button.closest(".form-section");
+    const dateTimePicker = formSection.querySelector(".datetimepicker");
+
+    dateTimePicker.style.display = "block";
+    formSection.querySelector(".question-types").style.display = "none";
+}
 function resetDateTimePicker(button) {
     const dateTimePicker = button.closest(".datetimepicker");
     dateTimePicker.querySelector("#datepicker").value = "";

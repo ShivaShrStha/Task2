@@ -178,7 +178,7 @@
 
                     <input class="w-40 p-2 border border-gray-300 rounded-md" type="date" id="datepicker">
                     <button type="button" class="btn-icon-only btn-reset mt-4" aria-label="reset"
-                        onclick="resetDateTimePicker(this)">
+                        onclick="resetDatePicker(this)">
                         <i class="fas fa-sync-alt"></i>
                     </button>
                 </div>
@@ -190,7 +190,7 @@
 
                     <input type="time" class="w-40 p-2 border border-gray-300 rounded-md" id="timepicker">
                     <button type="button" class="btn-icon-only btn-reset mt-4" aria-label="reset"
-                        onclick="resetDateTimePicker(this)">
+                        onclick="resetTimePicker(this)">
                         <i class="fas fa-sync-alt"></i>
                     </button>
                 </div>
