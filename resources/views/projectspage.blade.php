@@ -161,7 +161,7 @@
 
                 {{-- District --}}
                 <div class="district" style="display: none;">
-                    <h4>Select District:</h4>
+                    <p class="text-lg font-semibold mb-2">Select District:</p>
                     <select name=" district" class="district-dropdown mt-4 border border-gray-600 rounded-lg">
                         <option value="">Select a district</option>
                     </select>
