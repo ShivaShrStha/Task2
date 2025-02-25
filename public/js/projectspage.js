@@ -22,7 +22,7 @@ function showQuestionTypes(button) {
 }
 
 function showDistrict(button) {
-    hideUsedOption(button, "showDistrict");
+    // hideUsedOption(button, "showDistrict");
 
     const formSection = button.closest(".form-section");
     const districtDropdown = formSection.querySelector(".district-dropdown");
@@ -59,6 +59,25 @@ function showDistrict(button) {
             districtDropdown.innerHTML =
                 "<option>Error loading districts</option>";
         });
+    districtDropdown.style.display = "block";
+    formSection.querySelector(".question-types").style.display = "none";
+}
+function saveDistrict(button) {
+    const formSection = button.closest(".form-section");
+    const districtDropdown = formSection.querySelector(".district-dropdown");
+    const selectedDistrict = districtDropdown.value;
+    const selectedDistrictDisplay = formSection.querySelector(
+        ".selected-district-display"
+    );
+    const savedDistrictSection = formSection.querySelector(".saved-district");
+
+    if (selectedDistrict.trim() === "") {
+        return;
+    }
+
+    selectedDistrictDisplay.textContent = selectedDistrict;
+    savedDistrictSection.style.display = "block";
+    formSection.querySelector(".district").style.display = "none";
 }
 
 function showSingleChoice(button) {

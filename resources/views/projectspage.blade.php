@@ -159,6 +159,21 @@
                         onclick="addMultipleChoiceOption(this)">+ Add Option</button>
                 </div>
 
+                {{-- District --}}
+                <div class="district" style="display: none;">
+                    <h4>Select District:</h4>
+                    <select name=" district" class="district-dropdown mt-4 border border-gray-600 rounded-lg">
+                        <option value="">Select a district</option>
+                    </select>
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded-md mb-4 mt-4"
+                        onclick="saveDistrict(this)">Save</button>
+                </div>
+
+                <div class="saved-district" style="display: none;">
+                    <h4>Selected District:</h4>
+                    <p class="selected-district-display mt-4"></p>
+                </div>
+
                 {{-- Current Location--}}
                 <div class="point-selector mt-4" style="display: none;">
                     <p id="latitude" class="mt-2 text-gray-600"></p>
