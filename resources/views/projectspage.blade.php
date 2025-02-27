@@ -47,8 +47,8 @@
             <div class="form-section bg-white p-6 rounded-lg shadow-md mb-6 hidden" id="form-section-template"
                 style="display: none;">
                 <button class="delete-button" onclick="deleteFormSection(this)">x</button>
-                <input type="text" placeholder="Enter your question here"
-                    class="w-full p-2 border border-gray-300 rounded-md mb-4">
+                <x-text-input type="text" id="question-input" placeholder="Enter your question here"
+                    :autofocus="true" />
                 <button class="bg-blue-500 text-white px-4 py-2 rounded-md mb-4" onclick="showQuestionTypes(this)">Add
                     Question</button>
 
@@ -56,7 +56,8 @@
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="showSingleChoice(this)"><i class="fas fa-dot-circle mr-2"></i> Select One</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showMultipleChoice(this)"><i class="fas fa-check-square mr-2"></i> Select Many</button>
+                        onclick="showMultipleChoice(this)"><i class="fas fa-check-square mr-2"></i> Select
+                        Many</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="showTextResponse(this)"><i class="fas fa-font mr-2"></i> Text</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
@@ -68,11 +69,13 @@
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="showTime(this)"><i class="fas fa-clock mr-2"></i> Time</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showDateTimePicker(this)"><i class="fas fa-calendar-alt mr-2"></i> Date & Time</button>
+                        onclick="showDateTimePicker(this)"><i class="fas fa-calendar-alt mr-2"></i> Date &
+                        Time</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="showDistrict(this)"><i class="fas fa-location-dot mr-2"></i> District</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showPointSelector(this)"><i class="fas fa-map-marker-alt mr-2"></i> Point</button>
+                        onclick="showPointSelector(this)"><i class="fas fa-map-location-dot mr-2"></i>
+                        Point</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="showPhotoUploader(this)"><i class="fas fa-camera mr-2"></i> Photo</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
@@ -86,7 +89,10 @@
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="showBarcode(this)"><i class="fas fa-barcode mr-2"></i> Barcode</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showAcknowledgment(this)"><i class="fas fa-square-check mr-2"></i> Acknowledge</button>
+                        onclick="showQr(this)"><i class="fas fa-qrcode mr-2"></i> QR Code</button>
+                    <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
+                        onclick="showAcknowledgment(this)"><i class="fas fa-square-check mr-2"></i>
+                        Acknowledge</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="showAreaSelector(this)"><i class="fas fa-square mr-2"></i> Area</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
@@ -98,11 +104,14 @@
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="showCalculator(this)"><i class="fas fa-calculator mr-2"></i> Calculate</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showSignature(this)"><i class="fas fa-signature mr-2"></i> Signature</button>
+                        onclick="hidden(this)"><i class="fas fa-eye-slash mr-2"></i> Hidden</button>
+                    <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
+                        onclick="signature(this)"><i class="fas fa-signature mr-2"></i> Signature</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="showTableInput(this)"><i class="fas fa-table mr-2"></i> Table</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showFileUploader(this)"><i class="fas fa-file-upload mr-2"></i> File Upload</button>
+                        onclick="showFileUploader(this)"><i class="fas fa-file-upload mr-2"></i> File
+                        Upload</button>
                 </div>
 
                 {{-- <i class="fas fa-search absolute mt-4 ml-3"></i>
