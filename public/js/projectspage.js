@@ -353,6 +353,73 @@ function showBarcode(button) {
         questionTypes.style.display = "none";
     }
 }
+function showQr(button) {
+    const formSection = button.closest(".form-section");
+    if (!formSection) return;
+
+    const qrcode = formSection.querySelector(".qrcode");
+    if (qrcode) {
+        qrcode.style.display = "block";
+    }
+
+    const questionTypes = formSection.querySelector(".question-types");
+    if (questionTypes) {
+        questionTypes.style.display = "none";
+    }
+}
+
+function openCamera() {
+    let scannerDiv = document.getElementById("qr-reader");
+    if (!scannerDiv) {
+        scannerDiv = document.createElement("div");
+        scannerDiv.id = "qr-reader";
+        scannerDiv.style.width = "300px";
+        document.body.appendChild(scannerDiv);
+    }
+
+    const html5QrCode = new Html5Qrcode("qr-reader");
+
+    navigator.mediaDevices
+        .getUserMedia({ video: true })
+        .then(() => {
+            html5QrCode
+                .start(
+                    { facingMode: "user" },
+                    {
+                        fps: 10,
+                        qrbox: { width: 250, height: 250 },
+                    },
+                    (decodedText) => {
+                        console.log("QR Code Detected:", decodedText);
+                        const qrcodeDiv = document.querySelector(".qrcode");
+                        if (qrcodeDiv) {
+                            const inputField = qrcodeDiv.querySelector("input");
+                            if (inputField) {
+                                inputField.value = decodedText;
+                                console.log(
+                                    "Inserted decoded text:",
+                                    decodedText
+                                );
+                            } else {
+                                console.error(
+                                    "Input field not found inside .qrcode!"
+                                );
+                            }
+                        } else {
+                            console.error("QR Code div not found!");
+                        }
+
+                        html5QrCode.stop();
+                    },
+                    (error) => console.log(error)
+                )
+                .catch((err) => console.log("Camera error: ", err));
+        })
+        .catch((err) => {
+            console.log("Camera permission denied: ", err);
+            alert("Please allow camera access in your browser settings.");
+        });
+}
 function showAcknowledgment(button) {
     hideUsedOption(button, "showAcknowledgement");
     formSection.querySelector(".question-types").style.display = "none";

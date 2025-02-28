@@ -7,7 +7,9 @@
     <title>Form</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    {{-- @vite('resources/css/app.css') --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+    {{-- { --@vite('resources/css/app.css') --}}
     <style>
         .form-section {
             position: relative;
@@ -114,140 +116,149 @@
                         Upload</button>
                 </div>
 
-                {{-- <i class="fas fa-search absolute mt-4 ml-3"></i>
-                <input type="search" placeholder="      Search for options"
-                    class="w-full p-2 border border-gray-300 rounded-md mb-2"> --}}
-                <!-- Single Choice Section -->
-                {{-- <select name="single-choice-options" class="border border-black" id="single-choice-options"
-                    onchange="populateOptions(this)">
-                    <option value="select">Select</option>
-                    <option value="gender">Gender</option>
-                    <option value="relation">Relation</option>
-                    <option value="marital">Marital Status</option>
+                {{-- < i class="fas fa-search absolute mt-4 ml-3"></i>
+                    <input type="search" placeholder="      Search for options"
+                        class="w-full p-2 border border-gray-300 rounded-md mb-2"> --}}
+                    <!-- Single Choice Section -->
+                    {{-- < select name="single-choice-options" class="border border-black" id="single-choice-options"
+                        onchange="populateOptions(this)">
+                        <option value="select">Select</option>
+                        <option value="gender">Gender</option>
+                        <option value="relation">Relation</option>
+                        <option value="marital">Marital Status</option>
 
-                </select> --}}
-                <div class="single-choice mt-4" style="display: none;">
-                    <input type="text" id="search-bar" placeholder="Search for options..."
-                        class="w-80 p-2 border border-gray-300 rounded-md">
-                    <button class="bg-blue-500 text-white px-4 py-2 rounded-md mt-3" onclick="fetchOptions(this)">
-                        <i class="fas fa-search"></i>
-                    </button>
-                    <h4 class=" text-lg font-semibold mb-2 mt-2">Select One:</h4>
-                    <div class="single-choice-options space-y-2">
+                        </select> --}}
+                        <div class="single-choice mt-4" style="display: none;">
+                            <input type="text" id="search-bar" placeholder="Search for options..."
+                                class="w-80 p-2 border border-gray-300 rounded-md">
+                            <button class="bg-blue-500 text-white px-4 py-2 rounded-md mt-3"
+                                onclick="fetchOptions(this)">
+                                <i class="fas fa-search"></i>
+                            </button>
+                            <h4 class=" text-lg font-semibold mb-2 mt-2">Select One:</h4>
+                            <div class="single-choice-options space-y-2">
 
-                    </div>
-                    <button class="bg-blue-500 text-white px-4 py-2 rounded-md mt-3"
-                        onclick="addSingleChoiceOption(this)">+ Add Option</button>
-                </div>
-                {{-- <div class="flex items-center">
-                    <input type="radio" name="single-choice" class="mr-2">
-                    <input type="text" placeholder="Option 1" class="w-full p-2 border border-gray-300 rounded-md"
-                        oninput="updateOptionVal(this)">
-                </div>
-                <div class="flex items-center">
-                    <input type="radio" name="single-choice" class="mr-2">
-                    <input type="text" placeholder="Option 2" class="w-full p-2 border border-gray-300 rounded-md"
-                        oninput="updateOptionVal(this)">
-                </div> --}}
-                <!-- Multiple Choice Section -->
-                <div class="multiple-choice mt-4" style="display: none;">
-                    <h4 class="text-lg font-semibold mb-2">Select Many:</h4>
-                    <div class="multiple-choice-options space-y-2">
-                        <div class="flex items-center">
-                            <input type="checkbox" name="multiple-choice" class="mr-2">
+                            </div>
+                            <button class="bg-blue-500 text-white px-4 py-2 rounded-md mt-3"
+                                onclick="addSingleChoiceOption(this)">+ Add Option</button>
+                        </div>
+                        {{-- < div class="flex items-center">
+                            <input type="radio" name="single-choice" class="mr-2">
                             <input type="text" placeholder="Option 1"
-                                class="w-full p-2 border border-gray-300 rounded-md" oninput="updateOptionValue(this)">
-                        </div>
-                        <div class="flex items-center">
-                            <input type="checkbox" name="multiple-choice" class="mr-2">
-                            <input type="text" placeholder="Option 2"
-                                class="w-full p-2 border border-gray-300 rounded-md" oninput="updateOptionValue(this)">
-                        </div>
-                    </div>
-                    <button class="bg-blue-500 text-white px-4 py-2 rounded-md mt-3"
-                        onclick="addMultipleChoiceOption(this)">+ Add Option</button>
-                </div>
-
-                {{-- District --}}
-                <div class="district" style="display: none;">
-                    <p class="text-lg font-semibold mb-2">Select District:</p>
-                    <select name=" district" class="district-dropdown mt-4 border border-gray-600 rounded-lg">
-                        <option value="">Select a district</option>
-                    </select>
-                    <button class="bg-blue-500 text-white px-4 py-2 rounded-md mb-4 mt-4"
-                        onclick="saveDistrict(this)">Save</button>
-                </div>
-
-                <div class="saved-district" style="display: none;">
-                    <h4>Selected District:</h4>
-                    <p class="selected-district-display mt-4"></p>
-                </div>
-
-                {{-- Current Location--}}
-                <div class="point-selector mt-4" style="display: none;">
-                    <p id="latitude" class="mt-2 text-gray-600"></p>
-                    <p id="longitude" class="mt-2 text-gray-600"></p>
-                </div>
-
-                {{-- Barcode --}}
-                <div class="barcode" style="display: none;">
-                    <h4 class="text-lg font-semibold mb-2">Barcode:</h4>
-                    <input type="text" placeholder="Barcode Number"
-                        class="w-full p-2 border border-gray-300 rounded-md">
-                </div>
-
-                {{-- Date Picker --}}
-                <div class="datepicker mt-4" style="display: none;">
-                    <h4 class="text-lg font-semibold mb-2">Date:</h4>
-
-                    <input class="w-40 p-2 border border-gray-300 rounded-md" type="date" id="datepicker">
-                    <button type="button" class="btn-icon-only btn-reset mt-4" aria-label="reset"
-                        onclick="resetDatePicker(this)">
-                        <i class="fas fa-sync-alt"></i>
-                    </button>
-                </div>
-
-                {{-- Time Picker --}}
-                <div class="timepicker
-                    mt-4" style="display: none;">
-                    <h4 class="text-lg font-semibold mb-2">Time:</h4>
-
-                    <input type="time" class="w-40 p-2 border border-gray-300 rounded-md" id="timepicker">
-                    <button type="button" class="btn-icon-only btn-reset mt-4" aria-label="reset"
-                        onclick="resetTimePicker(this)">
-                        <i class="fas fa-sync-alt"></i>
-                    </button>
-                </div>
-
-                {{-- Date Time Picker --}}
-                <div class="datetimepicker widget mt-4 inline" style="display: none;">
-                    <h4 class="text-lg font-semibold mb-2">Date & Time:</h4>
-
-                    <div class="date">
-                        <input class="w-40 p-2 border border-gray-300 rounded-md" type="date" placeholder="yyyy-mm-dd"
-                            id="datepicker">
-                        <input type="time" class="w-40 p-2 border border-gray-300 rounded-md" placeholder="hh:mm"
-                            id="timepicker">
-                        <button type="button" class="btn-icon-only btn-reset mt-4" aria-label="reset"
-                            onclick="resetDateTimePicker(this)">
-                            <i class="fas fa-sync-alt"></i>
-                        </button>
-                    </div>
-                </div>
-
+                                class="w-full p-2 border border-gray-300 rounded-md" oninput="updateOptionVal(this)">
             </div>
+            <div class="flex items-center">
+                <input type="radio" name="single-choice" class="mr-2">
+                <input type="text" placeholder="Option 2" class="w-full p-2 border border-gray-300 rounded-md"
+                    oninput="updateOptionVal(this)">
+            </div> --}}
+            <!-- Multiple Choice Section -->
+            <div class="multiple-choice mt-4" style="display: none;">
+                <h4 class="text-lg font-semibold mb-2">Select Many:</h4>
+                <div class="multiple-choice-options space-y-2">
+                    <div class="flex items-center">
+                        <input type="checkbox" name="multiple-choice" class="mr-2">
+                        <input type="text" placeholder="Option 1" class="w-full p-2 border border-gray-300 rounded-md"
+                            oninput="updateOptionValue(this)">
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" name="multiple-choice" class="mr-2">
+                        <input type="text" placeholder="Option 2" class="w-full p-2 border border-gray-300 rounded-md"
+                            oninput="updateOptionValue(this)">
+                    </div>
+                </div>
+                <button class="bg-blue-500 text-white px-4 py-2 rounded-md mt-3"
+                    onclick="addMultipleChoiceOption(this)">+ Add Option</button>
+            </div>
+
+            {{-- District --}}
+            <div class="district" style="display: none;">
+                <p class="text-lg font-semibold mb-2">Select District:</p>
+                <select name=" district" class="district-dropdown mt-4 border border-gray-600 rounded-lg">
+                    <option value="">Select a district</option>
+                </select>
+                <button class="bg-blue-500 text-white px-4 py-2 rounded-md mb-4 mt-4"
+                    onclick="saveDistrict(this)">Save</button>
+            </div>
+
+            <div class="saved-district" style="display: none;">
+                <h4>Selected District:</h4>
+                <p class="selected-district-display mt-4"></p>
+            </div>
+
+            {{-- Current Location--}}
+            <div class="point-selector mt-4" style="display: none;">
+                <p id="latitude" class="mt-2 text-gray-600"></p>
+                <p id="longitude" class="mt-2 text-gray-600"></p>
+            </div>
+
+            {{-- Barcode --}}
+            <div class="barcode" style="display: none;">
+                <h4 class="text-lg font-semibold mb-2">Barcode:</h4>
+                <input type="text" placeholder="Barcode Number" class="w-full p-2 border border-gray-300 rounded-md">
+            </div>
+
+            {{-- QR --}}
+            <div class="qrcode" style="display: none;">
+                <button id="camButton" class="bg-blue-500 text-white p-3 rounded-md mt-2" onclick="openCamera()">
+                    <i class="fas fa-camera"></i> Open Camera
+                </button>
+                <h4 class="text-lg font-semibold mb-2">Decoded Text:</h4>
+                <input type="text" placeholder="QR Code Text" class="w-full p-2 border border-gray-300 rounded-md">
+            </div>
+
+            {{-- Date Picker --}}
+            <div class="datepicker mt-4" style="display: none;">
+                <h4 class="text-lg font-semibold mb-2">Date:</h4>
+
+                <input class="w-40 p-2 border border-gray-300 rounded-md" type="date" id="datepicker">
+                <button type="button" class="btn-icon-only btn-reset mt-4" aria-label="reset"
+                    onclick="resetDatePicker(this)">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            </div>
+
+            {{-- Time Picker --}}
+            <div class="timepicker
+                    mt-4" style="display: none;">
+                <h4 class="text-lg font-semibold mb-2">Time:</h4>
+
+                <input type="time" class="w-40 p-2 border border-gray-300 rounded-md" id="timepicker">
+                <button type="button" class="btn-icon-only btn-reset mt-4" aria-label="reset"
+                    onclick="resetTimePicker(this)">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            </div>
+
+            {{-- Date Time Picker --}}
+            <div class="datetimepicker widget mt-4 inline" style="display: none;">
+                <h4 class="text-lg font-semibold mb-2">Date & Time:</h4>
+
+                <div class="date">
+                    <input class="w-40 p-2 border border-gray-300 rounded-md" type="date" placeholder="yyyy-mm-dd"
+                        id="datepicker">
+                    <input type="time" class="w-40 p-2 border border-gray-300 rounded-md" placeholder="hh:mm"
+                        id="timepicker">
+                    <button type="button" class="btn-icon-only btn-reset mt-4" aria-label="reset"
+                        onclick="resetDateTimePicker(this)">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                </div>
+            </div>
+
         </div>
-        <button class="bg-blue-500 text-white px-4 py-2 rounded-md mb-6" onclick="addFormSection()"><i
-                class="fa-solid fa-plus"></i></button>
-        <script src="{{ asset('js/projectspage.js') }}" defer></script>
-        <script>
-            function deleteFormSection(button) {
-                const formSection = button.closest(".form-section");
-                if (confirm("Are you sure you want to delete this question? This action cannot be undone.")) {
-                    formSection.remove();
-                }
+    </div>
+    <button class="bg-blue-500 text-white px-4 py-2 rounded-md mb-6" onclick="addFormSection()"><i
+            class="fa-solid fa-plus"></i></button>
+    <script src="{{ asset('js/projectspage.js') }}" defer></script>
+    <script>
+        function deleteFormSection(button) {
+            const formSection = button.closest(".form-section");
+            if (confirm("Are you sure you want to delete this question? This action cannot be undone.")) {
+                formSection.remove();
             }
-        </script>
+        }
+    </script>
     </div>
 </body>
 
