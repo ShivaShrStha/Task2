@@ -243,7 +243,7 @@
         <script>
             function deleteFormSection(button) {
                 const formSection = button.closest(".form-section");
-                if (confirm("Are you sure you want to delete this section?")) {
+                if (confirm("Are you sure you want to delete this question? This action cannot be undone.")) {
                     formSection.remove();
                 }
             }
