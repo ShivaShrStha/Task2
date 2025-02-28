@@ -1,11 +1,32 @@
 function addFormSection() {
     const container = document.getElementById("form-container");
     const template = document.getElementById("form-section-template");
+
+    if (!container) {
+        console.error("Container element not found");
+        return;
+    }
+    if (!template) {
+        console.error("Template element not found");
+        return;
+    }
+
     const clone = template.cloneNode(true);
     clone.style.display = "block";
     clone.id = "";
     container.appendChild(clone);
-    clone.querySelector(".add-question-button").style.display = "block";
+
+    const newInput = clone.querySelector("#question-input");
+    if (newInput) {
+        newInput.focus();
+    }
+
+    const addQuestionButton = clone.querySelector(".bg-blue-500");
+    if (addQuestionButton) {
+        addQuestionButton.style.display = "block";
+    } else {
+        console.error("Add question button not found in the template");
+    }
 }
 
 function showQuestionTypes(button) {
