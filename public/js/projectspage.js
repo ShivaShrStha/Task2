@@ -412,35 +412,34 @@ function openCamera() {
                     },
                     (decodedText) => {
                         console.log("QR Code Detected:", decodedText);
-                        const qrcodeDiv = document.querySelector(".qrcode");
-                        if (qrcodeDiv) {
-                            const inputField = qrcodeDiv.querySelector("input");
-                            if (inputField) {
-                                inputField.value = decodedText;
-                                console.log(
-                                    "Inserted decoded text:",
-                                    decodedText
-                                );
-                            } else {
-                                console.error(
-                                    "Input field not found inside .qrcode!"
-                                );
-                            }
+                        const inputField =
+                            document.getElementById("decoded-text");
+                        if (inputField) {
+                            inputField.value = decodedText;
+                            console.log(
+                                "Inserted decoded text:",
+                                inputField.value
+                            );
                         } else {
-                            console.error("QR Code div not found!");
+                            console.error("Input field not found!");
                         }
-
                         html5QrCode.stop();
                     },
-                    (error) => console.log(error)
+                    (error) => {
+                        console.log("QR Code scan error:", error);
+                    }
                 )
-                .catch((err) => console.log("Camera error: ", err));
+                .catch((err) => {
+                    console.log("Camera error: ", err);
+                });
         })
         .catch((err) => {
             console.log("Camera permission denied: ", err);
             alert("Please allow camera access in your browser settings.");
         });
 }
+// document.getElementById("camButton").addEventListener("click", openCamera);
+
 function showAcknowledgment(button) {
     hideUsedOption(button, "showAcknowledgement");
     formSection.querySelector(".question-types").style.display = "none";
