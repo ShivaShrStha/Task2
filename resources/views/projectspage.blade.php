@@ -7,6 +7,8 @@
     <title>Form</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
     <style>
@@ -35,6 +37,20 @@
             grid-template-columns: repeat(4, 1fr);
             gap: 10px;
             margin-top: 10px;
+        }
+
+        .map-canvas-wrapper {
+            height: 300px;
+            margin-top: 10px;
+        }
+
+        .geo-inputs {
+            margin-top: 10px;
+        }
+
+        .geo-inputs label {
+            display: block;
+            margin-bottom: 5px;
         }
     </style>
 </head>
@@ -81,7 +97,7 @@
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="showVideoUploader(this)"><i class="fas fa-video mr-2"></i> Video</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showLineInput(this)"><i class="fas fa-arrow-trend-up mr-2"></i> Line</button>
+                        onclick="showLine(this)"><i class="fas fa-arrow-trend-up mr-2"></i> Line</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="showNoteInput(this)"><i class="fa-solid fa-bars mr-2"></i> Note</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
@@ -163,6 +179,24 @@
                 <div class="point-selector mt-4" style="display: none;">
                     <p id="latitude" class="mt-2 text-gray-600"></p>
                     <p id="longitude" class="mt-2 text-gray-600"></p>
+                </div>
+
+                {{-- Line --}}
+                <div class="geopicker widget" id="geopicker" style="display: none;">
+                    <div class="search-bar">
+                        <button id="detect-location" class="btn btn-default" title="Detect current location">
+                            <span>📍 Detect Location</span>
+                        </button>
+                        <input id="search" type="text" placeholder="Search for place or address">
+                        <button id="search-btn" class="btn btn-default">🔍</button>
+                    </div>
+                    <div class="map-canvas-wrapper">
+                        <div id="map" style="height: 300px;"></div>
+                    </div>
+                    <div class="geo-inputs">
+                        <label>Latitude: <input id="lat" type="number" step="0.000001" min="-90" max="90"></label>
+                        <label>Longitude: <input id="long" type="number" step="0.000001" min="-180" max="180"></label>
+                    </div>
                 </div>
 
                 {{-- Barcode --}}
