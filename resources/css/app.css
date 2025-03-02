@@ -12,21 +12,10 @@ body {
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 20px;
-    max-width: 600px;
+    max-width: 700px;
     margin: auto;
     background-color: #fff;
 }
-
-
-.form-section {
-    margin-top: 20px;
-}
-
-.question-types {
-    display: none;
-    margin-top: 20px;
-}
-
 .question-types button {
     display: inline-block;
     margin: 5px;
@@ -39,37 +28,4 @@ body {
 
 .question-types button:hover {
     background-color: #e0e0e0;
-}
-
-.form-section input {
-    width: calc(100% - 120px);
-    padding: 10px;
-    margin-right: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.star-rating {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: center;
-}
-
-.star-rating input[type="radio"] {
-    display: none;
-}
-
-.star-rating label {
-    font-size: 2em;
-    color: #ddd;
-    cursor: pointer;
-}
-
-.star-rating input[type="radio"]:checked~label {
-    color: #f5b301;
-}
-
-.star-rating label:hover,
-.star-rating label:hover~label {
-    color: #f5b301;
 }

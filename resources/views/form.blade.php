@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    {{--
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> --}}
+
+    @vite('resources/css/app.css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -64,12 +67,13 @@
     <div class="max-w-3xl mx-auto p-4 mt-10 border border-green-200 ">
         <h2 class="text-2xl font-bold text-center mb-6">Form</h2>
         <div id="form-container">
-            <div class="form-section bg-white p-6 rounded-lg shadow-md mb-6 hidden" id="form-section-template"
-                style="display: none;">
+            <div class="form-section bg-white p-6 rounded-lg shadow-md mb-6 hidden" id="form-section-template">
                 <button class="delete-button" onclick="deleteFormSection(this)">x</button>
-                <x-text-input type="text" id="question-input" placeholder="Enter your question here" />
-                <button class="bg-blue-500 text-white px-4 py-2 rounded-md mb-4" onclick="showQuestionTypes(this)">Add
-                    Question</button>
+                <div class="flex items-center space-x-5">
+                    <x-text-input type="text" id="question-input" placeholder="Enter your question here" />
+                    <button class="bg-blue-500 text-white p-2 rounded-md" onclick="showQuestionTypes(this)">Add
+                        Question</button>
+                </div>
 
                 <div class="question-types grid grid-cols-4 gap-4 mb-4">
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
@@ -266,7 +270,7 @@
         </div>
         <button class="bg-blue-500 text-white px-4 py-2 rounded-md mb-6" onclick="addFormSection()"><i
                 class="fa-solid fa-plus"></i></button>
-        <script src="{{ asset('js/projectspage.js') }}" defer></script>
+        <script src="{{ asset('js/form.js') }}" defer></script>
         <script>
             function deleteFormSection(button) {
                 const formSection = button.closest(".form-section");

@@ -5,15 +5,15 @@ use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\OptionController;
 
 Route::get('/', function () {
+    return view('dashboard');
+});
+
+Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::get('/formpage', function () {
-    return view('formpage');
-});
-
-Route::get('/projectspage', function () {
-    return view('projectspage');
+Route::get('/form', function () {
+    return view('form');
 });
 
 
