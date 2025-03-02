@@ -357,16 +357,15 @@ function showLine(button) {
 
     const line = formSection.querySelector(".geopicker");
     if (line) {
-        line.style.display = "block"; // Show the geopicker
+        line.style.display = "block";
     }
 
     const questionTypes = formSection.querySelector(".question-types");
     if (questionTypes) {
-        questionTypes.style.display = "none"; // Hide other elements
+        questionTypes.style.display = "none";
     }
 }
 
-// Initialize the map and related functionality
 document.addEventListener("DOMContentLoaded", function () {
     let map = L.map("map").setView([27.7172, 85.324], 13);
     let polyline = L.polyline([], { color: "blue" }).addTo(map);
@@ -376,7 +375,6 @@ document.addEventListener("DOMContentLoaded", function () {
         attribution: "&copy; OpenStreetMap contributors",
     }).addTo(map);
 
-    // Function to update the map with a new marker and polyline
     function updateMap(lat, lng) {
         let marker = L.marker([lat, lng]).addTo(map);
         markers.push(marker);
@@ -385,12 +383,10 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("long").value = lng;
     }
 
-    // Add a click event to the map to place markers
     map.on("click", function (e) {
         updateMap(e.latlng.lat, e.latlng.lng);
     });
 
-    // Add an event listener to the "Detect Location" button
     document
         .getElementById("detect-location")
         .addEventListener("click", function () {
@@ -410,20 +406,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 alert("Geolocation is not supported by your browser");
             }
         });
-
-    // Add an event listener to the search button (placeholder for now)
-    document
-        .getElementById("search-btn")
-        .addEventListener("click", function () {
-            alert("Search functionality not implemented yet.");
-        });
 });
 function showNoteInput(button) {
     hideUsedOption(button, "showNoteInput");
     formSection.querySelector(".question-types").style.display = "none";
 }
 function showBarcode(button) {
-    // hideUsedOption(button, "showBarcodeScanner");
     const formSection = button.closest(".form-section");
     if (!formSection) return;
 

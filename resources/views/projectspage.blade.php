@@ -48,6 +48,11 @@
             margin-top: 10px;
         }
 
+        #map {
+            height: 100%;
+            z-index: 1000;
+        }
+
         .geo-inputs label {
             display: block;
             margin-bottom: 5px;
@@ -182,25 +187,26 @@
                 </div>
 
                 {{-- Line --}}
-                <div class="geopicker widget" id="geopicker" style="display: none;">
+                <div class="geopicker widget hidden" id="geopicker">
                     <div class="search-bar">
-                        <button id="detect-location" class="btn btn-default" title="Detect current location">
+                        <button id="detect-location" class="border border-gray-600 rounded-md"
+                            title="Detect current location">
                             <span>📍 Detect Location</span>
                         </button>
-                        <input id="search" type="text" placeholder="Search for place or address">
-                        <button id="search-btn" class="btn btn-default">🔍</button>
                     </div>
                     <div class="map-canvas-wrapper">
                         <div id="map" style="height: 300px;"></div>
                     </div>
                     <div class="geo-inputs">
-                        <label>Latitude: <input id="lat" type="number" step="0.000001" min="-90" max="90"></label>
-                        <label>Longitude: <input id="long" type="number" step="0.000001" min="-180" max="180"></label>
+                        <label>Latitude: <input class="w-80 p-2 border border-gray-300 rounded-md" id="lat"
+                                type="number" step="0.000001" min="-90" max="90"></label>
+                        <label>Longitude: <input class="w-80 p-2 border border-gray-300 rounded-md" id="long"
+                                type="number" step="0.000001" min="-180" max="180"></label>
                     </div>
                 </div>
 
                 {{-- Barcode --}}
-                <div class="barcode" style="display: none;">
+                <div class="barcode hidden">
                     <h4 class="text-lg font-semibold mb-2">Barcode:</h4>
                     <input type="text" placeholder="Barcode Number"
                         class="w-full p-2 border border-gray-300 rounded-md">
