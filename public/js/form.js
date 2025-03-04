@@ -274,13 +274,40 @@ function showDecimalInput(button) {
 function showDatePicker(button) {
     const formSection = button.closest(".form-section");
     const datePicker = formSection.querySelector(".datepicker");
+    const datepickerInput = formSection.querySelector("#datepicker");
+    const nepaliDateDisplay = formSection.querySelector("#nepaliDate");
 
     datePicker.style.display = "block";
     formSection.querySelector(".question-types").style.display = "none";
+
+    datepickerInput.addEventListener("change", function () {
+        const selectedDate = new Date(this.value);
+        const adYear = selectedDate.getFullYear();
+        const adMonth = selectedDate.getMonth() + 1; // Month is 0-indexed
+        const adDay = selectedDate.getDate();
+
+        // Import the converter
+        import("@sbmdkl/nepali-date-converter")
+            .then(({ adToBs }) => {
+                const bsDate = adToBs(adYear, adMonth, adDay);
+                nepaliDateDisplay.value = `${bsDate.year}-${bsDate.month
+                    .toString()
+                    .padStart(2, "0")}-${bsDate.day
+                    .toString()
+                    .padStart(2, "0")}`;
+            })
+            .catch((error) => {
+                console.error("Error loading Nepali date converter:", error);
+            });
+    });
 }
 function resetDatePicker(button) {
-    const datePicker = button.closest(".datepicker");
-    datePicker.querySelector("#datepicker").value = "";
+    const formSection = button.closest(".form-section");
+    const datepickerInput = formSection.querySelector("#datepicker");
+    const nepaliDateDisplay = formSection.querySelector("#nepaliDate");
+
+    datepickerInput.value = "";
+    nepaliDateDisplay.value = "";
 }
 
 function showTime(button) {
@@ -367,6 +394,15 @@ function showLine(button) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+    // Check if NepaliFunctions is defined. This handles cases where loading fails.
+    if (typeof NepaliFunctions === "undefined") {
+        console.error(
+            "Error: NepaliFunctions is not defined. Check your Nepali date picker library inclusion."
+        );
+        return;
+    }
+
+    //for map initialization
     let map = L.map("map").setView([27.7172, 85.324], 13);
     let polyline = L.polyline([], { color: "blue" }).addTo(map);
     let markers = [];

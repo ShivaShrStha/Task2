@@ -29,3 +29,48 @@ body {
 .question-types button:hover {
     background-color: #e0e0e0;
 }
+.form-section {
+    position: relative;
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.delete-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: none;
+    border: none;
+    color: red;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.question-types {
+    display: none;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.map-canvas-wrapper {
+    height: 300px;
+    margin-top: 10px;
+}
+
+.geo-inputs {
+    margin-top: 10px;
+}
+
+#map {
+    height: 100%;
+    z-index: 1000;
+}
+
+.geo-inputs label {
+    display: block;
+    margin-bottom: 5px;
+}

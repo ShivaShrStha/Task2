@@ -5,62 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form</title>
-    {{--
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> --}}
 
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
-    <style>
-        .form-section {
-            position: relative;
-            padding: 20px;
-            border: 1px solid #ccc;
-            margin-bottom: 10px;
-            border-radius: 5px;
-        }
+    {{--
+    <script src="https://unpkg.com/nepali-date-picker@2.0.1/dist/nepaliDatePicker.min.js"></script> --}}
 
-        .delete-button {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background: none;
-            border: none;
-            color: red;
-            font-size: 24px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .question-types {
-            display: none;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .map-canvas-wrapper {
-            height: 300px;
-            margin-top: 10px;
-        }
-
-        .geo-inputs {
-            margin-top: 10px;
-        }
-
-        #map {
-            height: 100%;
-            z-index: 1000;
-        }
-
-        .geo-inputs label {
-            display: block;
-            margin-bottom: 5px;
-        }
-    </style>
 </head>
 
 <body class="bg-gray-100">
@@ -232,6 +187,8 @@
                     <h4 class="text-lg font-semibold mb-2">Date:</h4>
 
                     <input class="w-40 p-2 border border-gray-300 rounded-md" type="date" id="datepicker">
+                    <input type="text" id="nepaliDate" readonly class="w-40 p-2 border border-gray-300 rounded-md mt-2"
+                        placeholder="Nepali Date">
                     <button type="button" class="btn-icon-only btn-reset mt-4" aria-label="reset"
                         onclick="resetDatePicker(this)">
                         <i class="fas fa-sync-alt"></i>
@@ -278,6 +235,7 @@
                     formSection.remove();
                 }
             }
+
         </script>
     </div>
 </body>
