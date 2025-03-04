@@ -13,8 +13,8 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
-    {{--
-    <script src="https://unpkg.com/nepali-date-picker@2.0.1/dist/nepaliDatePicker.min.js"></script> --}}
+    <script src="https://unpkg.com/nepali-date-picker@2.0.1/dist/nepaliDatePicker.min.js"></script>
+
 
 </head>
 
@@ -235,7 +235,6 @@
                     formSection.remove();
                 }
             }
-
         </script>
     </div>
 </body>

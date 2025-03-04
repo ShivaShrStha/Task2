@@ -286,19 +286,10 @@ function showDatePicker(button) {
         const adMonth = selectedDate.getMonth() + 1; // Month is 0-indexed
         const adDay = selectedDate.getDate();
 
-        // Import the converter
-        import("@sbmdkl/nepali-date-converter")
-            .then(({ adToBs }) => {
-                const bsDate = adToBs(adYear, adMonth, adDay);
-                nepaliDateDisplay.value = `${bsDate.year}-${bsDate.month
-                    .toString()
-                    .padStart(2, "0")}-${bsDate.day
-                    .toString()
-                    .padStart(2, "0")}`;
-            })
-            .catch((error) => {
-                console.error("Error loading Nepali date converter:", error);
-            });
+        const bsDate = adToBs(adYear, adMonth, adDay);
+        nepaliDateDisplay.value = `${bsDate.year}-${bsDate.month
+            .toString()
+            .padStart(2, "0")}-${bsDate.day.toString().padStart(2, "0")}`;
     });
 }
 function resetDatePicker(button) {
@@ -442,6 +433,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 alert("Geolocation is not supported by your browser");
             }
         });
+
+    const datepickerInput = document.querySelector("#datepicker");
+    if (datepickerInput) {
+        new NepaliDatePicker(datepickerInput, {
+            // Configuration options
+        });
+    }
 });
 function showNoteInput(button) {
     hideUsedOption(button, "showNoteInput");
