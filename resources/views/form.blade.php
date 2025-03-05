@@ -177,9 +177,8 @@
                         <i class="fas fa-camera"></i> Open Camera
                     </button>
                     <h4 class="text-lg font-semibold mb-2">Decoded Text:</h4>
-                    {{-- <input type="text" id="decoded-text" placeholder="QR Code Text"
-                        class="w-full p-2 border border-gray-300 rounded-md"> --}}
-                    <input type="text" id="decoded-text">
+                    <input type="text" id="decoded-text" placeholder="QR Code Text"
+                        class="w-full p-2 border border-gray-300 rounded-md">
                 </div>
 
                 {{-- Date Picker --}}
