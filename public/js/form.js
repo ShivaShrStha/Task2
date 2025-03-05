@@ -329,10 +329,9 @@ function showLine(button) {
     const line = formSection.querySelector(".geopicker");
     if (line) {
         line.style.display = "block";
-        // Initialize the map only if it hasn't been initialized yet
         if (!line.dataset.mapInitialized) {
             initializeMap(line);
-            line.dataset.mapInitialized = "true"; // Mark the map as initialized
+            line.dataset.mapInitialized = "true";
         }
     }
 
@@ -343,7 +342,7 @@ function showLine(button) {
 }
 
 function initializeMap(geopickerContainer) {
-    const mapDiv = geopickerContainer.querySelector("#map"); // Assuming your map container div has class "map"
+    const mapDiv = geopickerContainer.querySelector("#map");
     if (!mapDiv) {
         console.error("Map container not found within geopicker");
         return;
@@ -362,8 +361,8 @@ function initializeMap(geopickerContainer) {
         let marker = L.marker([lat, lng]).addTo(map);
         markers.push(marker);
         polyline.addLatLng([lat, lng]);
-        const latInput = geopickerContainer.querySelector("#lat"); // Assuming you have an input with class "lat" to store latitude
-        const lngInput = geopickerContainer.querySelector("#long"); // Assuming you have an input with class "long" to store longitude
+        const latInput = geopickerContainer.querySelector("#lat");
+        const lngInput = geopickerContainer.querySelector("#long");
         if (latInput) {
             latInput.value = lat;
         }
@@ -377,7 +376,7 @@ function initializeMap(geopickerContainer) {
     });
 
     const detectLocationButton =
-        geopickerContainer.querySelector(".detect-location"); // Assuming you have a button with class "detect-location"
+        geopickerContainer.querySelector("#detect-location");
     if (detectLocationButton) {
         detectLocationButton.addEventListener("click", function () {
             if (navigator.geolocation) {

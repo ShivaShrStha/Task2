@@ -154,7 +154,7 @@
                         </button>
                     </div>
                     <div class="map-canvas-wrapper">
-                        <div id="map" style="height: 300px;"></div>
+                        <div id="map" style="height: 300px; cursor: crosshair;"></div>
                     </div>
                     <div class="geo-inputs">
                         <label>Latitude: <input class="w-80 p-2 border border-gray-300 rounded-md" id="lat"
