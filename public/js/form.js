@@ -376,6 +376,11 @@ function showLine(button) {
     const line = formSection.querySelector(".geopicker");
     if (line) {
         line.style.display = "block";
+        // Initialize the map only if it hasn't been initialized yet
+        if (!line.dataset.mapInitialized) {
+            initializeMap(line);
+            line.dataset.mapInitialized = "true"; // Mark the map as initialized
+        }
     }
 
     const questionTypes = formSection.querySelector(".question-types");
@@ -384,17 +389,15 @@ function showLine(button) {
     }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    // Check if NepaliFunctions is defined. This handles cases where loading fails.
-    if (typeof NepaliFunctions === "undefined") {
-        console.error(
-            "Error: NepaliFunctions is not defined. Check your Nepali date picker library inclusion."
-        );
+function initializeMap(geopickerContainer) {
+    const mapDiv = geopickerContainer.querySelector("#map"); // Assuming your map container div has class "map"
+    if (!mapDiv) {
+        console.error("Map container not found within geopicker");
         return;
     }
+    mapDiv.id = "map-" + Date.now();
 
-    //for map initialization
-    let map = L.map("map").setView([27.7172, 85.324], 13);
+    let map = L.map(mapDiv.id).setView([27.7172, 85.324], 13);
     let polyline = L.polyline([], { color: "blue" }).addTo(map);
     let markers = [];
 
@@ -406,17 +409,24 @@ document.addEventListener("DOMContentLoaded", function () {
         let marker = L.marker([lat, lng]).addTo(map);
         markers.push(marker);
         polyline.addLatLng([lat, lng]);
-        document.getElementById("lat").value = lat;
-        document.getElementById("long").value = lng;
+        const latInput = geopickerContainer.querySelector("#lat"); // Assuming you have an input with class "lat" to store latitude
+        const lngInput = geopickerContainer.querySelector("#long"); // Assuming you have an input with class "long" to store longitude
+        if (latInput) {
+            latInput.value = lat;
+        }
+        if (lngInput) {
+            lngInput.value = lng;
+        }
     }
 
     map.on("click", function (e) {
         updateMap(e.latlng.lat, e.latlng.lng);
     });
 
-    document
-        .getElementById("detect-location")
-        .addEventListener("click", function () {
+    const detectLocationButton =
+        geopickerContainer.querySelector(".detect-location"); // Assuming you have a button with class "detect-location"
+    if (detectLocationButton) {
+        detectLocationButton.addEventListener("click", function () {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
                     function (position) {
@@ -433,6 +443,58 @@ document.addEventListener("DOMContentLoaded", function () {
                 alert("Geolocation is not supported by your browser");
             }
         });
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Check if NepaliFunctions is defined. This handles cases where loading fails.
+    if (typeof NepaliFunctions === "undefined") {
+        console.error(
+            "Error: NepaliFunctions is not defined. Check your Nepali date picker library inclusion."
+        );
+        return;
+    }
+
+    // //for map initialization
+    // let map = L.map("map").setView([27.7172, 85.324], 13);
+    // let polyline = L.polyline([], { color: "blue" }).addTo(map);
+    // let markers = [];
+
+    // L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    //     attribution: "&copy; OpenStreetMap contributors",
+    // }).addTo(map);
+
+    // function updateMap(lat, lng) {
+    //     let marker = L.marker([lat, lng]).addTo(map);
+    //     markers.push(marker);
+    //     polyline.addLatLng([lat, lng]);
+    //     document.getElementById("lat").value = lat;
+    //     document.getElementById("long").value = lng;
+    // }
+
+    // map.on("click", function (e) {
+    //     updateMap(e.latlng.lat, e.latlng.lng);
+    // });
+
+    // document
+    //     .getElementById("detect-location")
+    //     .addEventListener("click", function () {
+    //         if (navigator.geolocation) {
+    //             navigator.geolocation.getCurrentPosition(
+    //                 function (position) {
+    //                     let lat = position.coords.latitude;
+    //                     let lng = position.coords.longitude;
+    //                     map.setView([lat, lng], 13);
+    //                     updateMap(lat, lng);
+    //                 },
+    //                 function () {
+    //                     alert("Geolocation is not available");
+    //                 }
+    //             );
+    //         } else {
+    //             alert("Geolocation is not supported by your browser");
+    //         }
+    //     });
 
     const datepickerInput = document.querySelector("#datepicker");
     if (datepickerInput) {

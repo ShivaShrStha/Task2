@@ -148,9 +148,9 @@
                 {{-- Line --}}
                 <div class="geopicker widget hidden" id="geopicker">
                     <div class="search-bar">
-                        <button id="detect-location" class="border border-gray-600 rounded-md"
+                        <button id="detect-location" class="border border-gray-600 rounded-md mt-4"
                             title="Detect current location">
-                            <span>📍 Detect Location</span>
+                            <span>Detect Location</span>
                         </button>
                     </div>
                     <div class="map-canvas-wrapper">
