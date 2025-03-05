@@ -43,8 +43,6 @@ function showQuestionTypes(button) {
 }
 
 function showDistrict(button) {
-    // hideUsedOption(button, "showDistrict");
-
     const formSection = button.closest(".form-section");
     const districtDropdown = formSection.querySelector(".district-dropdown");
 
@@ -102,7 +100,6 @@ function saveDistrict(button) {
 }
 
 function showSingleChoice(button) {
-    // hideUsedOption(button, "showSingleChoice");
     const formSection = button.parentElement.parentElement;
     const singleChoice = formSection.querySelector(".single-choice");
     const questionTypes = formSection.querySelector(".question-types");
@@ -183,48 +180,7 @@ function fetchOptions(button) {
         })
         .catch((error) => console.error("Error fetching options:", error));
 }
-
-// function populateOptions(select) {
-//     const selectedValue = select.value;
-//     const formSection = select.closest(".form-section");
-//     const singleChoiceOptions = formSection.querySelector(
-//         ".single-choice-options"
-//     );
-
-//     // Clear existing options
-//     singleChoiceOptions.innerHTML = "";
-
-//     let options = [];
-//     switch (selectedValue) {
-//         case "gender":
-//             options = ["Male", "Female", "Other"];
-//             break;
-//         case "relation":
-//             options = ["Parent", "Sibling", "Spouse", "Friend"];
-//             break;
-//         case "marital":
-//             options = ["Single", "Married", "Divorced", "Widowed"];
-//             break;
-//         default:
-//             options = ["Option 1", "Option 2"];
-//             break;
-//     }
-
-//     options.forEach((option, index) => {
-//         const newOption = document.createElement("div");
-//         newOption.classList.add("flex", "items-center");
-//         newOption.innerHTML = `
-//             <input type="radio" name="single-choice" class="mr-2">
-//             <input type="text" placeholder="Option ${index + 1}"
-//                 class="w-full p-2 border border-gray-300 rounded-md"
-//                 oninput="updateOptionVal(this)" value="${option}">
-//         `;
-//         singleChoiceOptions.appendChild(newOption);
-//     });
-// }
-
 function showMultipleChoice(button) {
-    // hideUsedOption(button, "showMultipleChoice");
     const formSection = button.closest(".form-section");
     const multipleChoice = formSection.querySelector(".multiple-choice");
 
@@ -283,7 +239,7 @@ function showDatePicker(button) {
     datepickerInput.addEventListener("change", function () {
         const selectedDate = new Date(this.value);
         const adYear = selectedDate.getFullYear();
-        const adMonth = selectedDate.getMonth() + 1; // Month is 0-indexed
+        const adMonth = selectedDate.getMonth() + 1;
         const adDay = selectedDate.getDate();
 
         const bsDate = adToBs(adYear, adMonth, adDay);
@@ -327,7 +283,6 @@ function resetDateTimePicker(button) {
 }
 
 function showPointSelector(button) {
-    // hideUsedOption(button, "showPointSelector");
     const formSection = button.closest(".form-section");
     const pointSelector = formSection.querySelector(".point-selector");
     if (navigator.geolocation) {
@@ -342,8 +297,6 @@ function showPointSelector(button) {
                 pointSelector.querySelector(
                     "#longitude"
                 ).innerText = `Longitude: ${longitude}`;
-
-                // console.log("Latitude:", latitude, "Longitude:", longitude);
             },
             function (error) {
                 console.error("Error getting location:", error.message);
@@ -447,60 +400,15 @@ function initializeMap(geopickerContainer) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Check if NepaliFunctions is defined. This handles cases where loading fails.
     if (typeof NepaliFunctions === "undefined") {
         console.error(
             "Error: NepaliFunctions is not defined. Check your Nepali date picker library inclusion."
         );
         return;
     }
-
-    // //for map initialization
-    // let map = L.map("map").setView([27.7172, 85.324], 13);
-    // let polyline = L.polyline([], { color: "blue" }).addTo(map);
-    // let markers = [];
-
-    // L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    //     attribution: "&copy; OpenStreetMap contributors",
-    // }).addTo(map);
-
-    // function updateMap(lat, lng) {
-    //     let marker = L.marker([lat, lng]).addTo(map);
-    //     markers.push(marker);
-    //     polyline.addLatLng([lat, lng]);
-    //     document.getElementById("lat").value = lat;
-    //     document.getElementById("long").value = lng;
-    // }
-
-    // map.on("click", function (e) {
-    //     updateMap(e.latlng.lat, e.latlng.lng);
-    // });
-
-    // document
-    //     .getElementById("detect-location")
-    //     .addEventListener("click", function () {
-    //         if (navigator.geolocation) {
-    //             navigator.geolocation.getCurrentPosition(
-    //                 function (position) {
-    //                     let lat = position.coords.latitude;
-    //                     let lng = position.coords.longitude;
-    //                     map.setView([lat, lng], 13);
-    //                     updateMap(lat, lng);
-    //                 },
-    //                 function () {
-    //                     alert("Geolocation is not available");
-    //                 }
-    //             );
-    //         } else {
-    //             alert("Geolocation is not supported by your browser");
-    //         }
-    //     });
-
     const datepickerInput = document.querySelector("#datepicker");
     if (datepickerInput) {
-        new NepaliDatePicker(datepickerInput, {
-            // Configuration options
-        });
+        new NepaliDatePicker(datepickerInput, {});
     }
 });
 function showNoteInput(button) {
@@ -585,7 +493,6 @@ function openCamera() {
             alert("Please allow camera access in your browser settings.");
         });
 }
-// document.getElementById("camButton").addEventListener("click", openCamera);
 
 function showAcknowledgment(button) {
     hideUsedOption(button, "showAcknowledgement");
@@ -635,20 +542,6 @@ function hideUsedOption(button, optionType) {
     questionTypes.style.display = "none";
     formSection.querySelector(".add-question-button").style.display = "none";
 }
-// function hideUsedOption(button, action) {
-//     const formSection = button.parentElement.parentElement;
-//     const usedOption = formSection.querySelector(".used-option");
-
-//     if (!usedOption) {
-//         console.error("Element '.used-option' not found");
-//         return;
-//     }
-
-//     // Hide the used option
-//     usedOption.style.display = "none";
-//     // console.log(`Used option hidden for action: ${action}`);
-// }
-
 function showAllOptions() {
     const allOptions = document.querySelectorAll(`.question-types button`);
     allOptions.forEach((option) => {
