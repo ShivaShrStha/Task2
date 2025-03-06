@@ -225,7 +225,7 @@
 
                 {{-- Rating Section --}}
                 <div class="rating-card hidden">
-                    <table id="rating-table">
+                    <table id="rating-table" class="max-w-full">
                         <thead>
                             <tr id="options-row">
                                 <th></th>
