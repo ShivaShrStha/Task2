@@ -503,8 +503,84 @@ function showAreaSelector(button) {
     questionTypes.style.display = "none";
 }
 function showRatingSelector(button) {
-    hideUsedOption(button, "showRatingSelector");
-    formSection.querySelector(".question-types").style.display = "none";
+    const formSection = button.closest(".form-section");
+    if (!formSection) return;
+
+    const rating = formSection.querySelector(".rating-card");
+    if (rating) {
+        rating.style.display = "block";
+    }
+
+    const questionTypes = formSection.querySelector(".question-types");
+    if (questionTypes) {
+        questionTypes.style.display = "none";
+    }
+}
+function addOption() {
+    const optionsRow = document.getElementById("options-row");
+    const optionCount = optionsRow.querySelectorAll(
+        "th:not(:last-child)"
+    ).length;
+
+    const newOption = document.createElement("th");
+    newOption.innerHTML = `<span class="option-input" contenteditable="true">Option ${optionCount}</span> <button class="delete-option ml-2 text-red-500" onclick="delOption(this)">x</button>`;
+
+    optionsRow.insertBefore(newOption, optionsRow.lastElementChild);
+
+    const criteriaBody = document.getElementById("criteria-body");
+    criteriaBody.querySelectorAll("tr").forEach((row, index) => {
+        const newCell = document.createElement("td");
+        newCell.innerHTML = `<input type="radio" name="q${
+            index + 1
+        }" class="ml-5">`;
+        if (row.lastElementChild) {
+            row.insertBefore(newCell, row.lastElementChild);
+        } else {
+            row.appendChild(newCell);
+        }
+    });
+}
+
+function delOption(button) {
+    const th = button.closest("th");
+    const index = Array.from(th.parentNode.children).indexOf(th);
+
+    if (index === th.parentNode.children.length - 1) return;
+
+    th.remove();
+
+    const criteriaBody = document.getElementById("criteria-body");
+    criteriaBody.querySelectorAll("tr").forEach((row) => {
+        if (row.children.length > index) {
+            row.children[index].remove();
+        }
+    });
+}
+
+function addQuestion() {
+    const criteriaBody = document.getElementById("criteria-body");
+    const rowCount = criteriaBody.querySelectorAll("tr").length + 1;
+    const newRow = document.createElement("tr");
+
+    const questionCell = document.createElement("td");
+    questionCell.innerHTML = `<span class="question-input" contenteditable="true">Question ${rowCount}</span> <button class="delete-question ml-2 text-red-500" onclick="delQuestion(this)">×</button>`;
+    newRow.appendChild(questionCell);
+
+    const optionsRow = document.getElementById("options-row");
+    const numOptions =
+        optionsRow.querySelectorAll("th:not(:last-child)").length - 1;
+
+    for (let i = 0; i < numOptions; i++) {
+        const newCell = document.createElement("td");
+        newCell.innerHTML = `<input type="radio" name="q${rowCount}" class="ml-5">`;
+        newRow.appendChild(newCell);
+    }
+
+    criteriaBody.appendChild(newRow);
+}
+
+function delQuestion(button) {
+    button.parentNode.parentNode.remove();
 }
 function showMatrixInput(button) {
     hideUsedOption(button, "showMatrixInput");

@@ -222,6 +222,39 @@
                     </div>
                 </div>
 
+
+                {{-- Rating Section --}}
+                <div class="rating-card hidden">
+                    <table id="rating-table">
+                        <thead>
+                            <tr id="options-row">
+                                <th></th>
+                                <th><span class="option-input" contenteditable="true">Option 1</span> <button
+                                        class="delete-option ml-2 text-red-500" onclick="delOption(this)">x</button>
+                                </th>
+                                <th><button id="add-option" onclick="addOption()">+</button></th>
+                            </tr>
+                        </thead>
+                        <tbody id="criteria-body">
+                            <tr>
+                                <td>
+                                    <span class="question-input" contenteditable="true">Question 1</span> <button
+                                        class="delete-question ml-2 text-red-500" onclick="delQuestion(this)">×</button>
+                                </td>
+                                <td><input type="radio" name="q1" class="ml-5"></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="5"><button id="add-row" onclick="addQuestion()">+</button></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+
+
+
             </div>
         </div>
         <button class="bg-blue-500 text-white px-4 py-2 rounded-md mb-6" onclick="addFormSection()"><i
