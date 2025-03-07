@@ -348,16 +348,24 @@ function showPointSelector(button) {
 }
 
 function showPhotoUploader(button) {
-    hideUsedOption(button, "showPhotoUploader");
+    const formSection = button.closest(".form-section");
+    const mediaSection = formSection.querySelector("#photo-section");
+
+    mediaSection.style.display = "block";
     formSection.querySelector(".question-types").style.display = "none";
+    document.getElementById("videosInput").classList.style.display = "none";
 }
 function showAudio(button) {
     hideUsedOption(button, "showAudio");
     formSection.querySelector(".question-types").style.display = "none";
 }
 function showVideoUploader(button) {
-    hideUsedOption(button, "showVideoUploader");
+    const formSection = button.closest(".form-section");
+    const mediaSection = formSection.querySelector("#video-section");
+
+    mediaSection.style.display = "block";
     formSection.querySelector(".question-types").style.display = "none";
+    document.getElementById("imagesInput").classList.style.display = "none";
 }
 function showLine(button) {
     const formSection = button.closest(".form-section");

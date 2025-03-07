@@ -66,14 +66,14 @@
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="showQr(this)"><i class="fas fa-qrcode mr-2"></i> QR Code</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
+                        onclick="showRatingSelector(this)"><i class="fas fa-star mr-2"></i> Rating</button>
+                    {{-- <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="showAcknowledgment(this)"><i class="fas fa-square-check mr-2"></i>
                         Acknowledge</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="showAreaSelector(this)"><i class="fas fa-square mr-2"></i> Area</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showRatingSelector(this)"><i class="fas fa-star mr-2"></i> Rating</button>
-                    {{-- <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showMatrixInput(this)"><i class="fas fa-th mr-1"></i> Question Matrix</button> --}}
+                        onclick="showMatrixInput(this)"><i class="fas fa-th mr-1"></i> Question Matrix</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="showRankingSelector(this)"><i class="fas fa-list-ol mr-2"></i> Ranking</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
@@ -82,11 +82,11 @@
                         onclick="hidden(this)"><i class="fas fa-eye-slash mr-2"></i> Hidden</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="signature(this)"><i class="fas fa-signature mr-2"></i> Signature</button>
-                    {{-- <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
-                        onclick="showTableInput(this)"><i class="fas fa-table mr-2"></i> Table</button> --}}
+                    <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
+                        onclick="showTableInput(this)"><i class="fas fa-table mr-2"></i> Table</button>
                     <button class="bg-gray-200 p-4 rounded-md hover:bg-gray-300 flex items-center justify-center"
                         onclick="showFileUploader(this)"><i class="fas fa-file-upload mr-2"></i> File
-                        Upload</button>
+                        Upload</button> --}}
                 </div>
                 <div class="single-choice mt-4" style="display: none;">
                     <input type="text" id="search-bar" placeholder="Search for options..."
@@ -254,6 +254,52 @@
                 </div>
 
 
+                {{-- Photo --}}
+                <div class="p-6 text-gray-900 hidden" id="photo-section">
+
+                    <form action="#" method="POST" enctype="multipart/form-data" class="mt-6 space-y-6">
+                        @csrf
+
+                        <x-input-error class="mt-2" :messages="$errors->get('media_type')" />
+
+                        <div id="imagesInput">
+                            <x-input-label for="images" :value="__('Upload Images')" />
+                            <input id="images" name="images[]" type="file" class="mt-1 block w-full" multiple />
+                            <x-input-error class="mt-2" :messages="$errors->get('images')" />
+                        </div>
+
+
+                        <x-primary-button class="mt-4">
+                            {{ trans('messages.Submit') }}
+                        </x-primary-button>
+                    </form>
+                </div>
+
+                {{-- Video --}}
+
+                <div class="p-6 text-gray-900 hidden" id="video-section">
+
+                    <form action="#" method="POST" enctype="multipart/form-data" class="mt-6 space-y-6">
+                        @csrf
+
+                        <x-input-error class="mt-2" :messages="$errors->get('media_type')" />
+
+
+                        <div id="videosInput">
+                            <x-input-label for="videos" :value="__('Upload Video')" />
+                            <input id="videos" name="videos" type="file" class="mt-1 block w-full" />
+                            <x-input-error class="mt-2" :messages="$errors->get('videos')" />
+                        </div>
+
+                        <x-primary-button class="mt-4">
+                            {{ trans('messages.Submit') }}
+                        </x-primary-button>
+                    </form>
+                </div>
+
+
+
+
 
 
             </div>
@@ -265,6 +311,22 @@
         <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
         <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+
+        {{--
+        <script>
+            function toggleMediaInput() {
+                const mediaType = document.getElementById('media_type').value;
+                document.getElementById('imagesInput').classList.style.display = "none";
+                document.getElementById('videosInput').classList.style.display = "none";
+
+                if (mediaType === 'images') {
+                    document.getElementById('imagesInput').classList.style.display = "block";
+                } else if (mediaType === 'videos') {
+                    document.getElementById('videosInput').classList.style.display = "block";
+                }
+            }
+
+        </script> --}}
         <script>
             function deleteFormSection(button) {
                 const formSection = button.closest(".form-section");
