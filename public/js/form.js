@@ -230,23 +230,60 @@ function showDecimalInput(button) {
 function showDatePicker(button) {
     const formSection = button.closest(".form-section");
     const datePicker = formSection.querySelector(".datepicker");
-    const datepickerInput = formSection.querySelector("#datepicker");
-    const nepaliDateDisplay = formSection.querySelector("#nepaliDate");
 
     datePicker.style.display = "block";
     formSection.querySelector(".question-types").style.display = "none";
+}
+function convertDate(button) {
+    const formSection = button.closest(".form-section");
+    if (!formSection) {
+        console.error("Form section not found!");
+        return;
+    }
+    console.log("Convert button clicked!");
 
-    datepickerInput.addEventListener("change", function () {
-        const selectedDate = new Date(this.value);
-        const adYear = selectedDate.getFullYear();
-        const adMonth = selectedDate.getMonth() + 1;
-        const adDay = selectedDate.getDate();
+    const adDatepicker = formSection.querySelector("#ad-datepicker");
+    const nepaliDateDisplay = formSection.querySelector("#nepaliDate");
 
-        const bsDate = adToBs(adYear, adMonth, adDay);
-        nepaliDateDisplay.value = `${bsDate.year}-${bsDate.month
-            .toString()
-            .padStart(2, "0")}-${bsDate.day.toString().padStart(2, "0")}`;
-    });
+    if (!adDatepicker || !nepaliDateDisplay) {
+        console.error("One or more input fields are missing!");
+        return;
+    } else {
+        console.log("Both input fields found!");
+    }
+
+    if (typeof window.adToBs !== "function") {
+        console.error("adToBs function is NOT available!");
+        return;
+    } else {
+        console.log("adToBs function is available!");
+    }
+
+    const selectedDate = new Date(adDatepicker.value);
+    if (isNaN(selectedDate)) {
+        console.error("Invalid date selected!");
+        return;
+    }
+
+    console.log("Date selected:", adDatepicker.value);
+
+    // Convert AD to BS
+    const bsDate = window.adToBs(
+        selectedDate.getFullYear(),
+        selectedDate.getMonth() + 1,
+        selectedDate.getDate()
+    );
+
+    if (bsDate) {
+        const formattedBSDate = `${bsDate.year}-${String(bsDate.month).padStart(
+            2,
+            "0"
+        )}-${String(bsDate.day).padStart(2, "0")}`;
+        nepaliDateDisplay.value = formattedBSDate;
+        console.log("Converted Nepali Date:", formattedBSDate);
+    } else {
+        console.error("Error converting date to Nepali date.");
+    }
 }
 function resetDatePicker(button) {
     const formSection = button.closest(".form-section");
@@ -399,16 +436,38 @@ function initializeMap(geopickerContainer) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    if (typeof NepaliFunctions === "undefined") {
-        console.error(
-            "Error: NepaliFunctions is not defined. Check your Nepali date picker library inclusion."
-        );
-        return;
-    }
-    const datepickerInput = document.querySelector("#datepicker");
-    if (datepickerInput) {
-        new NepaliDatePicker(datepickerInput, {});
-    }
+    // if (typeof NepaliFunctions === "undefined") {
+    //     console.error(
+    //         "Error: NepaliFunctions is not defined. Check your Nepali date picker library inclusion."
+    //     );
+    //     return;
+    // }
+    // const datepickerInput = document.querySelector("#datepicker");
+    // const nepaliDateDisplay = document.querySelector("#nepaliDate");
+    // if (datepickerInput) {
+    //     datepickerInput.addEventListener("change", function () {
+    //         const selectedDate = new Date(this.value);
+    //         const adYear = selectedDate.getFullYear();
+    //         const adMonth = selectedDate.getMonth() + 1; // JavaScript months are 0-based
+    //         const adDay = selectedDate.getDate();
+    //         // Convert AD to BS using the NepaliFunctions library
+    //         const bsDate = NepaliFunctions.AD2BS({
+    //             year: adYear,
+    //             month: adMonth,
+    //             day: adDay,
+    //         });
+    //         // Display the converted Nepali date
+    //         if (bsDate) {
+    //             nepaliDateDisplay.value = `${bsDate.year}-${bsDate.month
+    //                 .toString()
+    //                 .padStart(2, "0")}-${bsDate.day
+    //                 .toString()
+    //                 .padStart(2, "0")}`;
+    //         } else {
+    //             console.error("Error converting date to Nepali date.");
+    //         }
+    //     });
+    // }
 });
 function showNoteInput(button) {
     hideUsedOption(button, "showNoteInput");
