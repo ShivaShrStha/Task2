@@ -256,45 +256,29 @@
 
                 {{-- Photo --}}
                 <div class="p-6 text-gray-900 hidden" id="photo-section">
+                    <div id="imagesInput">
+                        <x-input-label for="images" :value="__('Upload Images')" />
+                        <input id="images" name="images[]" type="file" class="mt-1 block w-full" multiple />
+                        <x-input-error class="mt-2" :messages="$errors->get('images')" />
+                    </div>
 
-                    <form action="#" method="POST" enctype="multipart/form-data" class="mt-6 space-y-6">
-                        @csrf
-
-                        <x-input-error class="mt-2" :messages="$errors->get('media_type')" />
-
-                        <div id="imagesInput">
-                            <x-input-label for="images" :value="__('Upload Images')" />
-                            <input id="images" name="images[]" type="file" class="mt-1 block w-full" multiple />
-                            <x-input-error class="mt-2" :messages="$errors->get('images')" />
-                        </div>
-
-
-                        <x-primary-button class="mt-4">
-                            {{ trans('messages.Submit') }}
-                        </x-primary-button>
-                    </form>
+                    <x-primary-button type="button" class="mt-4">
+                        {{ trans('messages.Submit') }}
+                    </x-primary-button>
                 </div>
 
                 {{-- Video --}}
 
                 <div class="p-6 text-gray-900 hidden" id="video-section">
+                    <div id="videosInput">
+                        <x-input-label for="videos" :value="__('Upload Video')" />
+                        <input id="videos" name="videos" type="file" class="mt-1 block w-full" />
+                        <x-input-error class="mt-2" :messages="$errors->get('videos')" />
+                    </div>
 
-                    <form action="#" method="POST" enctype="multipart/form-data" class="mt-6 space-y-6">
-                        @csrf
-
-                        <x-input-error class="mt-2" :messages="$errors->get('media_type')" />
-
-
-                        <div id="videosInput">
-                            <x-input-label for="videos" :value="__('Upload Video')" />
-                            <input id="videos" name="videos" type="file" class="mt-1 block w-full" />
-                            <x-input-error class="mt-2" :messages="$errors->get('videos')" />
-                        </div>
-
-                        <x-primary-button class="mt-4">
-                            {{ trans('messages.Submit') }}
-                        </x-primary-button>
-                    </form>
+                    <x-primary-button type="button" class="mt-4">
+                        {{ trans('messages.Submit') }}
+                    </x-primary-button>
                 </div>
 
 
